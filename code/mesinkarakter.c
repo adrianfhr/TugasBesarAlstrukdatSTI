@@ -6,6 +6,7 @@
 char currentChar;
 boolean EOP;
 
+
 static FILE *pita;
 static int retval;
 

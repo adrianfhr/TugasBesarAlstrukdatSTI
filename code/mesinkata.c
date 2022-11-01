@@ -3,6 +3,7 @@
 boolean EndWord;
 Word currentWord;
 
+
 void IgnoreBlanks(){
     while(currentChar == BLANK){
         ADV();

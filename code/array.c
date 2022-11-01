@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include "array.h"
 
+
 /* Indeks yang digunakan [IdxMin..IdxMax] */
 /* Jika T adalah TabInt, cara deklarasi dan akses: */
 /* Deklarasi : T : TabInt */

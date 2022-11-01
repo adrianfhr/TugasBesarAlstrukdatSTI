@@ -67,6 +67,7 @@ void dequeue(Queue *q, ElType *val)
     }
 }
 
+
 void displayQueue(Queue q)
 {
     if (isEmpty(q))
