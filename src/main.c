@@ -41,8 +41,15 @@ int main(){
         printf("START GAME!\n");
         printf("File konfigurasi sistem berhasil dibaca. BNMO berhasil dijalankan.\n");
         STARTBNMO();
+        
+    for(int i = 0; i < Length(ListGame); i++)
+        {
+            printf("%s\n", ListGame.A[i]);
+        }
+  
     }
     
+    scanf("%d", &command);
     
      return 0;
 }

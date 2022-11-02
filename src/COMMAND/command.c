@@ -6,6 +6,7 @@
 FILE *file = NULL;
 ArrayDin ListGame;
 
+
 void STARTBNMO(){
     printf("Welcome to BNMO!\n");
     char *file = "..\\data\\default.txt";
@@ -20,12 +21,6 @@ void STARTBNMO(){
         InsertKataLast(&ListGame, game);
         ADVREADGAME();
     }
-    for(int i = 0; i < Length(ListGame); i++)
-    {
-        printf("%s\n", ListGame.A[i]);
-    }
-  
-    scanf("TESSS : %d", jumlahgame);
 }
 
 void LOADBNMO(){}

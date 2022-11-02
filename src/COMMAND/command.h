@@ -1,8 +1,11 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "../ADT/arraydin.h"
 
 #ifndef COMMAND_H
 #define COMMAND_H
+
+extern ArrayDin ListGame;
 
 void STARTBNMO();
 
