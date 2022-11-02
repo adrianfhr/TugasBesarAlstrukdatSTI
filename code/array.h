@@ -1,5 +1,6 @@
 #include "boolean.h"
 
+
 #ifndef ARRAY_H
 #define ARRAY_H
 

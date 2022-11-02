@@ -1,71 +1,49 @@
-#include<stdio.h>
-#include "mesinkata.h"
-boolean EndWord;
-Word currentWord;
+/* File: mesinkata.h */
+/* Definisi Mesin Kata: Model Akuisisi Versi I */
 
-void IgnoreBlanks(){
-    while(currentChar == BLANK){
-        ADV();
-    }
-}
+#ifndef __MESINKATA_H__
+#define __MESINKATA_H__
+
+#include "boolean.h"
+#include "mesinkar.h"
+
+#define NMax 50
+#define BLANK ' '
+
+typedef struct
+{
+   char TabWord[NMax]; /* container penyimpan kata, indeks yang dipakai [0..NMax-1] */
+   int Length;
+} Word;
+
+/* State Mesin Kata */
+extern boolean EndWord;
+extern Word currentWord;
+
+void IgnoreBlanks();
 /* Mengabaikan satu atau beberapa BLANK
    I.S. : currentChar sembarang
    F.S. : currentChar ≠ BLANK atau currentChar = MARK */
 
-void STARTWORD(){
-    START();
-    IgnoreBlanks();
-    if(currentChar == MARK){
-        EndWord = true;
-    }else{
-        EndWord = false;
-        CopyWord();
-        IgnoreBlanks;
-        
-    }
-}
+void STARTWORD();
 /* I.S. : currentChar sembarang
    F.S. : EndWord = true, dan currentChar = MARK;
           atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
           currentChar karakter pertama sesudah karakter terakhir kata */
 
-void ADVWORD(){
-    IgnoreBlanks();
-    if(currentChar == MARK)
-    {
-        EndWord = true;
-    }else{
-        CopyWord();
-        IgnoreBlanks();
-    }
-    
-}
+void ADVWORD();
 /* I.S. : currentChar adalah karakter pertama kata yang akan diakuisisi
    F.S. : currentWord adalah kata terakhir yang sudah diakuisisi,
           currentChar adalah karakter pertama dari kata berikutnya, mungkin MARK
           Jika currentChar = MARK, EndWord = true.
    Proses : Akuisisi kata menggunakan procedure SalinWord */
 
-void CopyWord(){
-    int i = 0;
-
-    while(currentChar != MARK && currentChar != BLANK)
-    {
-     currentWord.TabWord[i] = currentChar;
-     ADV();
-     i++;   /* code */
-    }
-    if(i > NMax){
-        currentWord.Length = NMax;
-    }else{
-        currentWord.Length = i;
-    }
-     
-    
-}
+void CopyWord();
 /* Mengakuisisi kata, menyimpan dalam currentWord
    I.S. : currentChar adalah karakter pertama dari kata
    F.S. : currentWord berisi kata yang sudah diakuisisi;
           currentChar = BLANK atau currentChar = MARK;
           currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
+
+#endif
