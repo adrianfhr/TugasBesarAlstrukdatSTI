@@ -29,7 +29,7 @@ int length(Queue q)
     }
 }
 
-void enqueue(Queue *q, ElType val)
+void enqueue(Queue *q, ElTypeQ val)
 {
     if (isFull(*q))
     {
@@ -46,7 +46,7 @@ void enqueue(Queue *q, ElType val)
     }
 }
 
-void dequeue(Queue *q, ElType *val)
+void dequeue(Queue *q, ElTypeQ *val)
 {
     if (isEmpty(*q))
     {

@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#ifdef COMMAND_H
+#ifndef COMMAND_H
 #define COMMAND_H
 
-void START();
+void STARTBNMO();
 
-void LOAD();
+void LOADBNMO();
 
 void SAVE();
 

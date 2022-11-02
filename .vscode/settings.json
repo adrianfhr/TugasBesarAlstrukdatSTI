@@ -1,0 +1,12 @@
+{
+    "C_Cpp.errorSquiggles": "Disabled",
+    "files.associations": {
+        "mesinkata.h": "c",
+        "string.h": "c",
+        "arraydin.h": "c",
+        "boolean.h": "c",
+        "mesinkar.h": "c",
+        "command.h": "c",
+        
+    }
+}

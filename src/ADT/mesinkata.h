@@ -9,6 +9,7 @@
 
 #define NMax 50
 #define BLANK ' '
+#define ENTER '\n'
 
 typedef struct
 {
@@ -45,5 +46,13 @@ void CopyWord();
           currentChar = BLANK atau currentChar = MARK;
           currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
+
+void STARTREADGAME(char *filename);
+
+void ADVREADGAME();
+
+void COPYGAME();
+
+void KataToString (Word W, char *S);
 
 #endif
