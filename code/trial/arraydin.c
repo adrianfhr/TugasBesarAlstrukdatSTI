@@ -1,5 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "arraydin.h"
 /*
  * Konstruktor
@@ -68,6 +69,15 @@ void InsertAt(ArrayDin *array, ElType el, IdxType i){
         (*array).A[j] = (*array).A[j-1];
     }
     (*array).A[i] = el;
+    (*array).Neff++;
+}
+
+void InsertKataLast(ArrayDin *array, char *el){
+    if ((*array).Neff == (*array).Capacity){
+        (*array).A = (ElType *) realloc((*array).A, 2 * (*array).Capacity * sizeof(ElType));
+        (*array).Capacity *= 2;
+    }
+    (*array).A[(*array).Neff] = el;
     (*array).Neff++;
 }
 

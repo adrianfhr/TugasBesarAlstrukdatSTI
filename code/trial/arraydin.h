@@ -9,7 +9,7 @@
 #define InitialSize 100
 
 typedef int IdxType;
-typedef char ElType;
+typedef char* ElType;
 typedef struct {
     ElType *A;
     int Capacity;
@@ -59,6 +59,8 @@ int GetCapacity(ArrayDin array);
  * Prekondisi: array terdefinisi, i di antara 0..Length(array).
  */
 void InsertAt(ArrayDin *array, ElType el, IdxType i);
+
+void InsertKataLast(ArrayDin *array, char* el);
 
 /**
  * Fungsi untuk menghapus elemen di index ke-i ArrayDin

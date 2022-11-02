@@ -75,3 +75,10 @@ void CopyWord(){
           currentChar = BLANK atau currentChar = MARK;
           currentChar adalah karakter sesudah karakter terakhir yang diakuisisi.
           Jika panjang kata melebihi NMax, maka sisa kata "dipotong" */
+void KataToString (Word W, char *S) {
+    for (int i = 0; i < W.Length; i++)
+    {
+        S[i] = W.TabWord[i];
+    }
+    S[W.Length] = '\0';
+}
