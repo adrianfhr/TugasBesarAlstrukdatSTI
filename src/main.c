@@ -1,11 +1,13 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "command.c"
+#include "ADT/mesinkata.h"
+#include "ADT/arraydin.h"
+#include "COMMAND/command.h"
+
 
 int main(){
     int command = 0;
-    char menu[10];
     while(command == 0)
     {
         printf("Welcome to BNMO!\n");
@@ -15,29 +17,30 @@ int main(){
         printf("2. LOAD\n");
         printf("Example Command: START\n");
         printf(">> ");
-        scanf("%s", &menu);
-        
-        if(strcmp(menu, "START") == 0)
+        STARTWORD();
+        char *userCommand = (char*) malloc (currentWord.Length+1);
+        KataToString(currentWord, userCommand);
+        if(strcmp(userCommand, "START") == 0)
         {
-            system("cls");
+            STARTBNMO();
             command = 1;
         }
-        else if(strcmp(menu, "LOAD") == 0)
+        else if(strcmp(userCommand, "LOAD") == 0)
         {
-            system("cls");
-            command = 2;
+            LOADBNMO();
+            command = 1;
         }
         else
         {
-            printf("Invalid command\n\n");
+            COMMANDLAIN();
         }
-    } 
+    }
 
     if(command == 1){
+        system("cls");
         printf("START GAME!\n");
         printf("File konfigurasi sistem berhasil dibaca. BNMO berhasil dijalankan.\n");
-        START();
-        
+        STARTBNMO();
     }
     
     

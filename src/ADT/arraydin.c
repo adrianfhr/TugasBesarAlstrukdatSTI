@@ -92,9 +92,3 @@ void DeleteAt(ArrayDin *array, IdxType i){
     (*array).Neff--;
 
 }
-
-void PrintArray(ArrayDin array){
-    for (int i = 0; i < array.Neff; i++){
-        printf("%d", array.A[i]);
-    }
-}
