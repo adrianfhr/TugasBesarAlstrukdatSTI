@@ -168,6 +168,7 @@ void DELETEGAME(ArrayDin *ListGame){
 }
 
 void QUEUEGAME(Queue *GameQueue){
+    system("cls");
     if(isEmpty(*GameQueue)){
         printf("kamu Belum memiliki antrian game\n");
     }else
@@ -181,13 +182,12 @@ void QUEUEGAME(Queue *GameQueue){
     char *antrian = (char*) malloc (currentWord.Length+1);
     KataToString(currentWord, antrian);
     int antriangame = stringtoint(antrian);
-    printf("\n\n antiran game : %d\n\n", antriangame);
     char *game = (char*) malloc (100);
     game = ListGame.A[antriangame-1];
     if(antriangame < Length(ListGame))
     {
         printf("Game %s berhasil ditambahkan ke antrian.\n", ListGame.A[antriangame-1]);
-        printf("Game %s sedang dimainkan.\n", game);
+       
         enqueue(GameQueue, game);
     }
     else
@@ -198,6 +198,7 @@ void QUEUEGAME(Queue *GameQueue){
 }
 
 void PLAYGAME(Queue *GameQueue, char *userplaygame){
+    system("cls");
     if(isEmpty(*GameQueue)){
         printf("kamu Belum memiliki antrian game\n");
     }else
@@ -209,6 +210,7 @@ void PLAYGAME(Queue *GameQueue, char *userplaygame){
 }
 
 void SKIPGAME(Queue *GameQueue, char *userplaygame){
+    system("cls");
     if(isEmpty(*GameQueue)){
         printf("kamu Belum memiliki antrian game\n");
     }else
@@ -217,7 +219,7 @@ void SKIPGAME(Queue *GameQueue, char *userplaygame){
         DisplayGame();
         char*skip = (char*) malloc (currentWord.Length+1);
         KataToString(currentWord, skip);
-        int skipgame = stringtoint(skip)-1;
+        int skipgame = stringtoint(skip);
         printf("Loading %s ...", GameQueue->buffer[skipgame]);
         dequeueAt(GameQueue, skipgame, &userplaygame);
     }
@@ -259,7 +261,7 @@ void DisplayGame(){
     }else{
         int x = 0;
     printf("\n");
-    printf("Berikut adalah daftar antiran game-mu :\n");
+    printf("Berikut adalah daftar antrian game-mu :\n");
         for(int i = GameQueue.idxHead; i <= GameQueue.idxTail; i = (i+1)%CAPACITY)
         {
             x++;
@@ -279,4 +281,5 @@ int stringtoint(char *string)
         i++;
     }
     return hasil;
-    }
+}
+

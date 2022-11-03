@@ -32,7 +32,6 @@ int main(){
             while(command != 0)
             {
                 commandconfig();
-                DisplayGame();
                 
             }
             
