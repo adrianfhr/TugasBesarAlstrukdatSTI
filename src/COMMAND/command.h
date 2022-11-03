@@ -1,12 +1,17 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 #include "../ADT/arraydin.h"
+#include "../ADT/queue.h"
+#include "../ADT/mesinkata.h"
 
 #ifndef COMMAND_H
 #define COMMAND_H
 
 extern int command;
 extern ArrayDin ListGame;
+extern Queue GameQueue;
+extern char *userplaygame;
 
 void mainmenu();
 
@@ -37,5 +42,9 @@ void QUIT();
 void HELP();
 
 void COMMANDLAIN();
+
+void DisplayGame();
+
+int stringtoint(char *string);
 
 #endif

@@ -29,7 +29,7 @@ int length(Queue q)
     }
 }
 
-void enqueue(Queue *q, ElTypeQ val)
+void enqueue(Queue *q, ElType val)
 {
     if (isFull(*q))
     {
@@ -40,13 +40,15 @@ void enqueue(Queue *q, ElTypeQ val)
         if (isEmpty(*q))
         {
             IDX_HEAD(*q) = 0;
-        }
+            IDX_TAIL(*q) = 0;
+            HEAD(*q) = val;
+        }else{
         IDX_TAIL(*q) = (IDX_TAIL(*q) + 1) % CAPACITY;
-        TAIL(*q) = val;
+        TAIL(*q) = val;}
     }
 }
 
-void dequeue(Queue *q, ElTypeQ *val)
+void dequeue(Queue *q, ElType *val)
 {
     if (isEmpty(*q))
     {
@@ -84,4 +86,19 @@ void displayQueue(Queue q)
         }
         printf("%d]\n", TAIL(q));
     }
+}
+
+void dequeueAt(Queue *q, int idx, ElType *val){
+    if (isEmpty(*q))
+    {
+        printf("Queue is empty!\n");
+    } else if(idx == 0){
+                dequeue(q, val);
+    }else{
+        *val = q->buffer[idx];
+        for (int i = IDX_HEAD(*q)+idx; i != IDX_TAIL(*q); i = (i + 1) % CAPACITY){  
+            q->buffer[i] = q->buffer[(i + 1) % CAPACITY];
+        }
+    }
+    IDX_TAIL(*q) = (IDX_TAIL(*q) - 1) % CAPACITY;  
 }

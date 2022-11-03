@@ -82,6 +82,7 @@ void ADVREADGAME(){
     if(currentChar == MARK){
         EndWord = true;
     }else{
+        EndWord = false;
         COPYGAME();
     }
 }
@@ -137,3 +138,4 @@ void KataToString (Word W, char *S) {
     }
     S[W.Length] = '\0';
 }
+

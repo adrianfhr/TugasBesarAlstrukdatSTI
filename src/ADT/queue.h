@@ -5,15 +5,15 @@
 #define QUEUE_H
 
 #include "boolean.h"
+#include "arraydin.h"
 
 #define IDX_UNDEF -1
 #define CAPACITY 100
 
 /* Definisi elemen dan address */
-typedef int ElTypeQ;
 typedef struct
 {
-    ElTypeQ buffer[CAPACITY];
+    ElType buffer[CAPACITY];
     int idxHead;
     int idxTail;
 } Queue;
@@ -44,12 +44,12 @@ int length(Queue q);
 /* Mengirimkan banyaknya elemen queue. Mengirimkan 0 jika q kosong. */
 
 /* *** Primitif Add/Delete *** */
-void enqueue(Queue *q, ElTypeQ val);
+void enqueue(Queue *q, ElType val);
 /* Proses: Menambahkan val pada q dengan aturan FIFO */
 /* I.S. q mungkin kosong, tabel penampung elemen q TIDAK penuh */
 /* F.S. val menjadi TAIL yang baru, IDX_TAIL "mundur" dalam buffer melingkar. */
 
-void dequeue(Queue *q, ElTypeQ *val);
+void dequeue(Queue *q, ElType *val);
 /* Proses: Menghapus val pada q dengan aturan FIFO */
 /* I.S. q tidak mungkin kosong */
 /* F.S. val = nilai elemen HEAD pd I.S., IDX_HEAD "mundur";
@@ -64,6 +64,8 @@ void displayQueue(Queue q);
 /* F.S. Jika q tidak kosong: [e1,e2,...,en] */
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika Queue kosong : menulis [] */
+
+void dequeueAt(Queue *q, int idx, ElType *val);
 
 
 #endif

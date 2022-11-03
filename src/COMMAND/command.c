@@ -1,12 +1,11 @@
 #include "command.h"
-#include "string.h"
-#include "../ADT/arraydin.h"
-#include "../ADT/mesinkata.h"
-#include "../ADT/queue.h"
 
 FILE *file = NULL;
 ArrayDin ListGame;
+Queue GameQueue;
+char *userplaygame;
 int command = 9999;
+
 
 void mainmenu(){
         printf("Welcome to BNMO!\n");
@@ -42,7 +41,7 @@ void commandconfig(){
                 KataToString(currentWord, userCommand);
                 if(strcmp(userCommand, "CREATE") == 0)
                 {
-                    CREATEGAME();
+                    CREATEGAME(&ListGame);
                 }
                 else if(strcmp(userCommand, "LISTGAME") == 0)
                 {
@@ -50,19 +49,19 @@ void commandconfig(){
                 }
                 else if(strcmp(userCommand, "DELETE") == 0)
                 {
-                    DELETEGAME();
+                    DELETEGAME(&ListGame);
                 }
                 else if(strcmp(userCommand, "QUEUE") == 0)
                 {
-                    QUEUEGAME();
+                    QUEUEGAME(&GameQueue);
                 }
                 else if(strcmp(userCommand, "PLAY") == 0)
                 {
-                    PLAYGAME();
+                    PLAYGAME(&GameQueue, &userplaygame);
                 }
                 else if(strcmp(userCommand, "SKIP") == 0)
                 {
-                    SKIPGAME();
+                    SKIPGAME(&GameQueue, &userplaygame);
                 }
                 else if(strcmp(userCommand, "SAVE") == 0)
                 {
@@ -89,6 +88,7 @@ void STARTBNMO(){
     char *file = "..\\data\\default.txt";
     STARTREADGAME(file);
     ListGame = MakeArrayDin();
+    CreateQueue(&GameQueue);
     int jumlahgame = currentWord.TabWord[0] - 48;
     ADVREADGAME();
     for(int i = 0; i < jumlahgame; i++)
@@ -110,6 +110,7 @@ void LOADBNMO(){
     printf("LOAD GAME!\n");
     STARTREADGAME(filename);
     ListGame = MakeArrayDin();
+    CreateQueue(&GameQueue);
     int jumlahgame = currentWord.TabWord[0] - 48;
     ADVREADGAME();
     for(int i = 0; i < jumlahgame; i++)
@@ -119,23 +120,24 @@ void LOADBNMO(){
         InsertKataLast(&ListGame, game);
         ADVREADGAME();
     }
+    
 }
 
 void SAVE(){
 }
 
-void CREATEGAME(){
+void CREATEGAME(ArrayDin *ListGame){
     system("cls");
     printf("CREATE GAME!\n");
     printf("Masukkan nama game: ");
     STARTWORD();
     char *game = (char*) malloc (currentWord.Length+1);
     KataToString(currentWord, game);
-    InsertKataLast(&ListGame, game);
+    InsertKataLast(ListGame, game);
 }
 
 void LISTGAME(){
-    system("cls");
+    printf("\n");
     printf("LIST GAME!\n");
     printf("Daftar game yang tersedia:\n");
     for(int i = 0; i < Length(ListGame); i++)
@@ -144,15 +146,81 @@ void LISTGAME(){
     }
 }
 
-void DELETEGAME(){}
-
-void QUEUEGAME(){}
-
-void PLAYGAME(){
-
+void DELETEGAME(ArrayDin *ListGame){
+    system("cls");
+    printf("DELETE GAME!\n");
+    printf("Berikut adalah daftar game yang tersedia:\n");
+    LISTGAME();
+    printf("Masukkan nomor game yang ingin dihapus: ");
+    STARTWORD();
+    char *deletegame = (char*) malloc (currentWord.Length+1);
+    KataToString(currentWord, deletegame);
+    int delete = stringtoint(deletegame)-1;
+    if(delete < Length(*ListGame))
+    {
+        DeleteAt(ListGame, delete);
+        printf("Game berhasil dihapus.\n");
+    }
+    else
+    {
+        printf("Game tidak ditemukan.\n");
+    }
 }
 
-void SKIPGAME(){
+void QUEUEGAME(Queue *GameQueue){
+    if(isEmpty(*GameQueue)){
+        printf("kamu Belum memiliki antrian game\n");
+    }else
+    {
+        DisplayGame();
+    }
+
+    LISTGAME();
+    printf("Nomor Game yang mau ditambahkan ke antrian : ");
+    STARTWORD();
+    char *antrian = (char*) malloc (currentWord.Length+1);
+    KataToString(currentWord, antrian);
+    int antriangame = stringtoint(antrian);
+    printf("\n\n antiran game : %d\n\n", antriangame);
+    char *game = (char*) malloc (100);
+    game = ListGame.A[antriangame-1];
+    if(antriangame < Length(ListGame))
+    {
+        printf("Game %s berhasil ditambahkan ke antrian.\n", ListGame.A[antriangame-1]);
+        printf("Game %s sedang dimainkan.\n", game);
+        enqueue(GameQueue, game);
+    }
+    else
+    {
+        printf("Game tidak ditemukan.\n");
+    }
+    
+}
+
+void PLAYGAME(Queue *GameQueue, char *userplaygame){
+    if(isEmpty(*GameQueue)){
+        printf("kamu Belum memiliki antrian game\n");
+    }else
+    {
+        DisplayGame();
+        printf("Loading %s ...", GameQueue->buffer[GameQueue->idxHead]);
+        dequeue(GameQueue, &userplaygame);
+    }
+}
+
+void SKIPGAME(Queue *GameQueue, char *userplaygame){
+    if(isEmpty(*GameQueue)){
+        printf("kamu Belum memiliki antrian game\n");
+    }else
+    {
+        ADVLOADGAME();
+        DisplayGame();
+        char*skip = (char*) malloc (currentWord.Length+1);
+        KataToString(currentWord, skip);
+        int skipgame = stringtoint(skip)-1;
+        printf("Loading %s ...", GameQueue->buffer[skipgame]);
+        dequeueAt(GameQueue, skipgame, &userplaygame);
+    }
 
 }
 
@@ -184,3 +252,31 @@ void COMMANDLAIN()
 {
     printf("Command tidak dikenali, silahkan masukkan command yang valid.\n");
 }
+
+void DisplayGame(){
+    if(isEmpty(GameQueue)){
+        printf("kamu Belum memiliki antrian game\n");
+    }else{
+        int x = 0;
+    printf("\n");
+    printf("Berikut adalah daftar antiran game-mu :\n");
+        for(int i = GameQueue.idxHead; i <= GameQueue.idxTail; i = (i+1)%CAPACITY)
+        {
+            x++;
+            printf("%d. %s\n", x, GameQueue.buffer[i]);
+        }
+    printf("\n");
+    }
+}
+
+int stringtoint(char *string)
+{
+    int i = 0;
+    int hasil = 0;
+    while(string[i] != '\0')
+    {
+        hasil = hasil * 10 + (string[i] - 48);
+        i++;
+    }
+    return hasil;
+    }
