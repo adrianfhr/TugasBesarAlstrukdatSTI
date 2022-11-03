@@ -8,7 +8,7 @@
 #include <stdlib.h>
 #include "arraydin.h"
 
-void CreateGame (ArrayDin *daftargame, ElType gamebaru);
+void CreateGame (ArrayDin *ListGame, ElType gamebaru);
 // Proses: menambahkan game baru pada daftar game
 // I.S. daftar game tidak mungkin kosong
 // F.S. game baru ditambahkan ke dalam daftar game
