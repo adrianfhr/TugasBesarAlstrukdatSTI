@@ -167,17 +167,17 @@ void HELP(){
     system("cls");
     printf("HELP GAME!\n");
     printf("Daftar perintah yang tersedia:\n");
-    printf("1. START\n");
-    printf("2. LOAD\n");
-    printf("3. SAVE\n");
-    printf("4. CREATE\n");
-    printf("5. LIST\n");
-    printf("6. DELETE\n");
-    printf("7. QUEUE\n");
-    printf("8. PLAY\n");
-    printf("9. SKIP\n");
-    printf("10. QUIT\n");
-    printf("11. HELP\n");
+    printf("1. START        <Menjalankan BNMO> \n");
+    printf("2. LOAD         <Membaca savefile> \n");
+    printf("3. SAVE         <Menyimpan state game pemain saat ini ke dalam file> \n");
+    printf("4. CREATE       <Menambah game baru pada daftar game> \n");
+    printf("5. LISTGAME     <Menampilkan daftar game> \n");
+    printf("6. DELETE       <Menghapus suatu game dari daftar game> \n");
+    printf("7. QUEUE        <Mendaftarkan permainan kedalam daftar antrian game> \n");
+    printf("8. PLAY         <Memainkan sebuah permainan> \n");
+    printf("9. SKIP         <Melewatkan permainan> \n");
+    printf("10. QUIT        <Keluar dari program> \n");
+    printf("11. HELP        <Bantuan command-command> \n");
 }
 
 void COMMANDLAIN()
