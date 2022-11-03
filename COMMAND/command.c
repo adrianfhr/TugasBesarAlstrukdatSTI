@@ -14,15 +14,22 @@ void START(){
 
 }
 
-void LOAD();
+void LOADBNMO();
 
 void SAVE();
 
-void CREATEGAME(ArrayDin *ListGame, ElType gamebaru){
+void CREATEGAME(){
+    ArrayDin *ListGame; 
+    ElType gamebaru;
     InsertAt(ListGame, gamebaru, ListGame->Neff);
 }
 
-void LISTGAME();
+void LISTGAME(){
+    for(int i = 0; i < Length(ListGame); i++)
+        {
+            printf("%s\n", ListGame.A[i]);
+        }
+}
 
 void DELETEGAME();
 
