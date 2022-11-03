@@ -13,3 +13,7 @@ int tebakan (){
     c=a%b;
     return c;
 }
+
+int playgame(int tebak){
+    
+}
