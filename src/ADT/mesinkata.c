@@ -101,7 +101,29 @@ void COPYGAME(){
     }
 }
 
+void ADVLOADGAME(){
+    IgnoreBlanks();
+    if(currentChar == ENTER){
+        EndWord = true;
+    }else{
+        COPYLOADGAME();
+    }
+}
 
+void COPYLOADGAME(){
+    int i = 0;
+    while(currentChar != ENTER )
+    {
+     currentWord.TabWord[i] = currentChar;
+     ADVFILE();
+     i++;   /* code */
+    }
+    if(i > NMax){
+        currentWord.Length = NMax;
+    }else{
+        currentWord.Length = i;
+    }
+}
 /* Mengakuisisi kata, menyimpan dalam currentWord
    I.S. : currentChar adalah karakter pertama dari kata
    F.S. : currentWord berisi kata yang sudah diakuisisi;

@@ -9,7 +9,7 @@
 
 #define NMax 50
 #define BLANK ' '
-#define ENTER '\n'
+
 
 typedef struct
 {
@@ -51,7 +51,11 @@ void STARTREADGAME(char *filename);
 
 void ADVREADGAME();
 
+void ADVLOADGAME();
+
 void COPYGAME();
+
+void COPYLOADGAME();
 
 void KataToString (Word W, char *S);
 

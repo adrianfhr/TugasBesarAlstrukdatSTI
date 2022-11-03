@@ -7,6 +7,7 @@
 #include "boolean.h"
 
 #define MARK '.'
+#define ENTER '\n'
 /* State Mesin */
 extern char currentChar;
 extern boolean EOP;
@@ -28,6 +29,8 @@ void ADV();
    F.S. : currentChar adalah karakter berikutnya dari currentChar yang lama,
           currentChar mungkin = MARK
           Jika  currentChar = MARK maka EOP akan menyala (true) */
+
+void ADVFILE();
 
 char GetCC();
 /* Mengirimkan currentChar */

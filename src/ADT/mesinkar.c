@@ -41,6 +41,14 @@ void ADV(){
       fclose(pita);
    }
 }
+
+void ADVFILE(){
+   retval = fscanf(pita,"%c",&currentChar);
+   EOP = (currentChar == '?');
+   if (EOP){
+      fclose(pita);
+   }
+}
 /* Pita dimajukan satu karakter.
    I.S. : Karakter pada jendela = currentChar, currentChar != MARK
    F.S. : currentChar adalah karakter berikutnya dari currentChar yang lama,

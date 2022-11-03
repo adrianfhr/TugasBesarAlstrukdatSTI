@@ -5,7 +5,14 @@
 #ifndef COMMAND_H
 #define COMMAND_H
 
+extern int command;
 extern ArrayDin ListGame;
+
+void mainmenu();
+
+void commandconfig();
+
+void commandmenu();
 
 void STARTBNMO();
 
