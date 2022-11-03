@@ -1,5 +1,5 @@
 #include "creategame.h"
 
-void CreateGame (ArrayDin *daftargame, ElType gamebaru){
-    InsertAt(daftargame, gamebaru, daftargame->Neff);
+void CREATEGAME (ArrayDin *ListGame, ElType gamebaru){
+    InsertAt(ListGame, gamebaru, ListGame->Neff);
 }
