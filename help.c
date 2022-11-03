@@ -11,4 +11,4 @@ void HELP(){
     printf("9. SKIPGAME/n");
     printf("10. QUIT/n");
     printf("11. HELP/n");
-}
+}//test
