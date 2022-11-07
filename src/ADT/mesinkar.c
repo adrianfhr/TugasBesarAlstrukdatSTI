@@ -6,13 +6,14 @@
 char currentChar;
 boolean EOP;
 
+
 static FILE *pita;
 static int retval;
 
 /* State Mesin */
-void START(){ 
-   pita = stdin;
-   ADV();
+void START(){
+    pita = stdin;
+    ADV();
 }
 
 /* Mesin siap dioperasikan. Pita disiapkan untuk dibaca.
@@ -23,9 +24,26 @@ void START(){
           Jika currentChar != MARK maka EOP akan padam (false)
           Jika currentChar = MARK maka EOP akan menyala (true) */
 
+void STARTFILE(char *filename){
+      pita = fopen(filename, "r");
+    if (pita == NULL) {
+         printf("File tidak ditemukan\n");
+    } else {
+         ADV();
+    }
+}
+
 void ADV(){
    retval = fscanf(pita,"%c",&currentChar);
    EOP = (currentChar == MARK);
+   if (EOP){
+      fclose(pita);
+   }
+}
+
+void ADVFILE(){
+   retval = fscanf(pita,"%c",&currentChar);
+   EOP = (currentChar == '?');
    if (EOP){
       fclose(pita);
    }

@@ -5,12 +5,12 @@
 #define QUEUE_H
 
 #include "boolean.h"
+#include "arraydin.h"
 
 #define IDX_UNDEF -1
 #define CAPACITY 100
 
 /* Definisi elemen dan address */
-typedef int ElType;
 typedef struct
 {
     ElType buffer[CAPACITY];
@@ -64,5 +64,8 @@ void displayQueue(Queue q);
 /* F.S. Jika q tidak kosong: [e1,e2,...,en] */
 /* Contoh : jika ada tiga elemen bernilai 1, 20, 30 akan dicetak: [1,20,30] */
 /* Jika Queue kosong : menulis [] */
+
+void dequeueAt(Queue *q, int idx, ElType *val);
+
 
 #endif
