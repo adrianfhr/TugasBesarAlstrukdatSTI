@@ -64,4 +64,7 @@ boolean IsEOP(){
    return EOP;
 }
 /* Mengirimkan true jika currentChar = MARK */
-
+void STARTWRITE(char *filename){
+    pita = fopen(filename, "w");
+    ADV();
+}
