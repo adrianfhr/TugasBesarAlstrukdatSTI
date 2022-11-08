@@ -124,6 +124,14 @@ void LOADBNMO(){
 }
 
 void SAVE(){
+    system("cls");
+    ADVLOADGAME();
+    char *file = (char*) malloc (currentWord.Length+1);
+    KataToString(currentWord, file);
+    char filename[] = "..\\data\\";
+    strcat(filename, file);
+    
+    printf("Save file berhasil disimpan.\n");
 }
 
 void CREATEGAME(ArrayDin *ListGame){
