@@ -184,7 +184,7 @@ void QUEUEGAME(Queue *GameQueue){
     int antriangame = stringtoint(antrian);
     char *game = (char*) malloc (100);
     game = ListGame.A[antriangame-1];
-    if(antriangame < Length(ListGame))
+    if(antriangame-1 < Length(ListGame))
     {
         printf("Game %s berhasil ditambahkan ke antrian.\n", ListGame.A[antriangame-1]);
        
@@ -281,5 +281,13 @@ int stringtoint(char *string)
         i++;
     }
     return hasil;
+}
+
+
+void WelcomeBNMO(FILE *w){
+char welcome[500];
+while(fgets(welcome, sizeof(welcome), w) != NULL) {
+        printf("%s",welcome);
+    }
 }
 

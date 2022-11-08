@@ -47,4 +47,6 @@ void DisplayGame();
 
 int stringtoint(char *string);
 
+void WelcomeBNMO(FILE *w);
+
 #endif

@@ -8,9 +8,12 @@
 
 
 int main(){
-    
     while(command != 0)
     {
+        FILE *Welcome;
+        char *welcomeText = "..\\data\\welcome.txt";
+        Welcome = fopen(welcomeText, "r");
+        WelcomeBNMO(Welcome);
         mainmenu();
         STARTWORD();
         char *userCommand = (char*) malloc (currentWord.Length+1);
@@ -22,17 +25,15 @@ int main(){
             {
                 commandconfig();
             }
-            
-
         }
+        
         else if(strcmp(userCommand, "LOAD") == 0)
         {
             
             LOADBNMO();
             while(command != 0)
             {
-                commandconfig();
-                
+            commandconfig();    
             }
             
         }
