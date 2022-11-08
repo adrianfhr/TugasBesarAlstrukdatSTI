@@ -130,7 +130,13 @@ void SAVE(){
     KataToString(currentWord, file);
     char filename[] = "..\\data\\";
     strcat(filename, file);
-    
+    FILE *savefile = fopen(filename, "w");
+    fprintf(savefile, "%d", Length(ListGame));
+    for(int i = 0; i < Length(ListGame); i++)
+    {
+        fprintf(savefile, "%s\n", ListGame.A[i]);
+    }
+    fprintf(savefile, ".");
     printf("Save file berhasil disimpan.\n");
 }
 

@@ -4,6 +4,7 @@
 #include "../ADT/arraydin.h"
 #include "../ADT/queue.h"
 #include "../ADT/mesinkata.h"
+#include "../ADT/mesinkar.h"
 
 #ifndef COMMAND_H
 #define COMMAND_H
