@@ -170,7 +170,7 @@ void DELETEGAME(ArrayDin *ListGame){
 void QUEUEGAME(Queue *GameQueue){
     system("cls");
     if(isEmpty(*GameQueue)){
-        printf("kamu Belum memiliki antrian game\n");
+        printf("Kamu belum memiliki antrian game\n");
     }else
     {
         DisplayGame();
@@ -200,7 +200,7 @@ void QUEUEGAME(Queue *GameQueue){
 void PLAYGAME(Queue *GameQueue, char *userplaygame){
     system("cls");
     if(isEmpty(*GameQueue)){
-        printf("kamu Belum memiliki antrian game\n");
+        printf("Kamu belum memiliki antrian game\n");
     }else
     {
         DisplayGame();
@@ -212,7 +212,7 @@ void PLAYGAME(Queue *GameQueue, char *userplaygame){
 void SKIPGAME(Queue *GameQueue, char *userplaygame){
     system("cls");
     if(isEmpty(*GameQueue)){
-        printf("kamu Belum memiliki antrian game\n");
+        printf("Kamu belum memiliki antrian game\n");
     }else
     {
         ADVLOADGAME();
@@ -257,7 +257,7 @@ void COMMANDLAIN()
 
 void DisplayGame(){
     if(isEmpty(GameQueue)){
-        printf("kamu Belum memiliki antrian game\n");
+        printf("kamu belum memiliki antrian game\n");
     }else{
         int x = 0;
     printf("\n");
