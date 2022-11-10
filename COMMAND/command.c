@@ -18,10 +18,14 @@ void LOADBNMO();
 
 void SAVE();
 
-void CREATEGAME(){
-    ArrayDin *ListGame; 
-    ElType gamebaru;
-    InsertAt(ListGame, gamebaru, ListGame->Neff);
+void CREATEGAME(ArrayDin *ListGame){
+    system("cls");
+    printf("CREATE GAME!\n");
+    printf("Masukkan nama game: ");
+    STARTWORD();
+    char *game = (char*) malloc (currentWord.Length+1);
+    KataToString(currentWord, game);
+    InsertKataLast(ListGame, game);
 }
 
 void LISTGAME(){
