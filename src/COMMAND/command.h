@@ -4,6 +4,7 @@
 #include "../ADT/queue.h"
 #include "../ADT/mesinkata.h"
 #include "../ADT/mesinkar.h"
+#include "../GAME/game.h"
 
 #ifndef COMMAND_H
 #define COMMAND_H
@@ -48,5 +49,7 @@ void DisplayGame();
 int stringtoint(char *string);
 
 void WelcomeBNMO(FILE *w);
+
+void gamecurrent();
 
 #endif

@@ -221,6 +221,20 @@ void PLAYGAME(Queue *GameQueue, char *userplaygame){
     {
         DisplayGame();
         printf("Loading %s ...", GameQueue->buffer[GameQueue->idxHead]);
+        char *ingamestr;
+        ingamestr = GameQueue->buffer[GameQueue->idxHead];
+        printf("%s\n", ingamestr);
+        if(stringcompare(GameQueue->buffer[GameQueue->idxHead], "RNG") == 1){
+            ingame = 1;
+            printf("Game %d berhasil dimainkan.\n", ingame);
+        }else if(stringcompare(GameQueue->buffer[GameQueue->idxHead], "Diner Dash") == 1){
+            ingame = 2;
+        }else if(stringcompare(GameQueue->buffer[GameQueue->idxHead],"Xloming") == 1){
+            ingame = 3;
+        }else{
+            printf("Game %s masih dalam maintenance,belum dapat dimainkan.\nSilahkan pilih game lain.", GameQueue->buffer[GameQueue->idxHead-1]);
+        }
+        gamecurrent();
         dequeue(GameQueue, &userplaygame);
     }
 }
@@ -306,3 +320,13 @@ while(fgets(welcome, sizeof(welcome), w) != NULL) {
     }
 }
 
+void gamecurrent(){
+    if(ingame == 1){
+        RNG();
+    }else if(ingame == 2){
+        DinerDash();
+    }else if (ingame == 3)
+    {
+        GameTambahan();
+    }
+}
