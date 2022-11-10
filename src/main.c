@@ -18,7 +18,7 @@ int main(){
         STARTWORD();
         char *userCommand = (char*) malloc (currentWord.Length+1);
         KataToString(currentWord, userCommand);
-        if(strcmp(userCommand, "START") == 0)
+        if(stringcompare(userCommand, "START") == 1)
         {
             STARTBNMO();
             while(command != 0)
@@ -27,7 +27,7 @@ int main(){
             }
         }
         
-        else if(strcmp(userCommand, "LOAD") == 0)
+        else if(stringcompare(userCommand, "LOAD") == 1)
         {
             
             LOADBNMO();

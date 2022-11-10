@@ -5,6 +5,7 @@ ArrayDin ListGame;
 Queue GameQueue;
 char *userplaygame;
 int command = 9999;
+int ingame = 0;
 
 
 void mainmenu(){
@@ -39,39 +40,39 @@ void commandconfig(){
                 STARTWORD();
                 char *userCommand = (char*) malloc (currentWord.Length+1);
                 KataToString(currentWord, userCommand);
-                if(strcmp(userCommand, "CREATE") == 0)
+                if(stringcompare(userCommand, "CREATE") == 1)
                 {
                     CREATEGAME(&ListGame);
                 }
-                else if(strcmp(userCommand, "LISTGAME") == 0)
+                else if(stringcompare(userCommand, "LISTGAME") == 1)
                 {
                     LISTGAME();
                 }
-                else if(strcmp(userCommand, "DELETE") == 0)
+                else if(stringcompare(userCommand, "DELETE") == 1)
                 {
                     DELETEGAME(&ListGame);
                 }
-                else if(strcmp(userCommand, "QUEUE") == 0)
+                else if(stringcompare(userCommand, "QUEUE") == 1)
                 {
                     QUEUEGAME(&GameQueue);
                 }
-                else if(strcmp(userCommand, "PLAY") == 0)
+                else if(stringcompare(userCommand, "PLAY") == 1)
                 {
                     PLAYGAME(&GameQueue, &userplaygame);
                 }
-                else if(strcmp(userCommand, "SKIP") == 0)
+                else if(stringcompare(userCommand, "SKIP") == 1)
                 {
                     SKIPGAME(&GameQueue, &userplaygame);
                 }
-                else if(strcmp(userCommand, "SAVE") == 0)
+                else if(stringcompare(userCommand, "SAVE") == 1)
                 {
                     SAVE();
                 }
-                else if(strcmp(userCommand, "QUIT") == 0)
+                else if(stringcompare(userCommand, "QUIT") == 1)
                 {
                     QUIT();
                 }
-                else if(strcmp(userCommand, "HELP") == 0)
+                else if(stringcompare(userCommand, "HELP") == 1)
                 {
                     HELP();
                 }
@@ -105,7 +106,7 @@ void LOADBNMO(){
     char *file = (char*) malloc (currentWord.Length+1);
     KataToString(currentWord, file);
     char filename[] = "..\\data\\";
-    strcat(filename, file);
+    concat(filename, file);
     system("cls");
     printf("LOAD GAME!\n");
     STARTREADGAME(filename);
@@ -129,7 +130,7 @@ void SAVE(){
     char *file = (char*) malloc (currentWord.Length+1);
     KataToString(currentWord, file);
     char filename[] = "..\\data\\";
-    strcat(filename, file);
+    concat(filename, file);
     FILE *savefile = fopen(filename, "w");
     fprintf(savefile, "%d\n", Length(ListGame));
     for(int i = 0; i < Length(ListGame); i++)
@@ -296,7 +297,6 @@ int stringtoint(char *string)
     }
     return hasil;
 }
-
 
 void WelcomeBNMO(FILE *w){
 char welcome[500];

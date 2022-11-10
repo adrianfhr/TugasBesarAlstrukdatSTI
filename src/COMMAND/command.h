@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include "../ADT/arraydin.h"
 #include "../ADT/queue.h"
 #include "../ADT/mesinkata.h"

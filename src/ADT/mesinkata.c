@@ -139,3 +139,41 @@ void KataToString (Word W, char *S) {
     S[W.Length] = '\0';
 }
 
+boolean stringcompare (char *S1, char *S2) {
+    int i = 0;
+    boolean found = true;
+    while (S1[i] != '\0' && S2[i] != '\0' && found)
+    {
+        if (S1[i] != S2[i])
+        {
+            found = false;
+        }
+        i++;
+    }
+    if (S1[i] == '\0' && S2[i] == '\0')
+    {
+        found = true;
+    }
+    else
+    {
+        found = false;
+    }
+
+    return found;
+}
+
+
+void concat (char *S1, char *S2){
+    int i = 0;
+    while (S1[i] != '\0')
+    {
+        i++;
+    }
+    int j = 0;
+    while (S2[j] != '\0')
+    {
+        S1[i] = S2[j];
+        i++;
+        j++;
+    }
+}
