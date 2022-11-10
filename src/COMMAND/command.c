@@ -110,18 +110,19 @@ void LOADBNMO(){
     system("cls");
     printf("LOAD GAME!\n");
     STARTREADGAME(filename);
-    ListGame = MakeArrayDin();
-    CreateQueue(&GameQueue);
-    int jumlahgame = currentWord.TabWord[0] - 48;
-    ADVREADGAME();
-    for(int i = 0; i < jumlahgame; i++)
-    {
-        char *game = (char*) malloc(currentWord.Length * sizeof(ElType));
-        KataToString(currentWord, game);
-        InsertKataLast(&ListGame, game);
+    if(currentChar != MARK){
+        ListGame = MakeArrayDin();
+        CreateQueue(&GameQueue);
+        int jumlahgame = currentWord.TabWord[0] - 48;
         ADVREADGAME();
+        for(int i = 0; i < jumlahgame; i++)
+        {
+            char *game = (char*) malloc(currentWord.Length * sizeof(ElType));
+            KataToString(currentWord, game);
+            InsertKataLast(&ListGame, game);
+            ADVREADGAME();
+        }
     }
-    
 }
 
 void SAVE(){

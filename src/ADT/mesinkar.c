@@ -28,6 +28,7 @@ void STARTFILE(char *filename){
       pita = fopen(filename, "r");
     if (pita == NULL) {
          printf("File tidak ditemukan.\n");
+         currentChar = MARK;
     } else {
          ADV();
     }
