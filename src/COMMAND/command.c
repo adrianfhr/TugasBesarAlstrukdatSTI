@@ -320,3 +320,13 @@ while(fgets(welcome, sizeof(welcome), w) != NULL) {
     }
 }
 
+void gamecurrent(){
+    if(ingame == 1){
+        RNG();
+    }else if(ingame == 2){
+        DinerDash();
+    }else if (ingame == 3)
+    {
+        GameTambahan();
+    }
+}
