@@ -29,13 +29,14 @@ int main(){
         
         else if(stringcompare(userCommand, "LOAD") == 1)
         {
-            
+
             LOADBNMO();
-            while(command != 0)
-            {
-            commandconfig();    
+            if(currentChar != MARK){
+               while(command != 0)
+                {
+                commandconfig();    
+                } 
             }
-            
         }
         else
         {
