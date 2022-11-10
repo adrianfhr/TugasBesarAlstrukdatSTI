@@ -1,21 +1,18 @@
 #include"rng.h"
 
 
-int tebakan (){
-    struct tm* ptr;
-    time_t t;
-    int a,b,c;
-    t = time(NULL);
-    ptr = localtime(&t);
-    a =mktime(ptr);
-    b=a%100;
-    c=a%b;
-    return c;
-}
+#include"rng.h"
 
-int playgame(int tebak){
+
+
+int playgame(){
     int a;//temp
     int i,count;
+    time_t t;
+    int b,c;
+    t = time(NULL);
+    b=t%100;
+    c=t%b;
     boolean play;
     play = true;
     count =0;
@@ -23,12 +20,12 @@ int playgame(int tebak){
     scanf("%d",&a);//temp
     printf("Tebakan : %d\n",a);
     count=count+1;
-    if (a==tebak){
-        printf ("Ya, X adalah %d.\n",tebak);
+    if (a==c){
+        printf ("Ya, X adalah %d.\n",c);
         play=false;
-    }else if (a<tebak){
+    }else if (a<c){
         printf("Lebih besar\n");
-    }else if (a>tebak){
+    }else if (a>c){
         printf("Lebih kecil\n");
     }
     }
