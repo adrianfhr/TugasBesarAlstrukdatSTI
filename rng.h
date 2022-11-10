@@ -4,9 +4,7 @@
 #include <time.h>
 #include "boolean.h"
 
-int tebakan();
-//mendapatkan angka yang ingin di tebak
 
-int playgame(int tebak);
+int playgame();
 
 #endif
