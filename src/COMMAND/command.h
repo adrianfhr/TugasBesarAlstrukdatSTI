@@ -50,6 +50,4 @@ int stringtoint(char *string);
 
 void WelcomeBNMO(FILE *w);
 
-void gamecurrent();
-
 #endif
