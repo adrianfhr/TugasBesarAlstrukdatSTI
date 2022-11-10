@@ -4,6 +4,6 @@
 #include <time.h>
 #include "boolean.h"
 
-int playgame(int tebak);
+int playgame();
 
 #endif
