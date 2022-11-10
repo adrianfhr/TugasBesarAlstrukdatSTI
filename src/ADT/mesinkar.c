@@ -27,7 +27,7 @@ void START(){
 void STARTFILE(char *filename){
       pita = fopen(filename, "r");
     if (pita == NULL) {
-         printf("File tidak ditemukan\n");
+         printf("File tidak ditemukan.\n");
     } else {
          ADV();
     }
@@ -64,4 +64,7 @@ boolean IsEOP(){
    return EOP;
 }
 /* Mengirimkan true jika currentChar = MARK */
-
+void STARTWRITE(char *filename){
+    pita = fopen(filename, "w");
+    ADV();
+}

@@ -8,31 +8,32 @@
 
 
 int main(){
-    
     while(command != 0)
     {
+        FILE *Welcome;
+        char *welcomeText = "..\\data\\welcome.txt";
+        Welcome = fopen(welcomeText, "r");
+        WelcomeBNMO(Welcome);
         mainmenu();
         STARTWORD();
         char *userCommand = (char*) malloc (currentWord.Length+1);
         KataToString(currentWord, userCommand);
-        if(strcmp(userCommand, "START") == 0)
+        if(stringcompare(userCommand, "START") == 1)
         {
             STARTBNMO();
             while(command != 0)
             {
                 commandconfig();
             }
-            
-
         }
-        else if(strcmp(userCommand, "LOAD") == 0)
+        
+        else if(stringcompare(userCommand, "LOAD") == 1)
         {
             
             LOADBNMO();
             while(command != 0)
             {
-                commandconfig();
-                
+            commandconfig();    
             }
             
         }

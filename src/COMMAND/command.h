@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include "../ADT/arraydin.h"
 #include "../ADT/queue.h"
 #include "../ADT/mesinkata.h"
+#include "../ADT/mesinkar.h"
 
 #ifndef COMMAND_H
 #define COMMAND_H
@@ -46,5 +46,7 @@ void COMMANDLAIN();
 void DisplayGame();
 
 int stringtoint(char *string);
+
+void WelcomeBNMO(FILE *w);
 
 #endif

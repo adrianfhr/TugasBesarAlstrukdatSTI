@@ -38,4 +38,6 @@ char GetCC();
 boolean IsEOP();
 /* Mengirimkan true jika currentChar = MARK */
 
+void STARTWRITE(char *filename);
+
 #endif

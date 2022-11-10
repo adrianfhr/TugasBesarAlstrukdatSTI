@@ -5,6 +5,7 @@ ArrayDin ListGame;
 Queue GameQueue;
 char *userplaygame;
 int command = 9999;
+int ingame = 0;
 
 
 void mainmenu(){
@@ -39,39 +40,39 @@ void commandconfig(){
                 STARTWORD();
                 char *userCommand = (char*) malloc (currentWord.Length+1);
                 KataToString(currentWord, userCommand);
-                if(strcmp(userCommand, "CREATE") == 0)
+                if(stringcompare(userCommand, "CREATE") == 1)
                 {
                     CREATEGAME(&ListGame);
                 }
-                else if(strcmp(userCommand, "LISTGAME") == 0)
+                else if(stringcompare(userCommand, "LISTGAME") == 1)
                 {
                     LISTGAME();
                 }
-                else if(strcmp(userCommand, "DELETE") == 0)
+                else if(stringcompare(userCommand, "DELETE") == 1)
                 {
                     DELETEGAME(&ListGame);
                 }
-                else if(strcmp(userCommand, "QUEUE") == 0)
+                else if(stringcompare(userCommand, "QUEUE") == 1)
                 {
                     QUEUEGAME(&GameQueue);
                 }
-                else if(strcmp(userCommand, "PLAY") == 0)
+                else if(stringcompare(userCommand, "PLAY") == 1)
                 {
                     PLAYGAME(&GameQueue, &userplaygame);
                 }
-                else if(strcmp(userCommand, "SKIP") == 0)
+                else if(stringcompare(userCommand, "SKIP") == 1)
                 {
                     SKIPGAME(&GameQueue, &userplaygame);
                 }
-                else if(strcmp(userCommand, "SAVE") == 0)
+                else if(stringcompare(userCommand, "SAVE") == 1)
                 {
                     SAVE();
                 }
-                else if(strcmp(userCommand, "QUIT") == 0)
+                else if(stringcompare(userCommand, "QUIT") == 1)
                 {
                     QUIT();
                 }
-                else if(strcmp(userCommand, "HELP") == 0)
+                else if(stringcompare(userCommand, "HELP") == 1)
                 {
                     HELP();
                 }
@@ -105,7 +106,7 @@ void LOADBNMO(){
     char *file = (char*) malloc (currentWord.Length+1);
     KataToString(currentWord, file);
     char filename[] = "..\\data\\";
-    strcat(filename, file);
+    concat(filename, file);
     system("cls");
     printf("LOAD GAME!\n");
     STARTREADGAME(filename);
@@ -124,6 +125,20 @@ void LOADBNMO(){
 }
 
 void SAVE(){
+    system("cls");
+    ADVLOADGAME();
+    char *file = (char*) malloc (currentWord.Length+1);
+    KataToString(currentWord, file);
+    char filename[] = "..\\data\\";
+    concat(filename, file);
+    FILE *savefile = fopen(filename, "w");
+    fprintf(savefile, "%d\n", Length(ListGame));
+    for(int i = 0; i < Length(ListGame); i++)
+    {
+        fprintf(savefile, "%s\n", ListGame.A[i]);
+    }
+    fprintf(savefile, ".");
+    printf("Save file berhasil disimpan.\n");
 }
 
 void CREATEGAME(ArrayDin *ListGame){
@@ -170,7 +185,7 @@ void DELETEGAME(ArrayDin *ListGame){
 void QUEUEGAME(Queue *GameQueue){
     system("cls");
     if(isEmpty(*GameQueue)){
-        printf("kamu Belum memiliki antrian game\n");
+        printf("Kamu belum memiliki antrian game\n");
     }else
     {
         DisplayGame();
@@ -184,7 +199,7 @@ void QUEUEGAME(Queue *GameQueue){
     int antriangame = stringtoint(antrian);
     char *game = (char*) malloc (100);
     game = ListGame.A[antriangame-1];
-    if(antriangame < Length(ListGame))
+    if(antriangame-1 < Length(ListGame))
     {
         printf("Game %s berhasil ditambahkan ke antrian.\n", ListGame.A[antriangame-1]);
        
@@ -200,7 +215,7 @@ void QUEUEGAME(Queue *GameQueue){
 void PLAYGAME(Queue *GameQueue, char *userplaygame){
     system("cls");
     if(isEmpty(*GameQueue)){
-        printf("kamu Belum memiliki antrian game\n");
+        printf("Kamu belum memiliki antrian game\n");
     }else
     {
         DisplayGame();
@@ -212,7 +227,7 @@ void PLAYGAME(Queue *GameQueue, char *userplaygame){
 void SKIPGAME(Queue *GameQueue, char *userplaygame){
     system("cls");
     if(isEmpty(*GameQueue)){
-        printf("kamu Belum memiliki antrian game\n");
+        printf("Kamu belum memiliki antrian game\n");
     }else
     {
         ADVLOADGAME();
@@ -257,7 +272,7 @@ void COMMANDLAIN()
 
 void DisplayGame(){
     if(isEmpty(GameQueue)){
-        printf("kamu Belum memiliki antrian game\n");
+        printf("kamu belum memiliki antrian game\n");
     }else{
         int x = 0;
     printf("\n");
@@ -281,5 +296,12 @@ int stringtoint(char *string)
         i++;
     }
     return hasil;
+}
+
+void WelcomeBNMO(FILE *w){
+char welcome[500];
+while(fgets(welcome, sizeof(welcome), w) != NULL) {
+        printf("%s",welcome);
+    }
 }
 

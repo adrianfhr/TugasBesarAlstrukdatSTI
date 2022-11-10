@@ -59,4 +59,8 @@ void COPYLOADGAME();
 
 void KataToString (Word W, char *S);
 
+boolean stringcompare (char *S1, char *S2);
+
+void concat (char *S1, char *S2);
+
 #endif
