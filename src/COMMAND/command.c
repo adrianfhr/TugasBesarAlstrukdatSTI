@@ -271,9 +271,9 @@ void PLAYGAME(Queue *GameQueue, char *userplaygame){
         if(stringcompare(GameQueue->buffer[GameQueue->idxHead], "RNG") == 1){
             ingame = 1;
             printf("Game %d berhasil dimainkan.\n", ingame);
-        }else if(stringcompare(GameQueue->buffer[GameQueue->idxHead], "Diner Dash") == 1){
+        }else if(stringcompare(GameQueue->buffer[GameQueue->idxHead], "Diner DASH") == 1){
             ingame = 2;
-        }else if(stringcompare(GameQueue->buffer[GameQueue->idxHead],"Xloming") == 1){
+        }else if(stringcompare(GameQueue->buffer[GameQueue->idxHead],"Game Alpha") == 1){
             ingame = 3;
         }else if(stringcompare(GameQueue->buffer[GameQueue->idxHead],"Kerang Ajaib") == 1){
             ingame = 4;

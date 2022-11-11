@@ -1,5 +1,5 @@
 #include "game.h"
-#include "diner_dash.c"
+#include "diner_dash.h"
 
 void RNG(){
     int a;
@@ -64,7 +64,7 @@ void DinerDash(){
         printf("MASUKKAN COMMAND:");
                 STARTWORD();
                 KataToString(currentWord, input);
-                if(stringcompare(input, "COOK") == 0)
+                if(stringcompare(input, "COOK") == 1)
                 {
                 STARTWORD();
                 KataToString(currentWord, input);
@@ -83,7 +83,7 @@ void DinerDash(){
                 printf("Command salah\n");
                 }
                 }
-                else if(stringcompare(input, "SERVE") == 0)
+                else if(stringcompare(input, "SERVE") == 1)
                 {
                 STARTWORD();
                 KataToString(currentWord, input);
@@ -109,7 +109,7 @@ void DinerDash(){
                 printf("Command salah\n");
                 }
                 }
-                else if(stringcompare(input, "SKIP") == 0)
+                else if(stringcompare(input, "SKIP") == 1)
                 {
                     valid=true;
                 }else

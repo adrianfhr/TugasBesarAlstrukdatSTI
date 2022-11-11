@@ -29,7 +29,8 @@ void berhasil(int status, int m, int c);
 
 int Number(int b);
 
-int playdiner();
+void turun(Array *cooking,Array *serving);
 
 void Beginning(Array *durasi,Array *ketahanan,Array *harga);
+
 #endif
