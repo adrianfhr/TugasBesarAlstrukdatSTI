@@ -58,7 +58,6 @@ void commandconfig(){
                     if(stringcompare(userCommand, "GAME") == 1)
                     {   
                        LISTGAME();
-                       commandmenu();
                     }else{
                         COMMANDLAIN();
                     }
@@ -281,6 +280,7 @@ void PLAYGAME(Queue *GameQueue, char *userplaygame){
         }else{
             printf("Game %s masih dalam maintenance,belum dapat dimainkan.\nSilahkan pilih game lain.", GameQueue->buffer[GameQueue->idxHead]);
         }
+        printf("\n");
         gamecurrent();
         dequeue(GameQueue, &userplaygame);
     }
