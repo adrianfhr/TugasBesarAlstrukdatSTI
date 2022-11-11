@@ -1,4 +1,5 @@
 #include "game.h"
+#include "diner_dash.c"
 
 void RNG(){
     int a;
