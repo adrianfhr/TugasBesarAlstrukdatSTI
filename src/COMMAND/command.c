@@ -220,7 +220,7 @@ void DELETEGAME(ArrayDin *ListGame){
         }
     }
 
-    if(delete < Length(*ListGame) && delete > 4 && !found)
+    if(delete < Length(*ListGame) && delete > 5 && !found)
     {
         DeleteAt(ListGame, delete);
         printf("Game berhasil dihapus.\n");
@@ -289,32 +289,29 @@ void PLAYGAME(Queue *GameQueue, char *userplaygame){
 void SKIPGAME(Queue *GameQueue, char *userplaygame){
     system("cls");
     if(isEmpty(*GameQueue)){
+        ADVLOADGAME();
         printf("Kamu belum memiliki antrian game\n");
     }else
     {
         ADVLOADGAME();
-        DisplayGame();
         char*skip = (char*) malloc (currentWord.Length+1);
         KataToString(currentWord, skip);
         int skipgame = stringtoint(skip);
-        printf("Loading %s ... \n", GameQueue->buffer[skipgame]);
-        if(stringcompare(GameQueue->buffer[skipgame], "RNG") == 1){
-            ingame = 1;
-            printf("Game %d berhasil dimainkan.\n", ingame);
-        }else if(stringcompare(GameQueue->buffer[skipgame], "Diner Dash") == 1){
-            ingame = 2;
-        }else if(stringcompare(GameQueue->buffer[skipgame],"Xloming") == 1){
-            ingame = 3;
-        }else if(stringcompare(GameQueue->buffer[skipgame],"Kerang Ajaib") == 1){
-            ingame = 4;
-        }else{
-            printf("Game %s masih dalam maintenance,belum dapat dimainkan.\nSilahkan pilih game lain.", GameQueue->buffer[GameQueue->idxHead]);
+        if(!isEmpty(*GameQueue) && skipgame <= length(*GameQueue)){
+            for (int i = 0; i < skipgame; i++){
+                dequeue(GameQueue, &userplaygame);
+                }
+        }else if(skipgame > length(*GameQueue)){
+            for (int i = 0; i < length(*GameQueue); i++){
+                dequeue(GameQueue, &userplaygame);
+            }
         }
-        gamecurrent();
-        dequeueAt(GameQueue, skipgame, &userplaygame);
+        if(!isEmpty(*GameQueue)){
+            PLAYGAME(GameQueue, userplaygame);
+        }else{
+            printf("Tidak ada permainan lagi dalam daftar game-mu\n");
+        }
     }
-
-
 }
 
 void QUIT(){
