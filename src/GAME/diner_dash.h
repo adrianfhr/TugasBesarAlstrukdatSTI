@@ -5,7 +5,6 @@
 #include "../ADT/arraydin.h"
 #include "../ADT/mesinkata.h"
 #include "../ADT/mesinkar.h"
-#include "../ADT/diner_dash.h"
 
 typedef int IdxType;
 typedef struct {
