@@ -56,3 +56,7 @@ void GameTambahan(){
     printf("GAME OVER\n");
     printf("FINAL SCORE : %d \n",c);
 }
+
+void kerangajaib(){
+    int a;
+}

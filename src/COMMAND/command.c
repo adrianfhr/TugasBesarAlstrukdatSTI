@@ -183,7 +183,7 @@ void CREATEGAME(ArrayDin *ListGame){
     system("cls");
     printf("CREATE GAME!\n");
     printf("Masukkan nama game yang akan ditambahkan: ");
-    STARTWORD();
+    STARTCREATE();
     char *game = (char*) malloc (currentWord.Length+1);
     KataToString(currentWord, game);
     InsertKataLast(ListGame, game);

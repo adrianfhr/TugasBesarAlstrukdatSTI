@@ -30,6 +30,18 @@ void STARTWORD(){
         
     }
 }
+
+void STARTCREATE(){
+    START();
+    IgnoreBlanks();
+    if(currentChar == MARK ){
+        EndWord = true;
+    }else{
+        EndWord = false;
+        COPYGAME();
+        
+    }
+}
 /* I.S. : currentChar sembarang
    F.S. : EndWord = true, dan currentChar = MARK;
           atau EndWord = false, currentWord adalah kata yang sudah diakuisisi,
