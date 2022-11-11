@@ -2,9 +2,9 @@
 #define DINER
 #include <stdio.h>
 #include <time.h>
-#include"mesinkata.h"
-#include"mesinkar.h"
-#include"arraydin.h"
+#include "../ADT/arraydin.h"
+#include "../ADT/mesinkata.h"
+#include "../ADT/mesinkar.h"
 
 typedef int IdxType;
 typedef struct {
