@@ -3,6 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "../ADT/boolean.h"
+#include "../ADT/mesinkata.h"
 
 #ifndef GAME_H
 #define GAME_H
@@ -35,5 +36,7 @@ Skor akhir dari pemain adalah total uang yang diterima oleh pemain.
 */
 
 void GameTambahan();
+
+void kerangajaib();
 
 #endif

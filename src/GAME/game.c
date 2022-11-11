@@ -1,6 +1,5 @@
-
 #include "game.h"
-#include "diner_dash.h"
+
 void RNG(){
     int a;
     int i,count;
@@ -58,4 +57,36 @@ void GameTambahan(){
     c=a%b;
     printf("GAME OVER\n");
     printf("FINAL SCORE : %d \n",c);
+}
+
+void kerangajaib(){
+    time_t t;
+    int a,b;
+    boolean play = true;
+    while(play)
+    {
+    t = time(NULL);
+    b=t%5;
+    printf("Ketik 'QUIT' jika anda ingin keluar game \n");
+    printf("Apa yang kau ingin tanyakan pada kerang ajaib :\n",b);
+    STARTCREATE();
+    b = (b*currentWord.Length)*t % 5 ;
+    char *inputkerang = (char*) malloc (currentWord.Length+1);
+    KataToString(currentWord, inputkerang);
+    if(stringcompare(inputkerang, "QUIT") == 1){
+        play = false;
+    }else if (b==0){
+        printf("Kerang Ajaib : Ya\n");
+    }else if (b==1){
+        printf("Kerang Ajaib : Tidak\n");
+    }else if(b==2){
+        printf("Kerang Ajaib : Mungkin\n");
+    }else if(b==3){
+        printf("Kerang Ajaib : Tidak Mungkin\n");
+    }else{
+        printf("Kerang Ajaib : Tidak Tahu\n");
+    }
+
+    printf("\n");
+    }
 }
