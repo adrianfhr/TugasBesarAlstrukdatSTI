@@ -36,31 +36,69 @@ void commandmenu(){
 }
 
 void commandconfig(){
-        commandmenu();
+                commandmenu();
                 STARTWORD();
                 char *userCommand = (char*) malloc (currentWord.Length+1);
                 KataToString(currentWord, userCommand);
                 if(stringcompare(userCommand, "CREATE") == 1)
                 {
-                    CREATEGAME(&ListGame);
+                    ADVLOADGAME();
+                    KataToString(currentWord, userCommand);
+                    if(stringcompare(userCommand, "GAME") == 1)
+                    {   
+                        CREATEGAME(&ListGame);
+                    }else{
+                        COMMANDLAIN();
+                    }
                 }
-                else if(stringcompare(userCommand, "LISTGAME") == 1)
+                else if(stringcompare(userCommand, "LIST") == 1)
                 {
-                    LISTGAME();
+                    ADVLOADGAME();
+                    KataToString(currentWord, userCommand);
+                    if(stringcompare(userCommand, "GAME") == 1)
+                    {   
+                       LISTGAME();
+                       commandmenu();
+                    }else{
+                        COMMANDLAIN();
+                    }
                 }
                 else if(stringcompare(userCommand, "DELETE") == 1)
                 {
-                    DELETEGAME(&ListGame);
+                    ADVLOADGAME();
+                    KataToString(currentWord, userCommand);
+                    if(stringcompare(userCommand, "GAME") == 1)
+                    {   
+                        DELETEGAME(&ListGame);
+                    }else{
+                        COMMANDLAIN();
+                    }
+            
                 }
                 else if(stringcompare(userCommand, "QUEUE") == 1)
                 {
-                    QUEUEGAME(&GameQueue);
+                    
+                    ADVLOADGAME();
+                    KataToString(currentWord, userCommand);
+                    if(stringcompare(userCommand, "GAME") == 1)
+                    {   
+                        QUEUEGAME(&GameQueue);
+                    }else{
+                        COMMANDLAIN();
+                    }
                 }
                 else if(stringcompare(userCommand, "PLAY") == 1)
                 {
-                    PLAYGAME(&GameQueue, &userplaygame);
+                    ADVLOADGAME();
+                    KataToString(currentWord, userCommand);
+                    if(stringcompare(userCommand, "GAME") == 1)
+                    {   
+                        PLAYGAME(&GameQueue, &userplaygame);
+                    }else{
+                        COMMANDLAIN();
+                    }
                 }
-                else if(stringcompare(userCommand, "SKIP") == 1)
+                else if(stringcompare(userCommand, "SKIPGAME") == 1)
                 {
                     SKIPGAME(&GameQueue, &userplaygame);
                 }
@@ -84,7 +122,6 @@ void commandconfig(){
 
 void STARTBNMO(){
     system("cls");
-    printf("START GAME!\n");
     printf("File konfigurasi sistem berhasil dibaca. BNMO berhasil dijalankan.\n");
     char *file = "..\\data\\default.txt";
     STARTREADGAME(file);
@@ -108,7 +145,7 @@ void LOADBNMO(){
     char filename[] = "..\\data\\";
     concat(filename, file);
     system("cls");
-    printf("LOAD GAME!\n");
+    printf("Save file berhasil dibaca. BNMO berhasil dijalankan.\n");
     STARTREADGAME(filename);
     if(currentChar != MARK){
         ListGame = MakeArrayDin();
@@ -145,17 +182,18 @@ void SAVE(){
 void CREATEGAME(ArrayDin *ListGame){
     system("cls");
     printf("CREATE GAME!\n");
-    printf("Masukkan nama game: ");
+    printf("Masukkan nama game yang akan ditambahkan: ");
     STARTWORD();
     char *game = (char*) malloc (currentWord.Length+1);
     KataToString(currentWord, game);
     InsertKataLast(ListGame, game);
+    printf("Game berhasil ditambahkan.\n");
 }
 
 void LISTGAME(){
     printf("\n");
     printf("LIST GAME!\n");
-    printf("Daftar game yang tersedia:\n");
+    printf("Berikut adalah daftar game yang tersedia:\n");
     for(int i = 0; i < Length(ListGame); i++)
     {
         printf("%d. %s\n", i+1, ListGame.A[i]);
@@ -165,21 +203,29 @@ void LISTGAME(){
 void DELETEGAME(ArrayDin *ListGame){
     system("cls");
     printf("DELETE GAME!\n");
-    printf("Berikut adalah daftar game yang tersedia:\n");
     LISTGAME();
     printf("Masukkan nomor game yang ingin dihapus: ");
     STARTWORD();
     char *deletegame = (char*) malloc (currentWord.Length+1);
     KataToString(currentWord, deletegame);
     int delete = stringtoint(deletegame)-1;
-    if(delete < Length(*ListGame))
+    boolean found = false;
+    for(int i = 0; i < length(GameQueue); i++)
+    {
+        if(stringcompare(GameQueue.buffer[i], ListGame->A[delete]) == 1)
+        {
+            found = true;
+        }
+    }
+
+    if(delete < Length(*ListGame) && delete > 4 && !found)
     {
         DeleteAt(ListGame, delete);
         printf("Game berhasil dihapus.\n");
     }
     else
     {
-        printf("Game tidak ditemukan.\n");
+        printf("Game gagal dihapus.\n");
     }
 }
 
@@ -191,7 +237,6 @@ void QUEUEGAME(Queue *GameQueue){
     {
         DisplayGame();
     }
-
     LISTGAME();
     printf("Nomor Game yang mau ditambahkan ke antrian : ");
     STARTWORD();
@@ -210,7 +255,6 @@ void QUEUEGAME(Queue *GameQueue){
     {
         printf("Game tidak ditemukan.\n");
     }
-    
 }
 
 void PLAYGAME(Queue *GameQueue, char *userplaygame){
@@ -220,10 +264,9 @@ void PLAYGAME(Queue *GameQueue, char *userplaygame){
     }else
     {
         DisplayGame();
-        printf("Loading %s ...", GameQueue->buffer[GameQueue->idxHead]);
+        printf("Loading %s ...\n", GameQueue->buffer[GameQueue->idxHead]);
         char *ingamestr;
         ingamestr = GameQueue->buffer[GameQueue->idxHead];
-        printf("%s\n", ingamestr);
         if(stringcompare(GameQueue->buffer[GameQueue->idxHead], "RNG") == 1){
             ingame = 1;
             printf("Game %d berhasil dimainkan.\n", ingame);
@@ -232,7 +275,7 @@ void PLAYGAME(Queue *GameQueue, char *userplaygame){
         }else if(stringcompare(GameQueue->buffer[GameQueue->idxHead],"Xloming") == 1){
             ingame = 3;
         }else{
-            printf("Game %s masih dalam maintenance,belum dapat dimainkan.\nSilahkan pilih game lain.", GameQueue->buffer[GameQueue->idxHead-1]);
+            printf("Game %s masih dalam maintenance,belum dapat dimainkan.\nSilahkan pilih game lain.", GameQueue->buffer[GameQueue->idxHead]);
         }
         gamecurrent();
         dequeue(GameQueue, &userplaygame);

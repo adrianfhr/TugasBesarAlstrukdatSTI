@@ -32,12 +32,10 @@ int main(){
         {
 
             LOADBNMO();
-            if(currentChar != MARK){
                while(command != 0)
                 {
                 commandconfig();    
                 } 
-            }
         }
         else
         {

@@ -176,4 +176,5 @@ void concat (char *S1, char *S2){
         i++;
         j++;
     }
+    S1[i] = '\0';
 }

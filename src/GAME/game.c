@@ -8,7 +8,7 @@ void RNG(){
     int b,c;
     t = time(NULL);
     b=t%100;
-    c=t%b;
+    c=t%b+1;
     boolean play;
     play = true;
     count =0;
