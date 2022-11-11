@@ -30,21 +30,138 @@ void RNG(){
 } 
 
 void DinerDash(){
-
+    int saji,antri;
+    int current_serve;
+    int c,d,i,j;
+    char input[30];
+    char a;
+    int b;
+    int dompet;
+    boolean valid;
+    int target; 
+    Array cooking;
+    Array serving;
+    Array ready;
+    Array oncook;
+    Array durasi,ketahanan,harga;
+    for(i=0;i<15;i=i+1){
+        cooking.Capacity[i]=-1;
+        serving.Capacity[i]=-1;
+        ready.Capacity[i]=-1;
+        oncook.Capacity[i]=-1;
+    }
+    dompet=0;
+    current_serve=0;
+    c=0;
+    d=3;
+    saji=0;
+    antri=3;
+    valid=false;
+    Beginning(&durasi,&ketahanan,&harga);
+    while(antri<7 && saji<15){
+        while(valid==false){
+        printf("MASUKKAN COMMAND:");
+                STARTWORD();
+                KataToString(currentWord, input);
+                if(stringcompare(input, "COOK") == 0)
+                {
+                STARTWORD();
+                KataToString(currentWord, input);
+                if(input[0]=='M'){
+                a=input[1];
+                sscanf(&a,"%d",&b);
+                if(oncook.Capacity[b]==-1){
+                    j=durasi.Capacity[b];
+                    cooking.Capacity[b]=j;
+                    oncook.Capacity[b]=2;
+                    valid=true;
+                }else{
+                printf("Command salah\n");
+                }
+                }else{
+                printf("Command salah\n");
+                }
+                }
+                else if(stringcompare(input, "SERVE") == 0)
+                {
+                STARTWORD();
+                KataToString(currentWord, input);
+                if(input[0]=='M'){
+                a=input[1];
+                sscanf(&a,"%d",&b);
+                if(ready.Capacity[b]==2){
+                    if(current_serve!=b){
+                        berhasil(3,b,current_serve);
+                    }else{
+                        ready.Capacity[b]=1;
+                        dompet=dompet+harga.Capacity[b];
+                        saji=saji+1;
+                        berhasil(1,b,current_serve);
+                        c=c+1;
+                        antri=antri-1;
+                        valid=true;
+                    }
+                }else{
+                printf("Belum bisa menyajikan M%d\n",b);
+                }
+                }else{
+                printf("Command salah\n");
+                }
+                }
+                else if(stringcompare(input, "SKIP") == 0)
+                {
+                    valid=true;
+                }else
+                {
+                    printf("Command salah\n");
+                }
+        }
+        valid=false;
+        turun(&cooking,&serving);
+        for(i=0;i<15;i=i+1){
+            if(cooking.Capacity[i]==0){
+                ready.Capacity[i]=2;
+                cooking.Capacity[i]=cooking.Capacity[i]-1;
+                serving.Capacity[i]=ketahanan.Capacity[i];
+                berhasil(0,i,current_serve);
+            }
+            if(serving.Capacity[i]==0){
+                serving.Capacity[i]=serving.Capacity[i]-1;
+                ready.Capacity[i]=-1;
+                oncook.Capacity[i]=-1;
+            }
+        }
+        printf("==========================================================\n");
+        d=d+1;
+        antri=antri+1;
+        durasi.Capacity[d-1]=(Number(39)%5)+1;
+        ketahanan.Capacity[d-1]=(Number(39)%5)+1;
+        harga.Capacity[d-1]=((Number(39)%5)+1)*10000;
+        Saldo(dompet);
+        TOP();
+        for(i=c;i<d;i=i+1){
+            Menu(i,durasi.Capacity[i],ketahanan.Capacity[i],harga.Capacity[i]);
+        }
+        Middle();
+        for(i=0;i<15;i=i+1){
+            if (oncook.Capacity[i]==2&& cooking.Capacity[i]>0){
+                Cook(i,cooking.Capacity[i]);
+            }
+        }
+        Bottom();
+        for(i=0;i<15;i=i+1){
+            if (ready.Capacity[i]==2){
+                Serve(i,serving.Capacity[i]);
+            }
+        }
+    }
+        printf("GAME OVER\n");
+    if(antri>=7){
+        printf("Anda Kalah\n");
+    }else{
+        printf("Selamat Anda Menang\n");
+    }
 }
-/*Indra dan Doni juga suka permainan yang menegangkan. Oleh karena itu, ia ingin ada sebuah game Diner Dash dalam BNMO. Secara singkat, Diner Dash merupakan permainan mengantar makanan namun terurut berdasarkan prioritasnya. Berikut adalah spesifikasi game ini:
-Terdapat 2 command yang dapat dilakukan pada game, yaitu COOK dan SERVE
-COOK merupakan command yang bertujuan untuk memasak makanan
-SERVE merupakan command yang bertujuan untuk menyajikan makanan kepada pelanggan.
-Permainan akan dimulai dengan 3 pelanggan. Setiap pelanggan hanya dapat memesan satu makanan. Untuk setiap makanan, terdapat informasi tentang ID makanan yang dihasilkan secara increment (M01, M02, M03, dst), durasi memasak, harga makanan, serta ketahanan makanan. Semua informasi tersebut akan didapatkan secara random dengan menggunakan random number generator. Durasi dan ketahanan makanan akan berkisar diantara 1-5. Sedangkan, harga makanan akan berkisar diantara 10000 - 50000.
-Kapasitas dari pemain adalah memasak 5 makanan dalam waktu yang sama. Pelanggan yang dilayani adalah pelanggan yang duluan memasuki antrian.
-Permainan selesai apabila antrian melebihi 7 pelanggan atau jumlah pelanggan yang sudah dilayani mencapai 15 pelanggan.
-Pada setiap putaran, akan terdapat 1 pelanggan baru. 
-Pada setiap putaran, seluruh durasi dari makanan yang sedang dimasak akan berkurang 1. Ketika durasi makanan mencapai 0, maka makanan sudah dapat di SERVE.
-Ketika makanan sudah di SERVE, maka makanan dapat diantar kepada pelanggan dan pelanggan dapat meninggalkan antrian. Setelah pelanggan meninggalkan antrian, maka pemain akan menerima uang
-SERVE hanya dapat digunakan untuk pesanan yang berada di paling depan.
-Skor akhir dari pemain adalah total uang yang diterima oleh pemain.
-*/
 
 void GameTambahan(){
     struct tm* ptr;
