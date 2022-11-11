@@ -1,6 +1,5 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
 #include "ADT/mesinkata.h"
 #include "ADT/arraydin.h"
 #include "COMMAND/command.h"
