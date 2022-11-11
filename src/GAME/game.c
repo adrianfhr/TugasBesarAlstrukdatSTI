@@ -4,6 +4,7 @@
 void RNG(){
     int a;
     int i,count;
+    char input[10];
     time_t t;
     int b,c;
     t = time(NULL);
@@ -13,8 +14,10 @@ void RNG(){
     play = true;
     count =0;
     while (play){
-        scanf("%d",&a);
-        printf("Tebakan : %d\n",a);
+        printf("Tebakan :");
+        STARTWORD();
+        KataToString(currentWord, input);
+        a=atoi(input);
         count = count+1;
         if (a==c){
             printf ("Ya, X adalah %d.\n",c);
