@@ -5,7 +5,6 @@
 #include "../ADT/arraydin.h"
 #include "../ADT/mesinkata.h"
 #include "../ADT/mesinkar.h"
-#include "../ADT/diner_dash.h"
 
 typedef int IdxType;
 typedef struct {
@@ -30,7 +29,8 @@ void berhasil(int status, int m, int c);
 
 int Number(int b);
 
-int playdiner();
+void turun(Array *cooking,Array *serving);
 
 void Beginning(Array *durasi,Array *ketahanan,Array *harga);
+
 #endif
