@@ -36,4 +36,6 @@ Skor akhir dari pemain adalah total uang yang diterima oleh pemain.
 
 void GameTambahan();
 
+void kerangajaib();
+
 #endif

@@ -22,16 +22,16 @@ void commandmenu(){
         printf("\n");
         printf("Welcome to BNMO!\n");
         printf("Choose your command:\n");
-        printf("1. CREATE\n");
-        printf("2. LISTGAME\n");
-        printf("3. DELETE\n");
-        printf("4. QUEUE\n");
-        printf("5. PLAY\n");
-        printf("6. SKIP\n");
+        printf("1. CREATE GAME\n");
+        printf("2. LIST GAME\n");
+        printf("3. DELETE GAME\n");
+        printf("4. QUEUE GAME\n");
+        printf("5. PLAY GAME\n");
+        printf("6. SKIPGAME\n");
         printf("7. SAVE\n");
         printf("8. QUIT\n");
         printf("9. HELP\n");
-        printf("Example Command: CREATE\n");
+        printf("Example Command: CREATE GAME\n");
         printf(">> ");
 }
 
@@ -150,7 +150,9 @@ void LOADBNMO(){
     if(currentChar != MARK){
         ListGame = MakeArrayDin();
         CreateQueue(&GameQueue);
-        int jumlahgame = currentWord.TabWord[0] - 48;
+        char *jlhgame = (char*) malloc (currentWord.Length+1);
+        KataToString(currentWord, jlhgame);
+        int jumlahgame = stringtoint(jlhgame);
         ADVREADGAME();
         for(int i = 0; i < jumlahgame; i++)
         {
@@ -274,6 +276,8 @@ void PLAYGAME(Queue *GameQueue, char *userplaygame){
             ingame = 2;
         }else if(stringcompare(GameQueue->buffer[GameQueue->idxHead],"Xloming") == 1){
             ingame = 3;
+        }else if(stringcompare(GameQueue->buffer[GameQueue->idxHead],"Kerang Ajaib") == 1){
+            ingame = 4;
         }else{
             printf("Game %s masih dalam maintenance,belum dapat dimainkan.\nSilahkan pilih game lain.", GameQueue->buffer[GameQueue->idxHead]);
         }
@@ -293,9 +297,23 @@ void SKIPGAME(Queue *GameQueue, char *userplaygame){
         char*skip = (char*) malloc (currentWord.Length+1);
         KataToString(currentWord, skip);
         int skipgame = stringtoint(skip);
-        printf("Loading %s ...", GameQueue->buffer[skipgame]);
+        printf("Loading %s ... \n", GameQueue->buffer[skipgame]);
+        if(stringcompare(GameQueue->buffer[skipgame], "RNG") == 1){
+            ingame = 1;
+            printf("Game %d berhasil dimainkan.\n", ingame);
+        }else if(stringcompare(GameQueue->buffer[skipgame], "Diner Dash") == 1){
+            ingame = 2;
+        }else if(stringcompare(GameQueue->buffer[skipgame],"Xloming") == 1){
+            ingame = 3;
+        }else if(stringcompare(GameQueue->buffer[skipgame],"Kerang Ajaib") == 1){
+            ingame = 4;
+        }else{
+            printf("Game %s masih dalam maintenance,belum dapat dimainkan.\nSilahkan pilih game lain.", GameQueue->buffer[GameQueue->idxHead]);
+        }
+        gamecurrent();
         dequeueAt(GameQueue, skipgame, &userplaygame);
     }
+
 
 }
 
@@ -371,5 +389,8 @@ void gamecurrent(){
     }else if (ingame == 3)
     {
         GameTambahan();
+    }else if (ingame == 4)
+    {
+        kerangajaib();
     }
 }
