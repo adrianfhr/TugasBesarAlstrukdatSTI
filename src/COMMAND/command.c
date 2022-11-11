@@ -331,7 +331,7 @@ void HELP(){
     printf("4. CREATE GAME  <Menambah game baru pada daftar game> \n");
     printf("5. LIST GAME    <Menampilkan daftar game> \n");
     printf("6. DELETE GAME  <Menghapus suatu game dari daftar game> \n");
-    printf("7. QUEUE        <Mendaftarkan permainan kedalam daftar antrian game> \n");
+    printf("7. QUEUE GAME   <Mendaftarkan permainan kedalam daftar antrian game> \n");
     printf("8. PLAY GAME    <Memainkan sebuah permainan> \n");
     printf("9. SKIPGAME     <Melewatkan permainan> \n");
     printf("10. QUIT        <Keluar dari program> \n");
