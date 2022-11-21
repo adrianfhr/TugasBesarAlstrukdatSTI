@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "ADT/mesinkata.h"
-#include "ADT/arraydin.h"
+#include "ADT/MESINKATA/mesinkata.h"
+#include "ADT/ARRAYDIN/arraydin.h"
 #include "COMMAND/command.h"
 #include "GAME/game.h"
 

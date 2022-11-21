@@ -73,9 +73,9 @@ void turun(Array *cooking,Array *serving){
 
 void Beginning(Array *durasi,Array *ketahanan,Array *harga){
     int a,b,c;
-    a=Number(4)+1;
-    b=Number(3)+2;
-    c=Number(4)+1;
+    a=Number(2)+1;
+    b=Number(2)+2;
+    c=Number(2)+1;
     printf("Selamat Datang di Diner Dash!\n");
     Saldo(0);
     TOP();
@@ -83,16 +83,16 @@ void Beginning(Array *durasi,Array *ketahanan,Array *harga){
     durasi->Capacity[0]=a;
     durasi->Capacity[1]=b;
     durasi->Capacity[2]=c;
-    a=(Number(203)%3)+2;
-    b=(Number(450)%4)+1;
-    c=(Number(22)%4)+1;
+    a=(Number(203)%2)+2;
+    b=(Number(450)%2)+1;
+    c=(Number(22)%2)+1;
     Menu(1,a,b,c*10000);
     ketahanan->Capacity[0]=a;
     ketahanan->Capacity[1]=b;
     ketahanan->Capacity[2]=c;
-    a=(Number(59)%3)+1;
-    b=(Number(36)%4)+1;
-    c=(Number(97)%4)+1;
+    a=(Number(59)%2)+1;
+    b=(Number(36)%2)+1;
+    c=(Number(97)%2)+1;
     Menu(2,a,b,c*10000);
     harga->Capacity[0]=a;
     harga->Capacity[1]=b;

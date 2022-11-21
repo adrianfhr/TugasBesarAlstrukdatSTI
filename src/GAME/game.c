@@ -135,9 +135,9 @@ void DinerDash(){
         printf("==========================================================\n");
         d=d+1;
         antri=antri+1;
-        durasi.Capacity[d-1]=(Number(39)%5)+1;
-        ketahanan.Capacity[d-1]=(Number(39)%5)+1;
-        harga.Capacity[d-1]=((Number(39)%5)+1)*10000;
+        durasi.Capacity[d-1]=(Number(39)%2)+1;
+        ketahanan.Capacity[d-1]=(Number(39)%2)+1;
+        harga.Capacity[d-1]=((Number(39)%2)+1)*10000;
         Saldo(dompet);
         TOP();
         for(i=c;i<d;i=i+1){

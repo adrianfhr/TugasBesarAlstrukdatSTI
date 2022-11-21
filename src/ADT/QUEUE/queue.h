@@ -4,8 +4,8 @@
 #ifndef QUEUE_H
 #define QUEUE_H
 
-#include "boolean.h"
-#include "arraydin.h"
+#include "../boolean.h"
+#include "../ARRAYDIN/arraydin.h"
 
 #define IDX_UNDEF -1
 #define CAPACITY 100

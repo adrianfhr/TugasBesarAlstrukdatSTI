@@ -2,8 +2,8 @@
 #define map_H
 #include <stdio.h>
 #include "boolean.h"
-#include "arraydin.h"
-#include "queue.h"
+#include "../ARRAYDIN/arraydin.h"
+#include "../QUEUE/queue.h"
 
 /* MODUL Map
 Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri

@@ -1,9 +1,9 @@
 #ifndef set_H
 #define set_H
 #include <stdio.h>
-#include "boolean.h"
-#include "arraydin.h"
-#include "map.h"
+#include "../boolean.h"
+#include "../ARRAYDIN/arraydin.h"
+#include "../MAP/map.h"
 
 /* MODUL Set
 Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri

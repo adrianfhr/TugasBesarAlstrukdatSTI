@@ -1,9 +1,9 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include "../ADT/arraydin.h"
-#include "../ADT/queue.h"
-#include "../ADT/mesinkata.h"
-#include "../ADT/mesinkar.h"
+#include "../ADT/ARRAYDIN/arraydin.h"
+#include "../ADT/QUEUE/queue.h"
+#include "../ADT/MESINKATA/mesinkata.h"
+#include "../ADT/MESINKATA/mesinkar.h"
 #include "../GAME/game.h"
 
 #ifndef COMMAND_H

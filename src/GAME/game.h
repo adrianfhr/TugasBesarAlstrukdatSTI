@@ -3,7 +3,7 @@
 #include <stdlib.h>
 #include <time.h>
 #include "../ADT/boolean.h"
-#include "../ADT/mesinkata.h"
+#include "../ADT/MESINKATA/mesinkata.h"
 
 #ifndef GAME_H
 #define GAME_H
