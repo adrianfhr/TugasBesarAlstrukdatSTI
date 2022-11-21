@@ -279,6 +279,7 @@ void PLAYGAME(Queue *GameQueue, char *userplaygame){
             ingame = 4;
         }else{
             printf("Game %s masih dalam maintenance,belum dapat dimainkan.\nSilahkan pilih game lain.", GameQueue->buffer[GameQueue->idxHead]);
+            ingame = 0;
         }
         printf("\n");
         gamecurrent();
