@@ -68,3 +68,8 @@ void RESETSCOREBOARD (){
         printf("Scoreboard tidak berhasil di-reset.");
     }
 }
+
+//GABISA:
+// kalau deletemap tuh key nya tetap ada kan? cuma elemen nya jadi kosong?
+// perlu buat listscoreboard ga atau manual kayak diatas aja?
+// kerang ajaib tidak perlu masuk ke dalam daftar scoreboard kan?

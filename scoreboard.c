@@ -15,9 +15,16 @@ void SCOREBOARD (){
     CreateEmptyMap(&SKORGAME); // membuat map kosong
     keytype nama; //nama sebagai key
     ElType skor; // skor sebagai element
-    
+
+//bagian ini harusnya di masing-masing game kan?
+    char nama;
+    printf("Nama: ");
+    scanf("%c",&nama);
     if (!(IsMemberMap(SKORGAME, nama))){ // jika nama belum terpakai maka nama valid
         InsertMap (*SKORGAME, nama, skor); // memasukan nama dan skor baru pada map SKORGAME
+    }
+    else{
+        printf("Nama sudah terpakai di scoreboard.");
     }
 
     for (int i = 0; i<Length(ListGame); i++){ //output urutan scoreboard berdasarkan ListGame
@@ -28,3 +35,8 @@ void SCOREBOARD (){
         printf("\n");
     }
 }
+
+// GABISA:
+// Buat Map Board yang key nya nama game dengan elemen sementara kosong, elemen nya adalah map SKORGAME masing masing game
+// Cara akses Map di dalam Map
+
