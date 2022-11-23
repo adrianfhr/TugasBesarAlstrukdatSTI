@@ -3,6 +3,7 @@
 
 void SCOREBOARD (){
     // inputan nama dan skor berasal dari game nya masing"?
+    // buat file konfigurasi baru (?)
     // skor diurutkan berdasarkan tertinggi
 
     Map TOWEROFHANOISCORE; //tempat menyimpan scoreboard game TOWER OF HANOI
