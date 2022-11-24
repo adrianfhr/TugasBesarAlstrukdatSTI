@@ -111,16 +111,4 @@ InsertMapLast(&Gameboard, &DINERDASHSCORE);
 InsertMapLast(&Gameboard, &SNAKEONMETEORSCORE);
 InsertMapLast(&Gameboard, &RNGSCORE);
 InsertMapLast(&Gameboard, &HANGMANSCORE);
-
-//bagian ini harusnya di masing-masing game kan?
-    char nama;
-    printf("Nama: ");
-    scanf("%c",&nama);
-    if (!(IsMemberMap(TOWEROFHANOISCORE, nama))){ // jika nama belum terpakai maka nama valid
-        InsertMap (*TOWEROFHANOISCORE, nama, skor); // memasukan nama dan skor baru pada map
-    }
-    else{
-        printf("Nama sudah terpakai di scoreboard.");
-    }
-
 }

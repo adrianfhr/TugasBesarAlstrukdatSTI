@@ -1,7 +1,8 @@
-#include "map.h"
+
 #ifndef __ARRAY_DINAMIK__
 #define __ARRAY_DINAMIK__
 
+#include "map.h"
 // Boolean
 #define boolean unsigned char
 #define true 1
@@ -12,6 +13,7 @@
 typedef int IdxType;
 typedef char* ElType;
 typedef Map MapType;
+
 typedef struct {
     MapType *A;
     int Capacity;
@@ -70,7 +72,7 @@ int GetCapacity(ArrayDin array);
 void InsertAt(ArrayDin *array, ElType el, IdxType i);
 
 void InsertKataLast(ArrayDin *array, char* el);
-void InsertMapLast(ArrayMap *array, Map *el);
+void InsertMapLast(ArrayMap *array, MapType *el);
 
 void InsertLast(ArrayDin *array, ElType el);
 

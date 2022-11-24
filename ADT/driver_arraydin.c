@@ -1,5 +1,6 @@
 #include"arraydin.c"
 #include<stdio.h>
+
 int main(){
     ArrayDin array;
     array=MakeArrayDin();

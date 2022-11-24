@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 #include "arraydin.h"
+
 /*
  * Konstruktor
  * I.S. sembarang

@@ -1,9 +1,9 @@
 #ifndef map_H
 #define map_H
+
 #include <stdio.h>
 #include "boolean.h"
 #include  "arraydin.h"
-#include "queue.h"
 
 /* MODUL Map
 Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri
@@ -19,13 +19,13 @@ typedef int address;
 
 typedef struct
 {
-	keytype Key;
-	ElType Value;
+	ElType Key;
+	keytype Value;
 } infotype;
 
 typedef struct
 {
-	infotype Elements[CAPACITY];
+	infotype Elements[100];
 	address Count;
 } Map;
 
