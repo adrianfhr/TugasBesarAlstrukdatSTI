@@ -1,13 +1,11 @@
 #include <stdio.h>
 #include "map.h"
 #include "arraydin.h"
-// perlu buat daftar scoreboard pke arraydin ga?
 
 void RESETSCOREBOARD (){
-
-// ini tuh template atau fleksibel jadiin array din?
-    printf("DAFTAR SCOREBOARD:\n"); //output daftar scoreboard yg tersedia
-    printf ("0. ALL\n");
+// daftar scoreboard pakai array din
+    printf("DAFTAR SCOREBOARD:\n"); 
+    printf ("0. ALL\n"); //array
     printf ("1. RNG\n");
     printf ("2. Diner DASH\n");
     printf ("3. HANGMAN\n");
@@ -45,6 +43,7 @@ void RESETSCOREBOARD (){
     if (y == "YA")
     {
         if (x == 0){
+            // array [i].Count = Nil, kosonginnya di cari dari arraynya dlu
             RNGSCORE->Count = Nil; //bener ga cara ngosongin map nya gini?
             DINERDASHSCORE->Count = Nil;
             HANGMANSCORE->Count = Nil;

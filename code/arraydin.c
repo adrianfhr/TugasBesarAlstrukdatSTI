@@ -14,6 +14,13 @@ ArrayDin MakeArrayDin(){
     ArrDin.Neff = 0;
     return ArrDin;
 }
+ArrayMap MakeArrayMap(){
+    ArrayMap ArrMap;
+    ArrMap.A = (MapType *) malloc(InitialSize * sizeof(MapType));
+    ArrMap.Capacity = InitialSize;
+    ArrMap.Neff = 0;
+    return ArrMap;
+}
 
 /**
  * Destruktor
@@ -80,6 +87,16 @@ void InsertKataLast(ArrayDin *array, char *el){
     (*array).A[(*array).Neff] = el;
     (*array).Neff++;
 }
+
+void InsertMapLast(ArrayMap *array, Map *el){
+    if ((*array).Neff == (*array).Capacity){
+        (*array).A = (MapType *) realloc((*array).A, 2 * (*array).Capacity * sizeof(MapType));
+        (*array).Capacity *= 2;
+    }
+    (*array).A[(*array).Neff] = el;
+    (*array).Neff++;
+}
+
 void InsertLast(ArrayDin *array, ElType el)
 {
     InsertAt(array, el, array->Neff);

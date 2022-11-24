@@ -105,3 +105,8 @@ boolean IsMemberMap(Map M, keytype k)
 
     return found;
 }
+
+ElType MaxElmt (Map *M, Eltype v){
+    address idx = 0;
+    M->Element[]
+}

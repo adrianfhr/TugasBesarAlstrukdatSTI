@@ -1,3 +1,4 @@
+#include "map.h"
 #ifndef __ARRAY_DINAMIK__
 #define __ARRAY_DINAMIK__
 
@@ -10,6 +11,12 @@
 
 typedef int IdxType;
 typedef char* ElType;
+typedef Map MapType;
+typedef struct {
+    MapType *A;
+    int Capacity;
+    int Neff;
+} ArrayMap;
 typedef struct {
     ElType *A;
     int Capacity;
@@ -22,6 +29,7 @@ typedef struct {
  * F.S. Terbentuk ArrayDin kosong dengan ukuran InitialSize
  */
 ArrayDin MakeArrayDin();
+ArrayMap MakeArrayMap();
 
 /**
  * Destruktor

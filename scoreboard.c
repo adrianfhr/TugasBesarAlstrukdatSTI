@@ -1,10 +1,9 @@
 #include <stdio.h>
 #include "map.h"
+#include "arraydin.h"
 
-void SCOREBOARD (){
-    // inputan nama dan skor berasal dari game nya masing"?
-    // buat file konfigurasi baru (?)
-    // skor diurutkan berdasarkan tertinggi
+void SCOREBOARD () {
+    ArrayMap Gameboard = MakeArrayMap();
 
     Map TOWEROFHANOISCORE; //tempat menyimpan scoreboard game TOWER OF HANOI
     CreateEmptyMap(&TOWEROFHANOISCORE);
@@ -19,7 +18,7 @@ void SCOREBOARD (){
         printf("| NAMA          | SKOR          |\n");
         printf("|---------------|---------------|\n");
         int count;
-        count = TOWEROFHANOISCORE->Count
+        count = TOWEROFHANOISCORE.Count
         int i;
         for (i=0;i<count;i++){
             printf("|%c             | %d             |\n",TOWEROFHANOISCORE.Elements[i].Key,TOWEROFHANOISCORE.Elements[i].Value);
@@ -39,7 +38,7 @@ void SCOREBOARD (){
         printf("| NAMA          | SKOR          |\n");
         printf("|---------------|---------------|\n");
         int count;
-        count = DINERDASHSCORE->Count
+        count = DINERDASHSCORE.Count
         int i;
         for (i=0;i<count;i++){
             printf("|%c             | %d             |\n",DINERDASHSCORE.Elements[i].Key,DINERDASHSCORE.Elements[i].Value);
@@ -59,7 +58,7 @@ void SCOREBOARD (){
         printf("| NAMA          | SKOR          |\n");
         printf("|---------------|---------------|\n");
         int count;
-        count = SNAKEONMETEORSCORE->Count
+        count = SNAKEONMETEORSCORE.Count
         int i;
         for (i=0;i<count;i++){
             printf("|%c             | %d             |\n",SNAKEONMETEORSCORE.Elements[i].Key,SNAKEONMETEORSCORE.Elements[i].Value);
@@ -80,7 +79,7 @@ void SCOREBOARD (){
         printf("| NAMA          | SKOR          |\n");
         printf("|---------------|---------------|\n");
         int count;
-        count = RNGSCORE->Count
+        count = RNGSCORE.Count
         int i;
         for (i=0;i<count;i++){
             printf("|%c             | %d             |\n",RNGSCORE.Elements[i].Key,RNGSCORE.Elements[i].Value);
@@ -100,12 +99,18 @@ void SCOREBOARD (){
         printf("| NAMA          | SKOR          |\n");
         printf("|---------------|---------------|\n");
         int count;
-        count = HANGMANSCORE->Count
+        count = HANGMANSCORE.Count
         int i;
         for (i=0;i<count;i++){
             printf("|%c             | %d             |\n",HANGMANSCORE.Elements[i].Key,HANGMANSCORE.Elements[i].Value);
         }
     }
+
+InsertMapLast(&Gameboard, &TOWEROFHANOISCORE);
+InsertMapLast(&Gameboard, &DINERDASHSCORE);
+InsertMapLast(&Gameboard, &SNAKEONMETEORSCORE);
+InsertMapLast(&Gameboard, &RNGSCORE);
+InsertMapLast(&Gameboard, &HANGMANSCORE);
 
 //bagian ini harusnya di masing-masing game kan?
     char nama;
