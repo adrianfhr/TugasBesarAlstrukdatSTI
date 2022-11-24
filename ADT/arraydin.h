@@ -37,6 +37,7 @@ ArrayMap MakeArrayMap();
  * F.S. array->A terdealokasi
  */
 void DeallocateArrayDin(ArrayDin *array);
+void DeallocateArrayDin(ArrayMap *array);
 
 /**
  * Fungsi untuk mengetahui apakah suatu array kosong.
