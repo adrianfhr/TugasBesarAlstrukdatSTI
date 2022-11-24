@@ -5,24 +5,24 @@
 /* *** Konstruktor/Kreator *** */
 void CreateEmpty(Stack *S)
 /* I.S. sembarang; */
-/* F.S. Membuat sebuah stack S yang kosong berkapasitas MaxEl */
-/* jadi indeksnya antara 0.. MaxEl */
-/* Ciri stack kosong : TOP bernilai Nil */
+/* F.S. Membuat sebuah stack S yang kosong berkapasitas CAPACITY */
+/* jadi indeksnya antara 0.. CAPACITY */
+/* Ciri stack kosong : TOP bernilai NilStack */
 {
-    Top(*S) = Nil;
+    Top(*S) = NilStack;
 }
 
 /* ************ Predikat Untuk test keadaan KOLEKSI ************ */
 boolean IsEmpty(Stack S)
 /* Mengirim true jika Stack kosong: lihat definisi di atas */
 {
-    return Top(S) == Nil;
+    return Top(S) == NilStack;
 }
 
 boolean IsFull(Stack S)
 /* Mengirim true jika tabel penampung nilai elemen stack penuh */
 {
-    return Top(S) == MaxEl - 1;
+    return Top(S) == CAPACITY - 1;
 }
 
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
@@ -50,12 +50,12 @@ void Push(Stack *S, ElType X)
 void Pop(Stack *S, ElType *X)
 /* Menghapus X dari Stack S. */
 /* I.S. S  tidak mungkin kosong */
-/* F.S. X adalah nilai elemen TOP yang lama, TOP berkurang 1 */
+/* F.S. X adalah NilStackai elemen TOP yang lama, TOP berkurang 1 */
 {
     *X = InfoTop(*S);
     if (Top(*S) == 0)
     {
-        Top(*S) = Nil;
+        Top(*S) = NilStack;
     }
     else
     {
