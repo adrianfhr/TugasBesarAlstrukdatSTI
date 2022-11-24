@@ -69,6 +69,7 @@ int GetCapacity(ArrayDin array);
 void InsertAt(ArrayDin *array, ElType el, IdxType i);
 
 void InsertKataLast(ArrayDin *array, char* el);
+void InsertMapLast(ArrayMap *array, Map *el);
 
 void InsertLast(ArrayDin *array, ElType el);
 
