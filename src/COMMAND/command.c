@@ -126,7 +126,7 @@ void STARTBNMO(){
     STARTREADGAME(file);
     ListGame = MakeArrayDin();
     CreateQueue(&GameQueue);
-    int jumlahgame = currentWord.TabWord[0] - 48;
+    int jumlahgame = currentWord.TabWord[0] - 48; // UBAH YAA
     ADVREADGAME();
     for(int i = 0; i < jumlahgame; i++)
     {
@@ -178,6 +178,7 @@ void SAVE(){
     }
     fprintf(savefile, ".");
     printf("Save file berhasil disimpan.\n");
+    fclose(savefile);
 }
 
 void CREATEGAME(ArrayDin *ListGame){
@@ -277,6 +278,8 @@ void PLAYGAME(Queue *GameQueue, char *userplaygame){
             ingame = 3;
         }else if(stringcompare(GameQueue->buffer[GameQueue->idxHead],"Kerang Ajaib") == 1){
             ingame = 4;
+        }else if(stringcompare(GameQueue->buffer[GameQueue->idxHead],"Hangman") == 1){
+            ingame = 5;
         }else{
             printf("Game %s masih dalam maintenance,belum dapat dimainkan.\nSilahkan pilih game lain.", GameQueue->buffer[GameQueue->idxHead]);
             ingame = 0;
@@ -360,17 +363,6 @@ void DisplayGame(){
     }
 }
 
-int stringtoint(char *string)
-{
-    int i = 0;
-    int hasil = 0;
-    while(string[i] != '\0')
-    {
-        hasil = hasil * 10 + (string[i] - 48);
-        i++;
-    }
-    return hasil;
-}
 
 void WelcomeBNMO(FILE *w){
 char welcome[500];
@@ -390,5 +382,8 @@ void gamecurrent(){
     }else if (ingame == 4)
     {
         kerangajaib();
+    }else if (ingame == 5)
+    {
+        Hangman();
     }
 }

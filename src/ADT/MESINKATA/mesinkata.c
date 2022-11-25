@@ -190,3 +190,15 @@ void concat (char *S1, char *S2){
     }
     S1[i] = '\0';
 }
+
+int stringtoint(char *string)
+{
+    int i = 0;
+    int hasil = 0;
+    while(string[i] != '\0')
+    {
+        hasil = hasil * 10 + (string[i] - 48);
+        i++;
+    }
+    return hasil;
+}

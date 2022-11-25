@@ -1,8 +1,9 @@
-6
+7
 RNG
 Diner DASH
 DINOSAUR IN EARTH
 RISEWOMAN
 EIFFEL TOWER 
 Kerang Ajaib
+Hangman
 .

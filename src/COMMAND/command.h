@@ -46,8 +46,6 @@ void COMMANDLAIN();
 
 void DisplayGame();
 
-int stringtoint(char *string);
-
 void WelcomeBNMO(FILE *w);
 
 void gamecurrent();

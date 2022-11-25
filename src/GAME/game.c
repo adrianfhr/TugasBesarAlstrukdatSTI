@@ -208,3 +208,7 @@ void kerangajaib(){
     printf("\n");
     }
 }
+
+void Hangman(){
+    HangmanMain();
+}
