@@ -1,5 +1,6 @@
 #include"snake.h"
-int Number(int rng){
+
+int Numbersnake(int rng){
     struct tm* ptr;
     long int t;
     long int a,b,c;
@@ -123,12 +124,12 @@ down=false;
 meteor=25;
 CreateEmptylist(l);
 r=5;
-a=Number(22)%25;
+a=Numbersnake(22)%25;
 x=a%5;
 y=(a-x)/5;
-*fruit=Number(45)%25;
+*fruit=Numbersnake(45)%25;
 while(*fruit==(x+y*5) ){
-*fruit=Number(45+r)%25;
+*fruit=Numbersnake(45+r)%25;
 r=r+6;
 }
 InsertLastlist(l,Alokasilist(x,y));
@@ -371,20 +372,20 @@ if(!quit){
     valid=false;
 p=First(snake);
 while(fruit==Infox(p)+Infoy(p)*5){
-fruit=Number(35)%25;
+fruit=Numbersnake(35)%25;
 p=First(snake);
     for (i=0;i<NbElmt(snake)-1;i=i+1){
     a=Infox(p)+Infoy(p)*5;
     if(a==fruit){
-        fruit=Number(35+4+i)%25;
+        fruit=Numbersnake(35+4+i)%25;
     }
     p=Next(p);
     }
 }
-meteor=Number(27)%25;
+meteor=Numbersnake(27)%25;
 i=0;
 while(meteor==fruit){
-meteor=Number(27)%25+i;
+meteor=Numbersnake(27)%25+i;
 i=i+1;
 }
 turn=turn+1;
