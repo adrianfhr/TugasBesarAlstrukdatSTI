@@ -7,66 +7,85 @@
 #define false 0
 
 #define InitialSize 100
-#include <../MAP/map.h>
+
+#include "../MAP/map.h"
 
 typedef int IdxType;
 typedef char* ElType;
+typedef Map TypeMap;
 typedef struct {
-    Map *A;
+    TypeMap *A;
     int Capacity;
     int Neff;
-} ArrayDin;
+} arraymap;
 
 /**
  * Konstruktor
  * I.S. sembarang
- * F.S. Terbentuk ArrayDin kosong dengan ukuran InitialSize
+ * F.S. Terbentuk arraymap kosong dengan ukuran InitialSize
  */
-ArrayDin MakeArrayDin();
-
+arraymap Makearraymap();
 /**
  * Destruktor
- * I.S. ArrayDin terdefinisi
- * F.S. array->A terdealokasi
+ * I.S. arraymap terdefinisi
+ * F.S. arraymap->A terdealokasi
  */
-void DeallocateArrayDin(ArrayDin *array);
-
+void Deallocatearraymap(arraymap *arr);
 /**
- * Fungsi untuk mengetahui apakah suatu array kosong.
- * Prekondisi: array terdefinisi
+ * Fungsi untuk mengetahui apakah suatu arraymap kosong.
+ * Prekondisi: arraymap terdefinisi
  */
-boolean IsEmpty(ArrayDin array);
-
+boolean IsEmptyarrmap(arraymap arr);
 /**
- * Fungsi untuk mendapatkan banyaknya elemen efektif array, 0 jika tabel kosong.
- * Prekondisi: array terdefinisi
+ * Fungsi untuk mendapatkan banyaknya elemen efektif arraymap, 0 jika tabel kosong.
+ * Prekondisi: arraymap terdefinisi
  */
-int Length(ArrayDin array);
-
+int Lengtharrmap(arraymap arr);
 /**
- * Mengembalikan elemen array L yang ke-I (indeks lojik).
- * Prekondisi: array tidak kosong, i di antara 0..Length(array).
+ * Mengembalikan elemen arraymap L yang ke-I (indeks lojik).
+ * Prekondisi: arraymap tidak kosong, i di antara 0..Length(arraymap).
  */
-ElType Get(ArrayDin array, IdxType i);
-
+TypeMap Getmap(arraymap arr, IdxType i);
 /**
  * Fungsi untuk mendapatkan kapasitas yang tersedia.
- * Prekondisi: array terdefinisi
+ * Prekondisi: arraymap terdefinisi
  */
-int GetCapacity(ArrayDin array);
-
+int GetCapacityarrmap(arraymap arr);
 /**
  * Fungsi untuk menambahkan elemen baru di index ke-i
- * Prekondisi: array terdefinisi, i di antara 0..Length(array).
+ * Prekondisi: arraymap terdefinisi, i di antara 0..Length(arraymap).
  */
-void InsertAt(ArrayDin *array, ElType el, IdxType i);
-
-void InsertKataLast(ArrayDin *array, char* el);
+void InsertAtarrmap(arraymap *arr, TypeMap el, IdxType i);
+/**
+ * Fungsi untuk menambahkan elemen baru di akhir arraymap.
+ * Prekondisi: arraymap terdefinisi
+ */
+void InsertLastarrmap(arraymap *arr, TypeMap el);
+/**
+ * Fungsi untuk menambahkan elemen baru di awal arraymap.
+ * Prekondisi: arraymap terdefinisi
+ */
+void InsertFirstarrmap(arraymap *arr, TypeMap el);
+/**
+ * Fungsi untuk menghapus elemen di index ke-i arraymap
+ * Prekondisi: arraymap terdefinisi, i di antara 0..Length(arraymap).
+ */
+void DeleteAtarrmap(arraymap *arr, IdxType i);
+/**
+ * Fungsi untuk menghapus elemen terakhir arraymap
+ * Prekondisi: arraymap tidak kosong
+ */
+void DeleteLastarrmap(arraymap *arr);
+/**
+ * Fungsi untuk menghapus elemen pertama arraymap
+ * Prekondisi: arraymap tidak kosong
+ */
+void DeleteFirstarrmap(arraymap *arr);
 
 /**
- * Fungsi untuk menghapus elemen di index ke-i ArrayDin
- * Prekondisi: array terdefinisi, i di antara 0..Length(array).
+ * Fungsi untuk melakukan print suatu arraymap.
+ * Prekondisi: array terdefinisi
  */
-void DeleteAt(ArrayDin *array, IdxType i);
+void Printarraymap(arraymap arr);
 
 #endif
