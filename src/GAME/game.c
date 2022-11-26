@@ -212,3 +212,7 @@ void kerangajaib(){
 void Hangman(){
     HangmanMain();
 }
+
+void Snake(){
+    snakegame();
+}
