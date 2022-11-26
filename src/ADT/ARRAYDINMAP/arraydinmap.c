@@ -1,94 +1,132 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
-#include "arraydin.h"
-/*
+#include "arraydinmap.h"
+
+/**
  * Konstruktor
  * I.S. sembarang
- * F.S. Terbentuk ArrayDin kosong dengan ukuran InitialSize
+ * F.S. Terbentuk arraymap kosong dengan ukuran InitialSize
  */
-ArrayDin MakeArrayDin(){
-    ArrayDin ArrDin;
-    ArrDin.A = (ElType *) malloc(InitialSize * sizeof(ElType));
-    ArrDin.Capacity = InitialSize;
-    ArrDin.Neff = 0;
-    return ArrDin;
+arraymap Makearraymap()
+{
+    arraymap arr;
+    arr.A = (TypeMap *) malloc (InitialSize * sizeof(TypeMap));
+    arr.Capacity = InitialSize;
+    arr.Neff = 0;
+    return arr;
 }
-
 /**
  * Destruktor
- * I.S. ArrayDin terdefinisi
- * F.S. array->A terdealokasi
+ * I.S. arraymap terdefinisi
+ * F.S. arraymap->A terdealokasi
  */
-void DeallocateArrayDin(ArrayDin *array){
-    free((*array).A);
+void Deallocatearraymap(arraymap *arr)
+{
+    free(arr->A);
 }
-
 /**
- * Fungsi untuk mengetahui apakah suatu array kosong.
- * Prekondisi: array terdefinisi
+ * Fungsi untuk mengetahui apakah suatu arraymap kosong.
+ * Prekondisi: arraymap terdefinisi
  */
-boolean IsEmpty(ArrayDin array){
-    return array.Neff == 0;
+boolean IsEmptyarrmap(arraymap arr)
+{
+    return arr.Neff==0;
 }
-
 /**
- * Fungsi untuk mendapatkan banyaknya elemen efektif array, 0 jika tabel kosong.
- * Prekondisi: array terdefinisi
+ * Fungsi untuk mendapatkan banyaknya elemen efektif arraymap, 0 jika tabel kosong.
+ * Prekondisi: arraymap terdefinisi
  */
-int Length(ArrayDin array){
-    return array.Neff;
+int Lengtharrmap(arraymap arr)
+{
+    return arr.Neff;
 }
-
 /**
- * Mengembalikan elemen array L yang ke-I (indeks lojik).
- * Prekondisi: array tidak kosong, i di antara 0..Length(array).
+ * Mengembalikan elemen arraymap L yang ke-I (indeks lojik).
+ * Prekondisi: arraymap tidak kosong, i di antara 0..Length(arraymap).
  */
-ElType Get(ArrayDin array, IdxType i){
-    return array.A[i];
+TypeMap Getmap(arraymap arr, IdxType i)
+{
+    return arr.A[i];
 }
-
 /**
  * Fungsi untuk mendapatkan kapasitas yang tersedia.
- * Prekondisi: array terdefinisi
+ * Prekondisi: arraymap terdefinisi
  */
-int GetCapacity(ArrayDin array){
-    return array.Capacity;
+int GetCapacityarrmap(arraymap arr)
+{
+    return arr.Capacity;
 }
-
 /**
  * Fungsi untuk menambahkan elemen baru di index ke-i
- * Prekondisi: array terdefinisi, i di antara 0..Length(array).
+ * Prekondisi: arraymap terdefinisi, i di antara 0..Length(arraymap).
  */
-void InsertAt(ArrayDin *array, ElType el, IdxType i){
-    if ((*array).Neff == (*array).Capacity){
-        (*array).A = (ElType *) realloc((*array).A, 2 * (*array).Capacity * sizeof(ElType));
-        (*array).Capacity *= 2;
+void InsertAtarrmap(arraymap *arr, TypeMap el, IdxType i)
+{
+    if (arr->Neff == arr->Capacity) {
+        arr->Capacity *= 2;
+        arr->A = (TypeMap *) realloc (arr->A, arr->Capacity * sizeof(TypeMap));
     }
-    for (int j = (*array).Neff; j > i; j--){
-        (*array).A[j] = (*array).A[j-1];
-    }
-    (*array).A[i] = el;
-    (*array).Neff++;
+    int j;    
+    for (j = Lengtharrmap(*arr); j>i; j--) {
+        arr->A[j] = arr->A[j-1];
+    } arr->A[i] = el;
+    arr->Neff++;
 }
-
-void InsertKataLast(ArrayDin *array, char *el){
-    if ((*array).Neff == (*array).Capacity){
-        (*array).A = (ElType *) realloc((*array).A, 2 * (*array).Capacity * sizeof(ElType));
-        (*array).Capacity *= 2;
-    }
-    (*array).A[(*array).Neff] = el;
-    (*array).Neff++;
+/**
+ * Fungsi untuk menambahkan elemen baru di akhir arraymap.
+ * Prekondisi: arraymap terdefinisi
+ */
+void InsertLastarrmap(arraymap *arr, TypeMap el)
+{
+    InsertAtarrmap(arr,el,Lengtharrmap(*arr));
+}
+/**
+ * Fungsi untuk menambahkan elemen baru di awal arraymap.
+ * Prekondisi: arraymap terdefinisi
+ */
+void InsertFirstarrmap(arraymap *arr, TypeMap el)
+{
+    InsertAtarrmap(arr,el,0);
+}
+/**
+ * Fungsi untuk menghapus elemen di index ke-i arraymap
+ * Prekondisi: arraymap terdefinisi, i di antara 0..Length(arraymap).
+ */
+void DeleteAtarrmap(arraymap *arr, IdxType i)
+{
+    for (int j=i;j<arr->Neff-1;j++) {
+        arr->A[j] = arr->A[j+1];
+    } arr->Neff--;
+}
+/**
+ * Fungsi untuk menghapus elemen terakhir arraymap
+ * Prekondisi: arraymap tidak kosong
+ */
+void DeleteLastarrmap(arraymap *arr)
+{
+    DeleteAtarrmap(arr,Lengtharrmap(*arr)-1);
+}
+/**
+ * Fungsi untuk menghapus elemen pertama arraymap
+ * Prekondisi: arraymap tidak kosong
+ */
+void DeleteFirstarrmap(arraymap *arr)
+{
+    DeleteAtarrmap(arr,0);
 }
 
 /**
- * Fungsi untuk menghapus elemen di index ke-i ArrayDin
- * Prekondisi: array terdefinisi, i di antara 0..Length(array).
+ * Fungsi untuk melakukan print suatu arraymap.
+ * Prekondisi: array terdefinisi
  */
-void DeleteAt(ArrayDin *array, IdxType i){
-    for (int j = i; j < (*array).Neff; j++){
-        (*array).A[j] = (*array).A[j+1];
+/*void Printarraymap(arraymap arr){
+    if (IsEmptyarrmap(arr)){
+        printf("[]\n");
+    } else {
+        printf("[");
+        for (int i = 0;i<arr.Neff-1;i++) {
+            CetakMap(arr.A[i]);
+        } CetakMap(arr.A[arr.Neff-1]);
+        printf("]\n");
     }
-    (*array).Neff--;
-
-}
+}*/
