@@ -20,7 +20,7 @@ void CreateEmptylist(List *L)
 
 /****************** Manajemen Memori ******************/
 addressl Alokasilist(int X,int Y)
-/* Mengirimkan addressl hasil alokasi sebuah elemen */
+/* Mengirimkan addressl hasil alokasi sebuah elemen*/
 /* Jika alokasi berhasil, maka addressl tidak nil, dan misalnya */
 /* menghasilkan P, maka infos(P)=X, Infoy(P)=Y, Next(P)=Nil */
 /* Jika alokasi gagal, mengirimkan Nil */

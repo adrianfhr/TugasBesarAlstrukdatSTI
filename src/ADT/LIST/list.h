@@ -43,7 +43,7 @@ boolean IsEmptylist(List L);
 
 /****************** PEMBUATAN LIST KOSONG ******************/
 void CreateEmptylist(List *L);
-/* I.S. sembarang             */
+/* I.S. sembarang    \         */
 /* F.S. Terbentuk list kosong */
 
 /****************** Manajemen Memori ******************/
