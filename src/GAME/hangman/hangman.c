@@ -193,11 +193,11 @@ void HangmanMain(){
                     }
                 }
                 printf("\n");
-            
+                /*
                 printf("hint :");
                 for(int i = 0; i < ListSoal.Neff; i++){
                     printf("%s", ListSoal.A[i]);
-                }
+                }*/
                 printf("\n");
                 JawabUser(katasoal);
                 printf("Kata : %s\n", katasoal);

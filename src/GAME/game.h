@@ -9,6 +9,7 @@
 #include "../ADT/boolean.h"
 #include "../ADT/MESINKATA/mesinkata.h"
 #include "hangman/hangman.h"
+#include "snake/snake.h"
 
 void RNG();
 /*BNMO tidak selalu menikmati game yang sudah pasti outcome-nya. Karena itu, ia suka dengan game yang melibatkan RNG (Random number generator).  Berikut adalah spesifikasi game ini:
@@ -42,5 +43,7 @@ void GameTambahan();
 void kerangajaib();
 
 void Hangman();
+
+void Snake();
 
 #endif
