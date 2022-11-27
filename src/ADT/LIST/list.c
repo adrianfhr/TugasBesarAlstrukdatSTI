@@ -1,8 +1,3 @@
-/* File : listlinier.C */
-/* contoh ADT list berkait dengan representasi fisik pointer  */
-/* Representasi addressl dengan pointer */
-/* Ktype adalah integer */
-
 
 #include "list.h"
 
@@ -27,8 +22,8 @@ void CreateEmptylist(List *L)
 addressl Alokasilist(int X,int Y)
 /* Mengirimkan addressl hasil alokasi sebuah elemen */
 /* Jika alokasi berhasil, maka addressl tidak nil, dan misalnya */
-/* menghasilkan P, maka Info(P)=X, Next(P)=Nill */
-/* Jika alokasi gagal, mengirimkan Nill */
+/* menghasilkan P, maka infos(P)=X, Infoy(P)=Y, Next(P)=Nil */
+/* Jika alokasi gagal, mengirimkan Nil */
 {
     addressl P = (addressl)malloc(1 * sizeof(ElmtList));
     if (P != Nill)
@@ -112,9 +107,9 @@ void DelFirstlist(List *L, addressl *P)
 }
 void DelPlist(List *L, int X, int Y)
 /* I.S. Sembarang */
-/* F.S. Jika ada elemen list beraddress P, dengan Info(P)=X  */
+/* F.S. Jika ada elemen list beraddress P, dengan infox(P)=X dan Infoy(P)=Y  */
 /* Maka P dihapus dari list dan di-dealokasi */
-/* Jika tidak ada elemen list dengan Info(P)=X, maka list tetap */
+/* Jika tidak ada elemen list dengan info(P)=X dan Infoy(P)=Y, maka list tetap */
 /* List mungkin menjadi kosong karena penghapusan */
 {
     addressl Prec;

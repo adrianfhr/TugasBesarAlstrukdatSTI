@@ -3,7 +3,7 @@
 #ifndef listlinier_H
 #define listlinier_H
 
-#include "boolean.h"
+#include "../boolean.h"
 #include "stdio.h"
 #include "stdlib.h"
 
@@ -27,9 +27,9 @@ typedef struct
 } List;
 
 /* Definisi list : */
-/* List kosong : First(L) = Nil */
-/* Setiap elemen dengan addressl P dapat diacu Info(P), Next(P) */
-/* Elemen terakhir list : jika addresslnya Last, maka Next(Last)=Nil */
+/* List kosong : First(L) = Nill && last(L) = Nill */
+/* Setiap elemen dengan addressl P dapat diacu Infox(P) , Infoy(P) , Next(P) */
+/* Elemen terakhir list : jika addresslnya Last, maka Next(Last)=Nil dan last(L) */
 #define Infox(P) (P)->infol.x
 #define Infoy(P) (P)->infol.y
 #define Next(P) (P)->nextl
@@ -50,7 +50,7 @@ void CreateEmptylist(List *L);
 addressl Alokasilist(int X,int Y);
 /* Mengirimkan addressl hasil alokasi sebuah elemen */
 /* Jika alokasi berhasil, maka addressl tidak nil, dan misalnya */
-/* menghasilkan P, maka info(P)=X, Next(P)=Nil */
+/* menghasilkan P, maka infos(P)=X, Infoy(P)=Y, Next(P)=Nil */
 /* Jika alokasi gagal, mengirimkan Nil */
 void Dealokasilist(addressl *P);
 /* I.S. P terdefinisi */
@@ -72,9 +72,9 @@ void DelFirstlist(List *L, addressl *P);
 /* First element yg baru adalah suksesor elemen pertama yang lama */
 void DelPlist(List *L, int X, int Y);
 /* I.S. Sembarang */
-/* F.S. Jika ada elemen list beraddress P, dengan info(P)=X  */
+/* F.S. Jika ada elemen list beraddress P, dengan infox(P)=X dan Infoy(P)=Y  */
 /* Maka P dihapus dari list dan di-dealokasi */
-/* Jika tidak ada elemen list dengan info(P)=X, maka list tetap */
+/* Jika tidak ada elemen list dengan info(P)=X dan Infoy(P)=Y, maka list tetap */
 /* List mungkin menjadi kosong karena penghapusan */
 void DelLastlist(List *L, addressl *P);
 /* I.S. List tidak kosong */
