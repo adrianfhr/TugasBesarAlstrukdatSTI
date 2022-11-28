@@ -15,8 +15,14 @@ void RESETSCOREBOARD (){
     char confirm;
     printf ("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD %s (YA/TIDAK)? ",scoreboardlist.A[reset]);
     scanf ("%c\n",&confirm);
-    if (reset < Lengtharrmap(scoreboardlist) && confirm == "YA"){
-        arr.A[reset] = Nil; 
+    if (reset == "0" && confirm == "YA"){
+        for (int i = 1; i<Lengtharrmap(scoreboardlist);i++){
+            arr.A[i].Count = Nil;
+        }
+        printf("Scoreboard berhasil di-reset.");
+    }
+    else if (reset != 0 && reset < Lengtharrmap(scoreboardlist) && confirm == "YA"){
+        arr.A[reset].Count = Nil; 
         printf("Scoreboard berhasil di-reset.");
     }
     else{ //tidak jadi reset scoreboard
