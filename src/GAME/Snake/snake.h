@@ -9,8 +9,8 @@
 
 int Numbersnake(int rng);
 boolean listcompare(ElType S1, ElType S2);
-void arenagame(int Fruit, int Meteor,List *snake);
-void snakestart(int *fruit,List *l);
+void arenagame(int Fruit, int Meteor, List *snake, int obstacle);
+void snakestart(int *fruit, List *l, int  *obstacle);
 int snakegame ();
 
 #endif

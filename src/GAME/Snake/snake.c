@@ -26,16 +26,17 @@ boolean listcompare(ElType S1, ElType S2){
     return found;
 }
 
-void arenagame(int Fruit, int Meteor,List *snake){
+void arenagame(int Fruit, int Meteor, List *snake, int obstacle){
     int i;
     Map m;
     addressl p,temp;
-    boolean hit, Hhit;
+    boolean hit, Hhit, Ohit;
     int a;
     char b[10];
     char arr[25][10]={"1","2","3","4","5","6","7","8","9","10","11","12","13","14","15","16","17","18","19","20"};
 hit = false;
 Hhit = false;
+Ohit  = false;
 CreateEmptyMap(&m);
 printf("\n");
 for(i=0;i<25;i=i+1){
@@ -46,6 +47,9 @@ DeleteMap(&m,Fruit);
 InsertMap(&m,Fruit,"O");
 p=First(*snake);
 a=Infox(p)+Infoy(p)*5;
+if(a==obstacle){
+    Ohit=true;
+}
 if(a==Meteor){
     Hhit=true;
 }
@@ -63,6 +67,8 @@ InsertMap(&m,a,arr[i]);
 }   
 DeleteMap(&m,Meteor);
 InsertMap(&m,Meteor,"M");
+DeleteMap(&m,obstacle);
+InsertMap(&m,obstacle,"^");
 printf("Berikut merupakan peta permainan\n");
 printf("=========================\n");
 printf("| %s || %s || %s || %s || %s |\n",ValueMap(m,0),ValueMap(m,1),ValueMap(m,2),ValueMap(m,3),ValueMap(m,4));
@@ -75,12 +81,14 @@ printf("| %s || %s || %s || %s || %s |\n",ValueMap(m,15),ValueMap(m,16),ValueMap
 printf("=========================\n");
 printf("| %s || %s || %s || %s || %s |\n",ValueMap(m,20),ValueMap(m,21),ValueMap(m,22),ValueMap(m,23),ValueMap(m,24));
 printf("=========================\n");
-if(!hit&&!Hhit&&Meteor!=25){
+if(!hit && !Ohit && !Hhit && Meteor!=25){
 printf("Anda beruntung tidak terkena meteor! Silahkan lanjutkan permainan\n");
-}else if(Hhit==true){
+}else if(Hhit){
 printf("Kepala snake terkena meteor!\n");
 }else if(Meteor==25){
 
+}else if (Ohit){
+printf("Kepala snake menabrak obstacle!\n");
 }else{
 printf("Anda terkena meteor!\n");
 printf("Berikut merupakan peta permainan\n");
@@ -111,7 +119,7 @@ printf("Silahkan lanjutkan permainan\n");
 }
 }
 
-void snakestart(int *fruit,List *l){
+void snakestart(int *fruit, List *l, int *obstacle){
     int i;
     int meteor;
     int x,y,r,a;
@@ -132,19 +140,27 @@ while(*fruit==(x+y*5) ){
 *fruit=Numbersnake(45+r)%25;
 r=r+6;
 }
+*obstacle=Numbersnake(45)%25;
+while(*obstacle==(x+y*5) || *obstacle==*fruit){
+*obstacle=Numbersnake(45+r)%25;
+r=r+7;
+}
 InsertLastlist(l,Alokasilist(x,y));
 for(i=0;i<2;i=i+1){
         x=x-1;
         if(down){
+            if((x+y*5)==*fruit || (x+y*5)==*obstacle){
+            }else{
             x=x+1;
             y=y+1;
+            }
             if(y>4){
                 y=y-5;
             }
         }
         if(x<0){
             x=x+5;
-        }else if((x+y*5)==*fruit){
+        }else if((x+y*5)==*fruit || (x+y*5)==*obstacle){
             x=x+1;
             y=y+1;
             if(y>4){
@@ -152,7 +168,7 @@ for(i=0;i<2;i=i+1){
             }
             down=true;
         }
-        if((x+y*5)==*fruit){
+        if((x+y*5)==*fruit || (x+y*5)==*obstacle){
             x=x-4;
             y=y+1;
             if(y>4){
@@ -162,11 +178,11 @@ for(i=0;i<2;i=i+1){
         }
         InsertLastlist(l,Alokasilist(x,y));
 }
-arenagame(*fruit,meteor,l);
+arenagame(*fruit,meteor,l,*obstacle);
 }
 
 int snakegame (){
-int fruit,meteor;
+int fruit,meteor,obstacle;
 int turn,i,a,b;
 List snake;
 char input[10];
@@ -177,14 +193,14 @@ turn = 1;
 meteor= 25;
 collide=false;
 quit=false;
-snakestart(&fruit,&snake);
+snakestart(&fruit,&snake,&obstacle);
 while(play){
     while(!valid){
 printf("TURN %d:\n",turn);
 printf("Silahkan masukkan command anda:");
 STARTWORD();
 KataToString(currentWord, input);
-if(listcompare(input, "w")){
+if(listcompare(input, "w") && stringcompare(input,"t")){
     DelFirstlist(&snake,&p);
     if((Infoy(p)-1)<0){
     b=Infox(p)+(Infoy(p)+4)*5;
@@ -228,7 +244,7 @@ if(listcompare(input, "w")){
     }
         valid=true;
     }
-}else if(listcompare(input, "s")){
+}else if(listcompare(input, "s") && stringcompare(input,"t")){
     DelFirstlist(&snake,&p);
     if((Infoy(p)+1)>4){
     b=Infox(p)+(Infoy(p)-4)*5;
@@ -272,7 +288,7 @@ if(listcompare(input, "w")){
     }
         valid=true;
     }
-}else if(listcompare(input, "a")){
+}else if(listcompare(input, "a") && stringcompare(input,"t")){
     DelFirstlist(&snake,&p);
     if((Infox(p)-1)<0){
     b=Infox(p)+4+(Infoy(p))*5;
@@ -316,7 +332,7 @@ if(listcompare(input, "w")){
     }
         valid=true;
     }
-}else if(listcompare(input, "d") ){
+}else if(listcompare(input, "d") && stringcompare(input,"t")){
     DelFirstlist(&snake,&p);
     if((Infox(p)+1)>4){
     b=Infox(p)-4+(Infoy(p))*5;
@@ -360,7 +376,7 @@ if(listcompare(input, "w")){
     }
         valid=true;
     }
-}else if(listcompare(input, "q") ){
+}else if(listcompare(input, "q") && stringcompare(input,"t")){
 play=false;
 valid=true;
 quit=true;
@@ -371,7 +387,7 @@ printf("Command tidak valid! Silahkan input command menggunakan huruf w/a/s/d at
 if(!quit){
     valid=false;
 p=First(snake);
-while(fruit==Infox(p)+Infoy(p)*5){
+while(fruit==Infox(p)+Infoy(p)*5 || fruit==obstacle){
 fruit=Numbersnake(35)%25;
 p=First(snake);
     for (i=0;i<NbElmt(snake)-1;i=i+1){
@@ -384,17 +400,17 @@ p=First(snake);
 }
 meteor=Numbersnake(27)%25;
 i=0;
-while(meteor==fruit){
+while(meteor==fruit || meteor==obstacle){
 meteor=Numbersnake(27)%25+i;
 i=i+1;
 }
 turn=turn+1;
 printf("Berhasil bergerak!\n");
-arenagame(fruit,meteor,&snake);
+arenagame(fruit,meteor,&snake,obstacle);
 if (meteor==(Infox(First(snake))+Infoy(First(snake))*5)){
     play=false;
     DelFirstlist(&snake,&p);
-}else if(NbElmt(snake)==0 ){
+}else if(NbElmt(snake)==0 || obstacle==(Infox(First(snake))+Infoy(First(snake))*5)){
     play=false;
 }
 }
