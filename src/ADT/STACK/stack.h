@@ -6,14 +6,14 @@
 #define stackt_H
 
 #include "../boolean.h"
-#include "../ARRAYDIN/arraydin.h"
-#include "../QUEUE/queue.h"
+
+#define CAPACITY 100
 
 #define NilStack -1
 /* NilStack adalah stack dengan elemen kosong . */
 
 typedef int address;   /* indeks tabel */
-
+typedef int ElType;
 /* Contoh deklarasi variabel bertype stack dengan ciri TOP : */
 /* Versi I : dengan menyimpan tabel dan alamat top secara eksplisit*/
 typedef struct { 
@@ -55,4 +55,7 @@ void PopStack(Stack * S, ElType* X);
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah NilStackai elemen TOP yang lama, TOP berkurang 1 */
 
+boolean IsSameStack(Stack S1, Stack S2);
+
+int lengthStack(Stack S);
 #endif

@@ -62,3 +62,43 @@ void PopStack(Stack *S, ElType *X)
         Top(*S)--;
     }
 }
+
+boolean IsSameStack(Stack S1, Stack S2){
+    boolean Sama = true;
+    int i;
+    if (lengthStack(S1) == lengthStack(S2))
+    {
+        for (i = 0; i < Top(S1); i++)
+        {
+            if (S1.T[i] != S2.T[i])
+            {
+                return false;
+            }  
+        }
+    }
+    else
+    {
+        return false;
+    }
+    return Sama;
+}
+
+int lengthStack(Stack S){
+    Stack stemp;
+    ElType temp;
+    int length = 0;
+    CreateEmptyStack(&stemp);
+    while (!IsEmptyStack(S))
+    {
+        PopStack(&S, &temp);
+        PushStack(&stemp, temp);
+        length++;
+    }
+    while (!IsEmptyStack(stemp))
+    {
+        PopStack(&stemp, &temp);
+        PushStack(&S, temp);
+    }
+    return length;
+}
+
