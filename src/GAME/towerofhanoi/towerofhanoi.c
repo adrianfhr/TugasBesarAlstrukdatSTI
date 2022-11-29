@@ -1,4 +1,5 @@
-#include "towerofhanoi.h"
+//#include "towerofhanoi.h"
+#include "../../ADT/STACK/stack.c"
 
 void Tower(Stack *S){
     ElType val;
@@ -55,7 +56,7 @@ void BintangHanoi(Stack *S, int i){
     }
     else
     {
-        printf("    |    ");
+        printf("     |");
     }
 }
 
@@ -72,16 +73,16 @@ void PrintHanoi(Stack S1, Stack S2, Stack S3){
     }
     printf(" ------- ");
     printf("              ");
-    printf("   ---   ");
+    printf("      ---   ");
     printf("              ");
-    printf("   ---   ");
+    printf("  ---   ");
     printf("              ");
     printf("\n");
     printf("    A    ");
     printf("              ");
-    printf("    B    ");
+    printf("       B    ");
     printf("              ");
-    printf("    C    ");
+    printf("   C    ");
     printf("              ");
     printf("\n");
 } 
@@ -148,7 +149,7 @@ int main(){
             {
                 printf("Input invalid\n");
             } 
-
+        }
         else if (tiangasal[0]=='B'){
             if (IsEmptyStack(S2)){
                 printf("Input invalid\n");
@@ -165,7 +166,7 @@ int main(){
                     PopStack(&S2,&val);
                     PushStack(&S1,val);
                 }
-            }
+        }
             else if (tiangtujuan[0]='C'){
                 if (IsEmptyStack(S3)){
                     PopStack(&S2,&val);
@@ -173,46 +174,41 @@ int main(){
                 }
                 else if (InfoTop(S3)<InfoTop(S2)){
                     printf("Input invalid\n");
-                }
+                                    }
                 else{
                     PopStack(&S2,&val);
                     PushStack(&S3,val);
-                }
+                } 
             }
-            else
-            {
-                printf("Input invalid\n");
-            } 
-
-        else if (tiangasal[0]=='C'){
-            if (IsEmptyStack(S3)){
-                printf("Input invalid\n");
-            }
-            else if (tiangtujuan[0]='A'){
-                if (IsEmptyStack(S1))
-                    PopStack(&S3,&val);
-                    PushStack(&S1,val);
-                }
-                else if (InfoTop(S1)<InfoTop(S3)){
+            else if (tiangasal[0]=='C'){
+                if (IsEmptyStack(S3)){
                     printf("Input invalid\n");
                 }
-                else{
-                    PopStack(&S3,&val);
-                    PushStack(&S1,val);
+                else if (tiangtujuan[0]='A'){
+                    if (IsEmptyStack(S1))
+                        PopStack(&S3,&val);
+                        PushStack(&S1,val);
+                    }
+                    else if (InfoTop(S1)<InfoTop(S3)){
+                        printf("Input invalid\n");
+                    }
+                    else{
+                        PopStack(&S3,&val);
+                        PushStack(&S1,val);
+                    }
                 }
-            }
-            else if (tiangtujuan[0]='B'){
-                if (IsEmptyStack(S2)){
-                    PopStack(&S3,&val);
-                    PushStack(&S2,val);
-                }
-                else if (InfoTop(S2)<InfoTop(S3)){
-                    printf("Input invalid\n");
-                }
-                else{
-                    PopStack(&S3,&val);
-                    PushStack(&S2,val);
-                }
+                else if (tiangtujuan[0]='B'){
+                    if (IsEmptyStack(S2)){
+                        PopStack(&S3,&val);
+                        PushStack(&S2,val);
+                    }
+                    else if (InfoTop(S2)<InfoTop(S3)){
+                        printf("Input invalid\n");
+                    }
+                    else{
+                        PopStack(&S3,&val);
+                        PushStack(&S2,val);
+                    }
             }
             else
             {
@@ -220,6 +216,7 @@ int main(){
             } 
         }
         printf("\n\n\n");
+        return 0;
     } 
-    return 0;
-}
+    
+
