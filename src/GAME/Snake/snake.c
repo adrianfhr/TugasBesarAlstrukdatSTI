@@ -28,7 +28,7 @@ boolean listcompare(ElType S1, ElType S2){
 
 void arenagame(int Fruit, int Meteor, List *snake, int obstacle){
     int i;
-    Map m;
+    intMap m;
     addressl p,temp;
     boolean hit, Hhit, Ohit;
     int a;
@@ -37,14 +37,14 @@ void arenagame(int Fruit, int Meteor, List *snake, int obstacle){
 hit = false;
 Hhit = false;
 Ohit  = false;
-CreateEmptyMap(&m);
+CreateEmptyintMap(&m);
 printf("\n");
 for(i=0;i<25;i=i+1){
-DeleteMap(&m,i);
-InsertMap(&m,i," ");
+DeleteintMap(&m,i);
+InsertintMap(&m,i," ");
 }
-DeleteMap(&m,Fruit);
-InsertMap(&m,Fruit,"O");
+DeleteintMap(&m,Fruit);
+InsertintMap(&m,Fruit,"O");
 p=First(*snake);
 a=Infox(p)+Infoy(p)*5;
 if(a==obstacle){
@@ -53,8 +53,8 @@ if(a==obstacle){
 if(a==Meteor){
     Hhit=true;
 }
-DeleteMap(&m,a);
-InsertMap(&m,a,"H");
+DeleteintMap(&m,a);
+InsertintMap(&m,a,"H");
 for (i=0;i<NbElmt(*snake)-1;i=i+1){
 p=Next(p);
 a=Infox(p)+Infoy(p)*5;
@@ -62,24 +62,24 @@ if(a==Meteor){
     hit=true;
     temp=p;
 }
-DeleteMap(&m,a);
-InsertMap(&m,a,arr[i]);
+DeleteintMap(&m,a);
+InsertintMap(&m,a,arr[i]);
 }   
-DeleteMap(&m,Meteor);
-InsertMap(&m,Meteor,"M");
-DeleteMap(&m,obstacle);
-InsertMap(&m,obstacle,"^");
+DeleteintMap(&m,Meteor);
+InsertintMap(&m,Meteor,"M");
+DeleteintMap(&m,obstacle);
+InsertintMap(&m,obstacle,"^");
 printf("Berikut merupakan peta permainan\n");
 printf("=========================\n");
-printf("| %s || %s || %s || %s || %s |\n",ValueMap(m,0),ValueMap(m,1),ValueMap(m,2),ValueMap(m,3),ValueMap(m,4));
+printf("| %s || %s || %s || %s || %s |\n",ValueintMap(m,0),ValueintMap(m,1),ValueintMap(m,2),ValueintMap(m,3),ValueintMap(m,4));
 printf("=========================\n");
-printf("| %s || %s || %s || %s || %s |\n",ValueMap(m,5),ValueMap(m,6),ValueMap(m,7),ValueMap(m,8),ValueMap(m,9));
+printf("| %s || %s || %s || %s || %s |\n",ValueintMap(m,5),ValueintMap(m,6),ValueintMap(m,7),ValueintMap(m,8),ValueintMap(m,9));
 printf("=========================\n");
-printf("| %s || %s || %s || %s || %s |\n",ValueMap(m,10),ValueMap(m,11),ValueMap(m,12),ValueMap(m,13),ValueMap(m,14));
+printf("| %s || %s || %s || %s || %s |\n",ValueintMap(m,10),ValueintMap(m,11),ValueintMap(m,12),ValueintMap(m,13),ValueintMap(m,14));
 printf("=========================\n");
-printf("| %s || %s || %s || %s || %s |\n",ValueMap(m,15),ValueMap(m,16),ValueMap(m,17),ValueMap(m,18),ValueMap(m,19));
+printf("| %s || %s || %s || %s || %s |\n",ValueintMap(m,15),ValueintMap(m,16),ValueintMap(m,17),ValueintMap(m,18),ValueintMap(m,19));
 printf("=========================\n");
-printf("| %s || %s || %s || %s || %s |\n",ValueMap(m,20),ValueMap(m,21),ValueMap(m,22),ValueMap(m,23),ValueMap(m,24));
+printf("| %s || %s || %s || %s || %s |\n",ValueintMap(m,20),ValueintMap(m,21),ValueintMap(m,22),ValueintMap(m,23),ValueintMap(m,24));
 printf("=========================\n");
 if(!hit && !Ohit && !Hhit && Meteor!=25){
 printf("Anda beruntung tidak terkena meteor! Silahkan lanjutkan permainan\n");
@@ -100,20 +100,20 @@ a=Infox(p)+Infoy(p)*5;
 if(a==Meteor){
 
 }else{
-DeleteMap(&m,a);
-InsertMap(&m,a,arr[i]);
+DeleteintMap(&m,a);
+InsertintMap(&m,a,arr[i]);
 }
 }  
 printf("=========================\n");
-printf("| %s || %s || %s || %s || %s |\n",ValueMap(m,0),ValueMap(m,1),ValueMap(m,2),ValueMap(m,3),ValueMap(m,4));
+printf("| %s || %s || %s || %s || %s |\n",ValueintMap(m,0),ValueintMap(m,1),ValueintMap(m,2),ValueintMap(m,3),ValueintMap(m,4));
 printf("=========================\n");
-printf("| %s || %s || %s || %s || %s |\n",ValueMap(m,5),ValueMap(m,6),ValueMap(m,7),ValueMap(m,8),ValueMap(m,9));
+printf("| %s || %s || %s || %s || %s |\n",ValueintMap(m,5),ValueintMap(m,6),ValueintMap(m,7),ValueintMap(m,8),ValueintMap(m,9));
 printf("=========================\n");
-printf("| %s || %s || %s || %s || %s |\n",ValueMap(m,10),ValueMap(m,11),ValueMap(m,12),ValueMap(m,13),ValueMap(m,14));
+printf("| %s || %s || %s || %s || %s |\n",ValueintMap(m,10),ValueintMap(m,11),ValueintMap(m,12),ValueintMap(m,13),ValueintMap(m,14));
 printf("=========================\n");
-printf("| %s || %s || %s || %s || %s |\n",ValueMap(m,15),ValueMap(m,16),ValueMap(m,17),ValueMap(m,18),ValueMap(m,19));
+printf("| %s || %s || %s || %s || %s |\n",ValueintMap(m,15),ValueintMap(m,16),ValueintMap(m,17),ValueintMap(m,18),ValueintMap(m,19));
 printf("=========================\n");
-printf("| %s || %s || %s || %s || %s |\n",ValueMap(m,20),ValueMap(m,21),ValueMap(m,22),ValueMap(m,23),ValueMap(m,24));
+printf("| %s || %s || %s || %s || %s |\n",ValueintMap(m,20),ValueintMap(m,21),ValueintMap(m,22),ValueintMap(m,23),ValueintMap(m,24));
 printf("=========================\n");
 printf("Silahkan lanjutkan permainan\n"); 
 }

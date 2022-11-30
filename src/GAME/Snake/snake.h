@@ -3,7 +3,7 @@
 #include <stdio.h>
 #include <time.h>
 #include "../../ADT/boolean.h"
-#include "../../ADT/MAP/map.h"
+#include "../../ADT/MAP/intmap.h"
 #include "../../ADT/LIST/list.h"
 #include "../../ADT/MESINKATA/mesinkata.h"
 
