@@ -156,6 +156,7 @@ int main()
                     PopStack(&S1,&val);
                     PushStack(&S2,val);
                     printf("\nMemindahkan piringan ke B...\n");
+                    countsteps += 1;
                 }
                 else if (InfoTop(S2)<InfoTop(S1)){
                     printf("Input invalid\n");
@@ -164,6 +165,7 @@ int main()
                     PopStack(&S1,&val);
                     PushStack(&S2,val);
                     printf("\nMemindahkan piringan ke B...\n");
+                    countsteps += 1;
                 }
             }
             else if ((listcompare(tiangtujuan, "c") || listcompare(tiangtujuan, "C")) && stringcompare(tiangtujuan,"t")){
@@ -171,6 +173,7 @@ int main()
                     PopStack(&S1,&val);
                     PushStack(&S3,val);
                     printf("\nMemindahkan piringan ke C...\n");
+                    countsteps += 1;
                 }
                 else if (InfoTop(S3)<InfoTop(S1)){
                     printf("Input invalid\n");
@@ -179,6 +182,7 @@ int main()
                     PopStack(&S1,&val);
                     PushStack(&S3,val);
                     printf("\nMemindahkan piringan ke C...\n");
+                    countsteps += 1;
                 }
             }
             else
@@ -195,6 +199,7 @@ int main()
                     PopStack(&S2,&val);
                     PushStack(&S1,val);
                     printf("\nMemindahkan piringan ke A...\n");
+                    countsteps += 1;
                 }
                 else if (InfoTop(S1)<InfoTop(S2)){
                     printf("Input invalid\n");
@@ -203,6 +208,7 @@ int main()
                     PopStack(&S2,&val);
                     PushStack(&S1,val);
                     printf("\nMemindahkan piringan ke A...\n");
+                    countsteps += 1;
                 }
             }
             else if ((listcompare(tiangtujuan, "c") || listcompare(tiangtujuan, "C")) && stringcompare(tiangtujuan,"t")){
@@ -210,6 +216,7 @@ int main()
                     PopStack(&S2,&val);
                     PushStack(&S3,val);
                     printf("\nMemindahkan piringan ke C...\n");
+                    countsteps += 1;
                 }
                 else if (InfoTop(S3)<InfoTop(S2)){
                     printf("Input invalid\n");
@@ -218,6 +225,7 @@ int main()
                     PopStack(&S2,&val);
                     PushStack(&S3,val);
                     printf("\nMemindahkan piringan ke C...\n");
+                    countsteps += 1;
                 }
             }
             else
@@ -234,6 +242,7 @@ int main()
                     PopStack(&S3,&val);
                     PushStack(&S1,val);
                     printf("\nMemindahkan piringan ke A...\n");
+                    countsteps += 1;
                 }
                 else if (InfoTop(S1)<InfoTop(S3)){
                     printf("Input invalid\n");
@@ -242,6 +251,7 @@ int main()
                     PopStack(&S3,&val);
                     PushStack(&S1,val);
                     printf("\nMemindahkan piringan ke A...\n");
+                    countsteps += 1;
                 }
             }
             else if ((listcompare(tiangtujuan, "b") || listcompare(tiangtujuan, "B")) && stringcompare(tiangtujuan,"t")){
@@ -249,6 +259,7 @@ int main()
                     PopStack(&S3,&val);
                     PushStack(&S2,val);
                     printf("\nMemindahkan piringan ke B...\n");
+                    countsteps += 1;
                 }
                 else if (InfoTop(S2)<InfoTop(S3)){
                     printf("Input invalid\n");
@@ -257,6 +268,7 @@ int main()
                     PopStack(&S3,&val);
                     PushStack(&S2,val);
                     printf("\nMemindahkan piringan ke B...\n");
+                    countsteps += 1;
                 }
             }
             else
@@ -270,7 +282,7 @@ int main()
         start = false;
     }
     }
-    printf("Selamat! Kamu berhasil!\n");
+    printf("Selamat! Kamu berhasil!\n\n");
     printf("Jumlah langkahmu: %d\n", countsteps);
     if (countsteps <= 31)
     {
