@@ -58,7 +58,7 @@ void BintangHanoi(Stack *S, int i){
     }
     else
     {
-        printf("    |    ");
+        printf("  |    ");
     }
 }
 
@@ -74,18 +74,18 @@ void PrintHanoi(Stack S1, Stack S2, Stack S3){
         printf("\n");
     }
     printf(" ------- ");
-    printf("              ");
+    printf("            ");
     printf("     ---   ");
-    printf("              ");
+    printf("            ");
     printf("     ---   ");
-    printf("              ");
+    printf("            ");
     printf("\n");
     printf("    A    ");
-    printf("              ");
+    printf("            ");
     printf("      B    ");
-    printf("              ");
+    printf("            ");
     printf("      C    ");
-    printf("              ");
+    printf("            ");
     printf("\n");
 } 
 
