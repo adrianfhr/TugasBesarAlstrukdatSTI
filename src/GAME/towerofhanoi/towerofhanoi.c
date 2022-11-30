@@ -109,32 +109,39 @@ void PrintHanoi(Stack S1, Stack S2, Stack S3){
 
 int main()
 {
-    Stack S1, S2, S3, Sbaru, SMenang;
+    Stack S1, S2, S3, SMenang;
     ElType val;
-    int score = 1;
+    int score ;
     int countsteps = 0;
+    int i = 1;
+    int jumlah, akhir;
+    char a;
+    char input[5];
     boolean start=true;
+    boolean valid=false;
     CreateEmptyStack(&S1);
     CreateEmptyStack(&S2);
     CreateEmptyStack(&S3);
     CreateEmptyStack(&SMenang);
 
-    PushStack(&S1,9);
-    PushStack(&S1,7);
-    PushStack(&S1,5);
-    PushStack(&S1,3);
-    PushStack(&S1,1);
-    PushStack(&Sbaru,9);
-    PushStack(&Sbaru,7);
-    PushStack(&Sbaru,5);
-    PushStack(&Sbaru,3);
-    PushStack(&Sbaru,1);
-    PushStack(&SMenang,9);
-    PushStack(&SMenang,7);
-    PushStack(&SMenang,5);
-    PushStack(&SMenang,3);
-    PushStack(&SMenang,1);
-
+    while(!valid){
+    printf("Pilih jumlah piringan :\n");
+    printf("Max : 5 || Min : 2\n");
+    printf("Jumlah : ");
+    STARTWORD();
+    KataToString(currentWord, input);
+    if(stringcompare(input,"4")){
+    a=input[0];
+    sscanf(&a,"%d",&jumlah);
+    }
+    if(jumlah>=2 && jumlah<=5){
+    for(i=jumlah;i>0;i--){
+        PushStack(&S1,(i*2)-1);
+        PushStack(&SMenang,(i*2)-1);
+    }
+    valid=true;
+    }
+    }
     while (start) 
     {
         PrintHanoi(S1, S2, S3);
@@ -282,49 +289,23 @@ int main()
         start = false;
     }
     }
+    PrintHanoi(S1, S2, S3);
     printf("Selamat! Kamu berhasil!\n\n");
     printf("Jumlah langkahmu: %d\n", countsteps);
-    if (countsteps <= 31)
-    {
-        score = 10;
-    }
-    if (countsteps == 32)
-    {
-        score = 9;
-    }
-    if (countsteps == 33)
-    {
-        score = 8;
-    }
-    if (countsteps == 34)
-    {
-        score = 7;
-    }
-    if (countsteps == 35)
-    {
-        score = 6;
-    }
-    if (countsteps == 36)
-    {
-        score = 5;
-    }
-    if (countsteps == 37)
-    {
-        score = 4;
-    }
-    if (countsteps == 38)
-    {
-        score = 3;
-    }
-    if (countsteps == 39)
-    {
-        score = 2;
-    }
-    if (countsteps >= 40)
-    {
-        score = 1;
-    }
+    score = jumlah*2;
+    jumlah=jumlah*5+1;
+    if(jumlah>countsteps){
 
+    }else{
+        akhir=countsteps-jumlah;
+        for(i=0;i<akhir;i+=1){
+            score-=1;
+        }
+    }
+    if (score<=0)
+    {
+        score=1;
+    }
     printf("Skor yang kamu dapatkan: %d\n", score);
     return 0;
 }
