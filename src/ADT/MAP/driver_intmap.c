@@ -3,7 +3,7 @@
 
 int main(){
     intMap M;
-    CreateEmptyMap(&M);
+    CreateEmptyintMap(&M);
     if(IsEmptyintMap)
     {
         printf("Map kosong\n");
