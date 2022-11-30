@@ -90,12 +90,13 @@ void PrintHanoi(Stack S1, Stack S2, Stack S3){
 } 
 
 int main(){
-    Stack S1, S2, S3, Sbaru;
+    Stack S1, S2, S3, Sbaru, SMenang;
     ElType val;
     boolean start=true;
     CreateEmptyStack(&S1);
     CreateEmptyStack(&S2);
     CreateEmptyStack(&S3);
+    CreateEmptyStack(&SMenang);
 
     PushStack(&S1,9);
     PushStack(&S1,7);
@@ -107,6 +108,11 @@ int main(){
     PushStack(&Sbaru,5);
     PushStack(&Sbaru,3);
     PushStack(&Sbaru,1);
+    PushStack(&SMenang,9);
+    PushStack(&SMenang,7);
+    PushStack(&SMenang,5);
+    PushStack(&SMenang,3);
+    PushStack(&SMenang,1);
 
     while (start) {
         PrintHanoi(S1, S2, S3);
@@ -240,7 +246,12 @@ int main(){
             }
         } 
     printf("\n\n");
+    if (IsSameStack(S3, SMenang))
+    {
+        start = false;
     }
+    }
+    printf("Selamat! Kamu berhasil!\n");
     return 0;
 }
     
