@@ -39,6 +39,7 @@ void commandmenu(){
 }
 
 void commandconfig(){
+                STARTSCOREBOARD(&scoreboardlist);
                 commandmenu();
                 STARTWORD();
                 char *userCommand = (char*) malloc (currentWord.Length+1);
@@ -137,9 +138,8 @@ void commandconfig(){
 
 void STARTBNMO(){
     system("cls");
-    STARTSCOREBOARD();
     printf("File konfigurasi sistem berhasil dibaca. BNMO berhasil dijalankan.\n");
-    char *file = "..\\data\\default.txt";
+    char file[] = "..\\data\\default.txt";
     STARTREADGAME(file);
     ListGame = MakeArrayDin();
     CreateQueue(&GameQueue);
@@ -155,7 +155,7 @@ void STARTBNMO(){
 }
 
 void LOADBNMO(){ 
-    STARTSCOREBOARD();
+    STARTSCOREBOARD(&scoreboardlist);
     ADVLOADGAME();
     char *file = (char*) malloc (currentWord.Length+1);
     KataToString(currentWord, file);
@@ -464,8 +464,8 @@ void gamecurrent(){
    
 // }
 
-void STARTSCOREBOARD(){
-    arraymap scoreboardlist = Makearraymap();
+void STARTSCOREBOARD(arraymap *arrmap){
+    *arrmap = Makearraymap();
     Map DINERDASH,RNG,HANGMAN,TOH,SNAKEONMETEOR,KERANGAJAIB;
     CreateEmptyMap(&DINERDASH);
     CreateEmptyMap(&RNG);
@@ -474,12 +474,12 @@ void STARTSCOREBOARD(){
     CreateEmptyMap(&TOH);
     CreateEmptyMap(&SNAKEONMETEOR);
     CreateEmptyMap(&KERANGAJAIB);
-    InsertLastarrmap(&scoreboardlist,DINERDASH);
-    InsertLastarrmap(&scoreboardlist,RNG);
-    InsertLastarrmap(&scoreboardlist,HANGMAN);
-    InsertLastarrmap(&scoreboardlist,TOH);
-    InsertLastarrmap(&scoreboardlist,SNAKEONMETEOR);
-    InsertLastarrmap(&scoreboardlist,KERANGAJAIB);
+    InsertLastarrmap(arrmap,DINERDASH);
+    InsertLastarrmap(arrmap,RNG);
+    InsertLastarrmap(arrmap,HANGMAN);
+    InsertLastarrmap(arrmap,TOH);
+    InsertLastarrmap(arrmap,SNAKEONMETEOR);
+    InsertLastarrmap(arrmap,KERANGAJAIB);
 }
 
 void PRINTSCOREBOARD(int x){
@@ -498,7 +498,9 @@ void PRINTSCOREBOARD(int x){
 }
 
 void SCOREBOARD(){
+    printf("PANJANG SCOREBOARD : %d\n", scoreboardlist.Neff);
     for(int i=0;i<Lengtharrmap(scoreboardlist);i++){
+        printf("INI INDEX : %d\n",i);
         PRINTSCOREBOARD(i);
     }
 
