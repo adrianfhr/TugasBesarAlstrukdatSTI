@@ -125,6 +125,7 @@ int main(){
                 if (IsEmptyStack(S2)){
                     PopStack(&S1,&val);
                     PushStack(&S2,val);
+                    printf("\nMemindahkan piringan ke B...\n");
                 }
                 else if (InfoTop(S2)<InfoTop(S1)){
                     printf("Input invalid\n");
@@ -132,12 +133,14 @@ int main(){
                 else{
                     PopStack(&S1,&val);
                     PushStack(&S2,val);
+                    printf("\nMemindahkan piringan ke B...\n");
                 }
             }
             else if (tiangtujuan[0]=='C'){
                 if (IsEmptyStack(S3)){
                     PopStack(&S1,&val);
                     PushStack(&S3,val);
+                    printf("\nMemindahkan piringan ke C...\n");
                 }
                 else if (InfoTop(S3)<InfoTop(S1)){
                     printf("Input invalid\n");
@@ -145,6 +148,7 @@ int main(){
                 else{
                     PopStack(&S1,&val);
                     PushStack(&S3,val);
+                    printf("\nMemindahkan piringan ke C...\n");
                 }
             }
             else
@@ -160,6 +164,7 @@ int main(){
                 if (IsEmptyStack(S1)){
                     PopStack(&S2,&val);
                     PushStack(&S1,val);
+                    printf("\nMemindahkan piringan ke A...\n");
                 }
                 else if (InfoTop(S1)<InfoTop(S2)){
                     printf("Input invalid\n");
@@ -167,12 +172,14 @@ int main(){
                 else{
                     PopStack(&S2,&val);
                     PushStack(&S1,val);
+                    printf("\nMemindahkan piringan ke A...\n");
                 }
             }
             else if (tiangtujuan[0]=='C'){
                 if (IsEmptyStack(S3)){
                     PopStack(&S2,&val);
                     PushStack(&S3,val);
+                    printf("\nMemindahkan piringan ke C...\n");
                 }
                 else if (InfoTop(S3)<InfoTop(S2)){
                     printf("Input invalid\n");
@@ -180,6 +187,7 @@ int main(){
                 else{
                     PopStack(&S2,&val);
                     PushStack(&S3,val);
+                    printf("\nMemindahkan piringan ke C...\n");
                 }
             }
             else
@@ -195,6 +203,7 @@ int main(){
                 if (IsEmptyStack(S1)){
                     PopStack(&S3,&val);
                     PushStack(&S1,val);
+                    printf("\nMemindahkan piringan ke A...\n");
                 }
                 else if (InfoTop(S1)<InfoTop(S3)){
                     printf("Input invalid\n");
@@ -202,12 +211,14 @@ int main(){
                 else{
                     PopStack(&S3,&val);
                     PushStack(&S1,val);
+                    printf("\nMemindahkan piringan ke A...\n");
                 }
             }
             else if (tiangtujuan[0]=='B'){
                 if (IsEmptyStack(S2)){
                     PopStack(&S3,&val);
                     PushStack(&S2,val);
+                    printf("\nMemindahkan piringan ke B...\n");
                 }
                 else if (InfoTop(S2)<InfoTop(S3)){
                     printf("Input invalid\n");
@@ -215,6 +226,7 @@ int main(){
                 else{
                     PopStack(&S3,&val);
                     PushStack(&S2,val);
+                    printf("\nMemindahkan piringan ke B...\n");
                 }
             }
             else
