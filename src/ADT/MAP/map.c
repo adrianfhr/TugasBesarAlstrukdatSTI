@@ -25,7 +25,7 @@ boolean IsFullMap(Map M)
 }
 
 /* ********** Operator Dasar Map ********* */
-ElType ValueMap(Map M, keytype k)
+keytype ValueMap(Map M, ElType k)
 /* Mengembalikan nilai value dengan key k dari M */
 {
     boolean found = false;
@@ -39,11 +39,11 @@ ElType ValueMap(Map M, keytype k)
             idx++;
         }
     }
-    ElType VMap = M.Elements[idx].Value;
+    keytype VMap = M.Elements[idx].Value;
     return VMap;
 }
 
-void InsertMap(Map *M, keytype k, ElType v)
+void InsertMap(Map *M, ElType k, keytype v)
 /* Menambahkan Elmt sebagai elemen Map M. */
 /* I.S. M mungkin kosong, M tidak penuh
         M mungkin sudah beranggotakan v dengan key k */
@@ -58,7 +58,7 @@ void InsertMap(Map *M, keytype k, ElType v)
     M->Count++;
 }
 
-void DeleteMap(Map *M, keytype k)
+void DeleteMap(Map *M, ElType k)
 /* Menghapus Elmt dari Map M. */
 /* I.S. M tidak kosong
         element dengan key k mungkin anggota / bukan anggota dari M */
@@ -88,7 +88,7 @@ void DeleteMap(Map *M, keytype k)
     M->Count--;
 }
 
-boolean IsMemberMap(Map M, keytype k)
+boolean IsMemberMap(Map M, ElType k)
 /* Mengembalikan true jika k adalah member dari M */
 {
     boolean found = false;

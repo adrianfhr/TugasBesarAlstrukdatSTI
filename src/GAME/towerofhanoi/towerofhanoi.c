@@ -1,7 +1,7 @@
-//#include "towerofhanoi.h"
-#include "../../ADT/STACK/stack.c"
-#include "../../ADT/MESINKATA/mesinkata.c"
-#include "../../ADT/MESINKATA/mesinkar.c"
+#include "towerofhanoi.h"
+#include "../../ADT/STACK/stack.h"
+#include "../../ADT/MESINKATA/mesinkata.h"
+#include "../../ADT/MESINKATA/mesinkar.h"
 
 
 boolean listcompare(char* S1, char* S2){
@@ -107,7 +107,7 @@ void PrintHanoi(Stack S1, Stack S2, Stack S3){
     printf("\n");
 } 
 
-int towerofhanoi(){
+void towerofhanoimain(){
     Stack S1, S2, S3, SMenang;
     ElTypestack val;
     int score ;
@@ -306,7 +306,6 @@ int towerofhanoi(){
         score=1;
     }
     printf("Skor yang kamu dapatkan: %d\n", score);
-    return 0;
 }
     
 

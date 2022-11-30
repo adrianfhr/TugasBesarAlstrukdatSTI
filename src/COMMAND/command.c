@@ -124,7 +124,7 @@ void commandconfig(){
                     KataToString(currentWord, userCommand);
                     if(stringcompare(userCommand, "SCOREBOARD") == 1)
                     {   
-                        RESETSCOREBOARD();
+                        //RESETSCOREBOARD();
                     }else{
                         COMMANDLAIN();
                     }
@@ -424,12 +424,14 @@ void gamecurrent(){
         kerangajaib();
     }else if (ingame == 5)
     {
-        towerofhanoi();
+        TOH();
     }else if(ingame == 6){
         Hangman();
-    }else if(ingame == 7){
-        Snake();
     }
+
+    // }else if(ingame == 7){
+    //     Snake();
+    // }
 
 }
 
@@ -482,7 +484,7 @@ void STARTSCOREBOARD(){
 
 void PRINTSCOREBOARD(int x){
     printf("**** SCOREBOARD GAME KERANG AJAIB ****\n");
-    if (IsEmptyMap()){
+    if (IsEmptyMap(scoreboardlist.A[x])){
         printf("| NAMA          | SKOR          |\n");
         printf("------- SCOREBOARD KOSONG -------\n");
     }

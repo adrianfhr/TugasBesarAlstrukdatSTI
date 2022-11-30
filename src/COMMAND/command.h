@@ -6,6 +6,7 @@
 #include "../ADT/MESINKATA/mesinkata.h"
 #include "../ADT/MESINKATA/mesinkar.h"
 #include "../GAME/game.h"
+#include "../ADT/MAP/map.h"
 
 #ifndef COMMAND_H
 #define COMMAND_H
@@ -55,5 +56,5 @@ void STARTSCOREBOARD();
 
 void SCOREBOARD();
 
-void RESETSCOREBOARD();
+//void RESETSCOREBOARD();
 #endif

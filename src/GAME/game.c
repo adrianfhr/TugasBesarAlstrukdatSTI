@@ -209,7 +209,7 @@ void kerangajaib(){
     }
 }
 
-void towerofhanoi(){
+void TOH(){
     towerofhanoimain();
 }
 
@@ -217,6 +217,6 @@ void Hangman(){
     HangmanMain();
 }
 
-void Snake(){
-    snakegame();
-}
+// void Snake(){
+//     snakegame();
+// }
