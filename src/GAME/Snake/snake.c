@@ -11,7 +11,7 @@ int Numbersnake(int rng){
     return c;
 }
 
-boolean listcompare(ElType S1, ElType S2){
+boolean listcomparesnake(ElType S1, ElType S2){
     boolean found = true;
     int i = 0;
     while(S1[i] != '\0' && S2[i] != '\0' && found)
@@ -200,7 +200,7 @@ printf("TURN %d:\n",turn);
 printf("Silahkan masukkan command anda:");
 STARTWORD();
 KataToString(currentWord, input);
-if(listcompare(input, "w") && stringcompare(input,"t")){
+if(listcomparesnake(input, "w") && stringcompare(input,"t")){
     DelFirstlist(&snake,&p);
     if((Infoy(p)-1)<0){
     b=Infox(p)+(Infoy(p)+4)*5;
@@ -244,7 +244,7 @@ if(listcompare(input, "w") && stringcompare(input,"t")){
     }
         valid=true;
     }
-}else if(listcompare(input, "s") && stringcompare(input,"t")){
+}else if(listcomparesnake(input, "s") && stringcompare(input,"t")){
     DelFirstlist(&snake,&p);
     if((Infoy(p)+1)>4){
     b=Infox(p)+(Infoy(p)-4)*5;
@@ -288,7 +288,7 @@ if(listcompare(input, "w") && stringcompare(input,"t")){
     }
         valid=true;
     }
-}else if(listcompare(input, "a") && stringcompare(input,"t")){
+}else if(listcomparesnake(input, "a") && stringcompare(input,"t")){
     DelFirstlist(&snake,&p);
     if((Infox(p)-1)<0){
     b=Infox(p)+4+(Infoy(p))*5;
@@ -332,7 +332,7 @@ if(listcompare(input, "w") && stringcompare(input,"t")){
     }
         valid=true;
     }
-}else if(listcompare(input, "d") && stringcompare(input,"t")){
+}else if(listcomparesnake(input, "d") && stringcompare(input,"t")){
     DelFirstlist(&snake,&p);
     if((Infox(p)+1)>4){
     b=Infox(p)-4+(Infoy(p))*5;
@@ -376,7 +376,7 @@ if(listcompare(input, "w") && stringcompare(input,"t")){
     }
         valid=true;
     }
-}else if(listcompare(input, "q") && stringcompare(input,"t")){
+}else if(listcomparesnake(input, "q") && stringcompare(input,"t")){
 play=false;
 valid=true;
 quit=true;

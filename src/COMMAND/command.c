@@ -427,11 +427,9 @@ void gamecurrent(){
         TOH();
     }else if(ingame == 6){
         Hangman();
+    }else if(ingame == 7){
+        Snake();
     }
-
-    // }else if(ingame == 7){
-    //     Snake();
-    // }
 
 }
 

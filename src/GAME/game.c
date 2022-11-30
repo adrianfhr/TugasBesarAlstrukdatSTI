@@ -217,6 +217,6 @@ void Hangman(){
     HangmanMain();
 }
 
-// void Snake(){
-//     snakegame();
-// }
+void Snake(){
+    snakegame();
+}
