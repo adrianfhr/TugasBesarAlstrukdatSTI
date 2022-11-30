@@ -1,5 +1,23 @@
 //#include "towerofhanoi.h"
 #include "../../ADT/STACK/stack.c"
+#include "../../ADT/MESINKATA/mesinkata.c"
+#include "../../ADT/MESINKATA/mesinkar.c"
+
+
+boolean listcompare(char* S1, char* S2){
+    boolean found = true;
+    int m = 0;
+    while(S1[m] != '\0' && S2[m] != '\0' && found)
+    {
+        if (S1[m] != S2[m])
+        {
+            found = false;
+        }else{
+            m++;
+        }
+    }
+    return found;
+}
 
 void Tower(Stack *S){
     ElType val;
@@ -89,9 +107,12 @@ void PrintHanoi(Stack S1, Stack S2, Stack S3){
     printf("\n");
 } 
 
-int main(){
+int main()
+{
     Stack S1, S2, S3, Sbaru, SMenang;
     ElType val;
+    int score = 1;
+    int countsteps = 0;
     boolean start=true;
     CreateEmptyStack(&S1);
     CreateEmptyStack(&S2);
@@ -114,20 +135,23 @@ int main(){
     PushStack(&SMenang,3);
     PushStack(&SMenang,1);
 
-    while (start) {
+    while (start) 
+    {
         PrintHanoi(S1, S2, S3);
         char tiangasal[5];
         char tiangtujuan[5];
         printf("Tiang asal: ");
-        scanf("%s",tiangasal);
+             STARTWORD();
+        KataToString(currentWord, tiangasal);
         printf("Tiang tujuan: ");
-        scanf("%s",tiangtujuan);
+        STARTWORD();
+        KataToString(currentWord, tiangtujuan);
 
-        if (tiangasal[0]=='A'){
+        if ((listcompare(tiangasal, "a") || listcompare(tiangasal, "A")) && stringcompare(tiangasal,"t")){
             if (IsEmptyStack(S1)){
                 printf("Input invalid\n");
             }
-            else if (tiangtujuan[0]=='B'){
+            else if ((listcompare(tiangtujuan, "b") || listcompare(tiangtujuan, "B")) && stringcompare(tiangtujuan,"t")){
                 if (IsEmptyStack(S2)){
                     PopStack(&S1,&val);
                     PushStack(&S2,val);
@@ -142,7 +166,7 @@ int main(){
                     printf("\nMemindahkan piringan ke B...\n");
                 }
             }
-            else if (tiangtujuan[0]=='C'){
+            else if ((listcompare(tiangtujuan, "c") || listcompare(tiangtujuan, "C")) && stringcompare(tiangtujuan,"t")){
                 if (IsEmptyStack(S3)){
                     PopStack(&S1,&val);
                     PushStack(&S3,val);
@@ -162,11 +186,11 @@ int main(){
                 printf("Input invalid\n");
             } 
         }
-        else if (tiangasal[0]=='B'){
+        else if ((listcompare(tiangasal, "b") || listcompare(tiangasal, "B")) && stringcompare(tiangasal,"t")){
             if (IsEmptyStack(S2)){
                 printf("Input invalid\n");
             }
-            else if (tiangtujuan[0]=='A'){
+            else if ((listcompare(tiangtujuan, "a") || listcompare(tiangtujuan, "A")) && stringcompare(tiangtujuan,"t")){
                 if (IsEmptyStack(S1)){
                     PopStack(&S2,&val);
                     PushStack(&S1,val);
@@ -181,7 +205,7 @@ int main(){
                     printf("\nMemindahkan piringan ke A...\n");
                 }
             }
-            else if (tiangtujuan[0]=='C'){
+            else if ((listcompare(tiangtujuan, "c") || listcompare(tiangtujuan, "C")) && stringcompare(tiangtujuan,"t")){
                 if (IsEmptyStack(S3)){
                     PopStack(&S2,&val);
                     PushStack(&S3,val);
@@ -201,11 +225,11 @@ int main(){
                 printf("Input invalid\n");
             } 
         }
-        else if (tiangasal[0]=='C'){
+        else if ((listcompare(tiangasal, "c") || listcompare(tiangasal, "C")) && stringcompare(tiangasal,"t")){
             if (IsEmptyStack(S3)){
                 printf("Input invalid\n");
             }
-            else if (tiangtujuan[0]=='A'){
+            else if ((listcompare(tiangtujuan, "a") || listcompare(tiangtujuan, "A")) && stringcompare(tiangtujuan,"t")){
                 if (IsEmptyStack(S1)){
                     PopStack(&S3,&val);
                     PushStack(&S1,val);
@@ -220,7 +244,7 @@ int main(){
                     printf("\nMemindahkan piringan ke A...\n");
                 }
             }
-            else if (tiangtujuan[0]=='B'){
+            else if ((listcompare(tiangtujuan, "b") || listcompare(tiangtujuan, "B")) && stringcompare(tiangtujuan,"t")){
                 if (IsEmptyStack(S2)){
                     PopStack(&S3,&val);
                     PushStack(&S2,val);
@@ -239,12 +263,7 @@ int main(){
             {
                 printf("Input invalid\n");
             }
-            if (IsSameStack(S3, Sbaru))
-            {
-                start = false;
-                printf("Selamat! Kamu berhasil!\n");
-            }
-        } 
+        }
     printf("\n\n");
     if (IsSameStack(S3, SMenang))
     {
@@ -252,6 +271,49 @@ int main(){
     }
     }
     printf("Selamat! Kamu berhasil!\n");
+    printf("Jumlah langkahmu: %d\n", countsteps);
+    if (countsteps <= 31)
+    {
+        score = 10;
+    }
+    if (countsteps == 32)
+    {
+        score = 9;
+    }
+    if (countsteps == 33)
+    {
+        score = 8;
+    }
+    if (countsteps == 34)
+    {
+        score = 7;
+    }
+    if (countsteps == 35)
+    {
+        score = 6;
+    }
+    if (countsteps == 36)
+    {
+        score = 5;
+    }
+    if (countsteps == 37)
+    {
+        score = 4;
+    }
+    if (countsteps == 38)
+    {
+        score = 3;
+    }
+    if (countsteps == 39)
+    {
+        score = 2;
+    }
+    if (countsteps >= 40)
+    {
+        score = 1;
+    }
+
+    printf("Skor yang kamu dapatkan: %d\n", score);
     return 0;
 }
     
