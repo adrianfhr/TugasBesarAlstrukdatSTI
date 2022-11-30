@@ -9,7 +9,7 @@
 #include "../ADT/boolean.h"
 #include "../ADT/MESINKATA/mesinkata.h"
 #include "hangman/hangman.h"
-//#include "snake/snake.h"
+#include "snake/snake.h"
 #include "towerofhanoi/towerofhanoi.h"
 
 void RNG();
@@ -47,6 +47,6 @@ void TOH();
 
 void Hangman();
 
-//void Snake();
+void Snake();
 
 #endif
