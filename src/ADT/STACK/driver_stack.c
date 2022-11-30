@@ -18,7 +18,7 @@ int main(){
     else{
         printf("Stack tidak penuh\n");
     }
-    ElType X;
+    ElTypestack X;
     PushStack(&S, "nora");
     printf("%s\n", InfoTop(S));
     PopStack(&S, &X);

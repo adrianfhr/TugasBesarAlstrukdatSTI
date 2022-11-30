@@ -209,6 +209,10 @@ void kerangajaib(){
     }
 }
 
+void towerofhanoi(){
+    towerofhanoimain();
+}
+
 void Hangman(){
     HangmanMain();
 }

@@ -2,7 +2,7 @@
 #include "../../ADT/STACK/stack.c"
 
 void Tower(Stack *S){
-    ElType val;
+    ElTypestack val;
     Stack stemp;
     CreateEmptyStack(&stemp);
     while (!IsEmptyStack(*S)){
@@ -89,9 +89,9 @@ void PrintHanoi(Stack S1, Stack S2, Stack S3){
     printf("\n");
 } 
 
-int main(){
+void towerofhanoimain(){
     Stack S1, S2, S3, Sbaru;
-    ElType val;
+    ElTypestack val;
     boolean start=true;
     CreateEmptyStack(&S1);
     CreateEmptyStack(&S2);
@@ -236,7 +236,6 @@ int main(){
         } 
     printf("\n\n");
     }
-    return 0;
 }
     
 

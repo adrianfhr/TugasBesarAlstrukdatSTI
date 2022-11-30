@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../ADT/ARRAYDIN/arraydin.h"
+#include "../ADT/ARRAYDINMAP/arraydinmap.h"
 #include "../ADT/QUEUE/queue.h"
 #include "../ADT/MESINKATA/mesinkata.h"
 #include "../ADT/MESINKATA/mesinkar.h"
@@ -49,4 +50,10 @@ void DisplayGame();
 void WelcomeBNMO(FILE *w);
 
 void gamecurrent();
+
+void STARTSCOREBOARD();
+
+void SCOREBOARD();
+
+void RESETSCOREBOARD();
 #endif

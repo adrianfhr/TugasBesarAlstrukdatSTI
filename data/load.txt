@@ -1,12 +1,19 @@
-10
+6
 RNG
 Diner DASH
-DINOSAUR IN EARTH
-RISEWOMAN
-EIFFEL TOWER 
+HANGMAN
+TOWER OF HANOI
+SNAKE ON METEOR
 Kerang Ajaib
-PUBG
-Mobile Legends
-VALORANT
-CSGO
+2 
+BNMO 19
+Finn 12
+3 
+Jake 58
+Finn 31
+Marcelline 30
+0
+0
+1
+Marshall 77
 .

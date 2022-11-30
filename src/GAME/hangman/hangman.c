@@ -72,7 +72,7 @@ void SoalHangman(int *alreadypicked, int* alreadypickedcount){
         for(int i = 0; i < strlen(ListKataHangman.A[random]); i++){ //STRLEN GANTI!!!
             char*temp = (char*) malloc(2 * sizeof(ElType));
             temp[0] = tempsoal[i];
-            temp[1] = '\0';
+            temp[1] = 'z';
             InsertKataLast(&ListSoal, temp);
         }
     } 
@@ -189,7 +189,7 @@ void HangmanMain(){
                 printf("Tebakan Sebelumnya : ");
                 if(!IsEmpty(ListJawabUser)){
                     for(int i = 0; i < ListJawabUser.Neff; i++){
-                        printf("%s", ListJawabUser.A[i]);
+                        printf("%s ", ListJawabUser.A[i]);
                     }
                 }
                 printf("\n");
@@ -200,7 +200,9 @@ void HangmanMain(){
                 }*/
                 printf("\n");
                 JawabUser(katasoal);
-                printf("Kata : %s\n", katasoal);
+                printf("Kata : \n");
+                int index = 0;
+                while(katasoal);
                 printf("\n");
                 CekWin(katasoal, &win);
                 if(win){
@@ -240,7 +242,7 @@ void HangmanMain(){
                 printf("%s\n", hangman.A[10]);
                 printf("Kata yang benar adalah : ");
                 for(int i = 0; i < ListSoal.Neff; i++){
-                    printf("%s", ListSoal.A[i]);
+                    printf("%s ", ListSoal.A[i]);
                 }
                 printf("\nSkor Kamu : %d\n", skorhangman);
                 printf("\n\n");

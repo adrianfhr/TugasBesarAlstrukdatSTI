@@ -26,7 +26,7 @@ boolean IsFullStack(Stack S)
 }
 
 /* ************ Menambahkan sebuah elemen ke Stack ************ */
-void PushStack(Stack *S, ElType X)
+void PushStack(Stack *S, ElTypestack X)
 /* Menambahkan X sebagai elemen Stack S. */
 /* I.S. S mungkin kosong, tabel penampung elemen stack TIDAK penuh */
 /* F.S. X menjadi TOP yang baru,TOP bertambah 1 */
@@ -47,7 +47,7 @@ void PushStack(Stack *S, ElType X)
 }
 
 /* ************ Menghapus sebuah elemen Stack ************ */
-void PopStack(Stack *S, ElType *X)
+void PopStack(Stack *S, ElTypestack *X)
 /* Menghapus X dari Stack S. */
 /* I.S. S  tidak mungkin kosong */
 /* F.S. X adalah NilStackai elemen TOP yang lama, TOP berkurang 1 */
@@ -85,7 +85,7 @@ boolean IsSameStack(Stack S1, Stack S2){
 
 int lengthStack(Stack S){
     Stack stemp;
-    ElType temp;
+    ElTypestack temp;
     int length = 0;
     CreateEmptyStack(&stemp);
     while (!IsEmptyStack(S))

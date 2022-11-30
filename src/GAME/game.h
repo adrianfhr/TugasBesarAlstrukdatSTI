@@ -10,6 +10,7 @@
 #include "../ADT/MESINKATA/mesinkata.h"
 #include "hangman/hangman.h"
 #include "snake/snake.h"
+#include "towerofhanoi/towerofhanoi.h"
 
 void RNG();
 /*BNMO tidak selalu menikmati game yang sudah pasti outcome-nya. Karena itu, ia suka dengan game yang melibatkan RNG (Random number generator).  Berikut adalah spesifikasi game ini:
@@ -41,6 +42,8 @@ Skor akhir dari pemain adalah total uang yang diterima oleh pemain.
 void GameTambahan();
 
 void kerangajaib();
+
+void towerofhanoi();
 
 void Hangman();
 
