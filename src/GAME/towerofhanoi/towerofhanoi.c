@@ -1,5 +1,23 @@
 //#include "towerofhanoi.h"
 #include "../../ADT/STACK/stack.c"
+#include "../../ADT/MESINKATA/mesinkata.c"
+#include "../../ADT/MESINKATA/mesinkar.c"
+
+
+boolean listcompare(char* S1, char* S2){
+    boolean found = true;
+    int m = 0;
+    while(S1[m] != '\0' && S2[m] != '\0' && found)
+    {
+        if (S1[m] != S2[m])
+        {
+            found = false;
+        }else{
+            m++;
+        }
+    }
+    return found;
+}
 
 void Tower(Stack *S){
     ElTypestack val;
@@ -89,43 +107,62 @@ void PrintHanoi(Stack S1, Stack S2, Stack S3){
     printf("\n");
 } 
 
-void towerofhanoimain(){
-    Stack S1, S2, S3, Sbaru;
+int towerofhanoi(){
+    Stack S1, S2, S3, SMenang;
     ElTypestack val;
+    int score ;
+    int countsteps = 0;
+    int i = 1;
+    int jumlah, akhir;
+    char a;
+    char input[5];
     boolean start=true;
+    boolean valid=false;
     CreateEmptyStack(&S1);
     CreateEmptyStack(&S2);
     CreateEmptyStack(&S3);
+    CreateEmptyStack(&SMenang);
 
-    PushStack(&S1,9);
-    PushStack(&S1,7);
-    PushStack(&S1,5);
-    PushStack(&S1,3);
-    PushStack(&S1,1);
-    PushStack(&Sbaru,9);
-    PushStack(&Sbaru,7);
-    PushStack(&Sbaru,5);
-    PushStack(&Sbaru,3);
-    PushStack(&Sbaru,1);
-
-    while (start) {
+    while(!valid){
+    printf("Pilih jumlah piringan :\n");
+    printf("Max : 5 || Min : 2\n");
+    printf("Jumlah : ");
+    STARTWORD();
+    KataToString(currentWord, input);
+    if(stringcompare(input,"4")){
+    a=input[0];
+    sscanf(&a,"%d",&jumlah);
+    }
+    if(jumlah>=2 && jumlah<=5){
+    for(i=jumlah;i>0;i--){
+        PushStack(&S1,(i*2)-1);
+        PushStack(&SMenang,(i*2)-1);
+    }
+    valid=true;
+    }
+    }
+    while (start) 
+    {
         PrintHanoi(S1, S2, S3);
         char tiangasal[5];
         char tiangtujuan[5];
         printf("Tiang asal: ");
-        scanf("%s",tiangasal);
+             STARTWORD();
+        KataToString(currentWord, tiangasal);
         printf("Tiang tujuan: ");
-        scanf("%s",tiangtujuan);
+        STARTWORD();
+        KataToString(currentWord, tiangtujuan);
 
-        if (tiangasal[0]=='A'){
+        if ((listcompare(tiangasal, "a") || listcompare(tiangasal, "A")) && stringcompare(tiangasal,"t")){
             if (IsEmptyStack(S1)){
                 printf("Input invalid\n");
             }
-            else if (tiangtujuan[0]=='B'){
+            else if ((listcompare(tiangtujuan, "b") || listcompare(tiangtujuan, "B")) && stringcompare(tiangtujuan,"t")){
                 if (IsEmptyStack(S2)){
                     PopStack(&S1,&val);
                     PushStack(&S2,val);
                     printf("\nMemindahkan piringan ke B...\n");
+                    countsteps += 1;
                 }
                 else if (InfoTop(S2)<InfoTop(S1)){
                     printf("Input invalid\n");
@@ -134,13 +171,15 @@ void towerofhanoimain(){
                     PopStack(&S1,&val);
                     PushStack(&S2,val);
                     printf("\nMemindahkan piringan ke B...\n");
+                    countsteps += 1;
                 }
             }
-            else if (tiangtujuan[0]=='C'){
+            else if ((listcompare(tiangtujuan, "c") || listcompare(tiangtujuan, "C")) && stringcompare(tiangtujuan,"t")){
                 if (IsEmptyStack(S3)){
                     PopStack(&S1,&val);
                     PushStack(&S3,val);
                     printf("\nMemindahkan piringan ke C...\n");
+                    countsteps += 1;
                 }
                 else if (InfoTop(S3)<InfoTop(S1)){
                     printf("Input invalid\n");
@@ -149,6 +188,7 @@ void towerofhanoimain(){
                     PopStack(&S1,&val);
                     PushStack(&S3,val);
                     printf("\nMemindahkan piringan ke C...\n");
+                    countsteps += 1;
                 }
             }
             else
@@ -156,15 +196,16 @@ void towerofhanoimain(){
                 printf("Input invalid\n");
             } 
         }
-        else if (tiangasal[0]=='B'){
+        else if ((listcompare(tiangasal, "b") || listcompare(tiangasal, "B")) && stringcompare(tiangasal,"t")){
             if (IsEmptyStack(S2)){
                 printf("Input invalid\n");
             }
-            else if (tiangtujuan[0]=='A'){
+            else if ((listcompare(tiangtujuan, "a") || listcompare(tiangtujuan, "A")) && stringcompare(tiangtujuan,"t")){
                 if (IsEmptyStack(S1)){
                     PopStack(&S2,&val);
                     PushStack(&S1,val);
                     printf("\nMemindahkan piringan ke A...\n");
+                    countsteps += 1;
                 }
                 else if (InfoTop(S1)<InfoTop(S2)){
                     printf("Input invalid\n");
@@ -173,13 +214,15 @@ void towerofhanoimain(){
                     PopStack(&S2,&val);
                     PushStack(&S1,val);
                     printf("\nMemindahkan piringan ke A...\n");
+                    countsteps += 1;
                 }
             }
-            else if (tiangtujuan[0]=='C'){
+            else if ((listcompare(tiangtujuan, "c") || listcompare(tiangtujuan, "C")) && stringcompare(tiangtujuan,"t")){
                 if (IsEmptyStack(S3)){
                     PopStack(&S2,&val);
                     PushStack(&S3,val);
                     printf("\nMemindahkan piringan ke C...\n");
+                    countsteps += 1;
                 }
                 else if (InfoTop(S3)<InfoTop(S2)){
                     printf("Input invalid\n");
@@ -188,6 +231,7 @@ void towerofhanoimain(){
                     PopStack(&S2,&val);
                     PushStack(&S3,val);
                     printf("\nMemindahkan piringan ke C...\n");
+                    countsteps += 1;
                 }
             }
             else
@@ -195,15 +239,16 @@ void towerofhanoimain(){
                 printf("Input invalid\n");
             } 
         }
-        else if (tiangasal[0]=='C'){
+        else if ((listcompare(tiangasal, "c") || listcompare(tiangasal, "C")) && stringcompare(tiangasal,"t")){
             if (IsEmptyStack(S3)){
                 printf("Input invalid\n");
             }
-            else if (tiangtujuan[0]=='A'){
+            else if ((listcompare(tiangtujuan, "a") || listcompare(tiangtujuan, "A")) && stringcompare(tiangtujuan,"t")){
                 if (IsEmptyStack(S1)){
                     PopStack(&S3,&val);
                     PushStack(&S1,val);
                     printf("\nMemindahkan piringan ke A...\n");
+                    countsteps += 1;
                 }
                 else if (InfoTop(S1)<InfoTop(S3)){
                     printf("Input invalid\n");
@@ -212,13 +257,15 @@ void towerofhanoimain(){
                     PopStack(&S3,&val);
                     PushStack(&S1,val);
                     printf("\nMemindahkan piringan ke A...\n");
+                    countsteps += 1;
                 }
             }
-            else if (tiangtujuan[0]=='B'){
+            else if ((listcompare(tiangtujuan, "b") || listcompare(tiangtujuan, "B")) && stringcompare(tiangtujuan,"t")){
                 if (IsEmptyStack(S2)){
                     PopStack(&S3,&val);
                     PushStack(&S2,val);
                     printf("\nMemindahkan piringan ke B...\n");
+                    countsteps += 1;
                 }
                 else if (InfoTop(S2)<InfoTop(S3)){
                     printf("Input invalid\n");
@@ -227,15 +274,39 @@ void towerofhanoimain(){
                     PopStack(&S3,&val);
                     PushStack(&S2,val);
                     printf("\nMemindahkan piringan ke B...\n");
+                    countsteps += 1;
                 }
             }
             else
             {
                 printf("Input invalid\n");
             }
-        } 
+        }
     printf("\n\n");
+    if (IsSameStack(S3, SMenang))
+    {
+        start = false;
     }
+    }
+    PrintHanoi(S1, S2, S3);
+    printf("Selamat! Kamu berhasil!\n\n");
+    printf("Jumlah langkahmu: %d\n", countsteps);
+    score = jumlah*2;
+    jumlah=jumlah*5+1;
+    if(jumlah>countsteps){
+
+    }else{
+        akhir=countsteps-jumlah;
+        for(i=0;i<akhir;i+=1){
+            score-=1;
+        }
+    }
+    if (score<=0)
+    {
+        score=1;
+    }
+    printf("Skor yang kamu dapatkan: %d\n", score);
+    return 0;
 }
     
 
