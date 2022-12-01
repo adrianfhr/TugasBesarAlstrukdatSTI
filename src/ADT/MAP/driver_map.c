@@ -13,9 +13,9 @@ int main(){
         printf("Map tidak kosong\n");
     }
     
-    InsertMap(&M, 1, "Nama saya adrian");
-    InsertMap(&M, 2, "Nama saya salman");
-    InsertMap(&M, 3, "Nama saya yunis");
+    InsertMap(&M, "Nama saya adrian", 1);
+    InsertMap(&M, "Nama saya salman", 2);
+    InsertMap(&M, "Nama saya yunis", 3);
     if(IsEmptyMap(M)){
         printf("Map kosong\n");
     }else{
@@ -28,14 +28,14 @@ int main(){
         printf("Map tidak penuh\n");
     }
 
-    printf("Value dengan key 1: %s\n", ValueMap(M, 1));
-    printf("Value dengan key 2: %s\n", ValueMap(M, 2));
-    printf("Value dengan key 3: %s\n", ValueMap(M, 3));
+    printf("Value dengan key 'Nama saya adrian': %d\n", ValueMap(M, "Nama saya adrian"));
+    printf("Value dengan key 'Nama saya salman': %d\n", ValueMap(M, "Nama saya salman"));
+    printf("Value dengan key 'Nama saya yunis': %d\n", ValueMap(M, "Nama saya yunis"));
 
-    DeleteMap(&M, 2);
-    if(IsMemberMap(M, 2)){
-        printf("Key 2 masih ada\n");
+    DeleteMap(&M, "Nama saya salman");
+    if(IsMemberMap(M, "Nama saya salman")){
+        printf("Key Nama saya salman masih ada\n");
     }else{
-        printf("Key 2 sudah tidak ada\n");
+        printf("Key Nama saya salman sudah tidak ada\n");
     }
 }
