@@ -107,7 +107,7 @@ void PrintHanoi(Stack S1, Stack S2, Stack S3){
     printf("\n");
 } 
 
-void towerofhanoimain(){
+int towerofhanoimain(){
     Stack S1, S2, S3, SMenang;
     ElTypestack val;
     int score ;
@@ -306,6 +306,7 @@ void towerofhanoimain(){
         score=1;
     }
     printf("Skor yang kamu dapatkan: %d\n", score);
+    return score;
 }
     
 

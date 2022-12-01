@@ -214,8 +214,8 @@ void kerangajaib(){
     }
 }
 
-void TOH(){
-    towerofhanoimain();
+int TOH(){
+    return towerofhanoimain();
 }
 
 int Hangman(){

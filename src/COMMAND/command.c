@@ -242,7 +242,8 @@ void SAVE(){
     fclose(savefile);
 }
 
-void CREATEGAME(ArrayDin *ListGame){
+void CREATEGAME(ArrayDin *ListGame, arraymap *scoreboardlist){
+    map temp;
     system("cls");
     printf("CREATE GAME!\n");
     printf("Masukkan nama game yang akan ditambahkan: ");
@@ -251,6 +252,8 @@ void CREATEGAME(ArrayDin *ListGame){
     KataToString(currentWord, game);
     InsertKataLast(ListGame, game);
     printf("Game berhasil ditambahkan.\n");
+    CreateEmptyMap(&temp);
+    InsertMapLast(scoreboardlist, temp);   
 }
 
 void LISTGAME(){
@@ -330,18 +333,18 @@ void PLAYGAME(Queue *GameQueue, char *userplaygame){
         printf("Loading %s ...\n", GameQueue->buffer[GameQueue->idxHead]);
         char *ingamestr;
         ingamestr = GameQueue->buffer[GameQueue->idxHead];
-        if(stringcompare(GameQueue->buffer[GameQueue->idxHead], "RNG") == 1){
+        if(stringcompare(GameQueue->buffer[GameQueue->idxHead], "RNG")){
             ingame = 1;
             printf("Game %d berhasil dimainkan.\n", ingame);
-        }else if(stringcompare(GameQueue->buffer[GameQueue->idxHead], "Diner DASH") == 1){
+        }else if(stringcompare(GameQueue->buffer[GameQueue->idxHead], "Diner DASH")){
             ingame = 2;
-        }else if(stringcompare(GameQueue->buffer[GameQueue->idxHead],"Kerang Ajaib") == 1){
+        }else if(stringcompare(GameQueue->buffer[GameQueue->idxHead],"Kerang Ajaib")){
             ingame = 4;
-        }else if(stringcompare(GameQueue->buffer[GameQueue->idxHead],"HANGMAN") == 1){
+        }else if(stringcompare(GameQueue->buffer[GameQueue->idxHead],"HANGMAN")){
             ingame = 6;
-        }else if(stringcompare(GameQueue->buffer[GameQueue->idxHead],"TOWER OF HANOI") == 1){
+        }else if(stringcompare(GameQueue->buffer[GameQueue->idxHead],"TOWER OF HANOI")){
             ingame = 5;
-        }else if(stringcompare(GameQueue->buffer[GameQueue->idxHead],"SNAKE ON METEOR") == 1){
+        }else if(stringcompare(GameQueue->buffer[GameQueue->idxHead],"SNAKE ON METEOR")){
             ingame = 7;
         }else{
             ingame = 3;
@@ -443,7 +446,9 @@ void gamecurrent(arraymap *scoreboardlist){
         DinerDash();
     }else if (ingame == 3)
     {
-        GameTambahan();
+        score = GameTambahan();
+        printf("Skor kamu adalah %d\n", score);
+        INSERTSCOREBOARD(scoreboardlist,7, score);
     }else if (ingame == 4)
     {
         kerangajaib();
@@ -501,7 +506,7 @@ void RESETSCOREBOARD(){
 
 void STARTSCOREBOARD(arraymap *arrmap){
     *arrmap = Makearraymap();
-    Map DINERDASH,RNG,HANGMAN,TOH,SNAKEONMETEOR,KERANGAJAIB;
+    Map DINERDASH,RNG,HANGMAN,TOH,SNAKEONMETEOR,KERANGAJAIB,GAMETAMBAHAN;
     CreateEmptyMap(&DINERDASH);
     CreateEmptyMap(&RNG);
     CreateEmptyMap(&DINERDASH);
@@ -509,8 +514,8 @@ void STARTSCOREBOARD(arraymap *arrmap){
     CreateEmptyMap(&TOH);
     CreateEmptyMap(&SNAKEONMETEOR);
     CreateEmptyMap(&KERANGAJAIB);
-    InsertLastarrmap(arrmap,DINERDASH);
     InsertLastarrmap(arrmap,RNG);
+    InsertLastarrmap(arrmap,DINERDASH);
     InsertLastarrmap(arrmap,HANGMAN);
     InsertLastarrmap(arrmap,TOH);
     InsertLastarrmap(arrmap,SNAKEONMETEOR);
