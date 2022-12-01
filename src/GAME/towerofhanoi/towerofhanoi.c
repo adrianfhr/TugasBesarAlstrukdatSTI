@@ -310,6 +310,7 @@ int towerofhanoimain(){
         score=1;
     }
     printf("Skor yang kamu dapatkan: %d\n", score);
+    return score;
 }
     
 
