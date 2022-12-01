@@ -67,4 +67,6 @@ void concat (char *S1, char *S2);
 
 int stringtoint(char *string);
 
+int stringlen(char *string);
+
 #endif

@@ -7,6 +7,6 @@
         "boolean.h": "c",
         "mesinkar.h": "c",
         "command.h": "c",
-        
+        "game.h": "c"
     }
 }

@@ -12,7 +12,7 @@
 #include "snake/snake.h"
 #include "towerofhanoi/towerofhanoi.h"
 
-void RNG();
+int RNG();
 /*BNMO tidak selalu menikmati game yang sudah pasti outcome-nya. Karena itu, ia suka dengan game yang melibatkan RNG (Random number generator).  Berikut adalah spesifikasi game ini:
 Setiap permainan dimulai dengan program sudah menentukan sebuah angka acak X.
 Di setiap giliran, pemain diberi kesempatan menebak angka X. Game akan memberi tahu apakah tebakan pemain dibandingkan terhadap X lebih besar atau lebih kecil.

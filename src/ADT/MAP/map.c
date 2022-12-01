@@ -105,3 +105,44 @@ boolean IsMemberMap(Map M, ElType k)
 
     return found;
 }
+
+
+void InsertAtMap(Map *M, ElType k, keytype v, address i){
+    if (IsMemberMap(*M, k)) {
+        return;
+    }
+
+    if (i < 0 || i > M->Count) {
+        return;
+    }
+
+    address iterator;
+    for (iterator = M->Count; iterator > i; iterator--) {
+        M->Elements[iterator].Key = M->Elements[iterator - 1].Key;
+        M->Elements[iterator].Value = M->Elements[iterator - 1].Value;
+    }
+
+    M->Elements[i].Key = k;
+    M->Elements[i].Value = v;
+    M->Count++;
+}
+
+void UpdateMap(Map *M, ElType k, keytype v){
+    if (!IsMemberMap(*M, k)) {
+        return;
+    }
+
+    boolean found = false;
+    address idx = 0;
+
+    while (!found && idx < M->Count) {
+        if (M->Elements[idx].Key == k) {
+            found = true;
+        }
+        else {
+            idx++;
+        }
+    }
+
+    M->Elements[idx].Value = v;
+}

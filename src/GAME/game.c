@@ -1,7 +1,7 @@
 #include "game.h"
 #include "diner_dash.h"
 
-void RNG(){
+int RNG(){
     int a;
     int i,count;
     char input[10];
@@ -12,7 +12,7 @@ void RNG(){
     c=t%b+1;
     boolean play;
     play = true;
-    count =0;
+    count = 0;
     while (play){
         printf("Tebakan :");
         STARTWORD();
@@ -21,7 +21,9 @@ void RNG(){
         count = count+1;
         if (a==c){
             printf ("Ya, X adalah %d.\n",c);
+            int skor = count;
             play = false;
+            return skor;
         }else if (a<c){
             printf("Lebih besar\n");
         }else if (a>c){
