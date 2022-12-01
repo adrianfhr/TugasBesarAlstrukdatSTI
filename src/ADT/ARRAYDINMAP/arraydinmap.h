@@ -1,18 +1,15 @@
 #ifndef __ARRAY_DINAMIK_MAP_ 
 #define __ARRAY_DINAMIK_MAP_
 
-// Boolean
-#define boolean unsigned char
-#define true 1
-#define false 0
-
 #define InitialSize 100
 
-#include "../MAP/map.h"
+#include "map2.h"
+#include "../boolean.h"
 
 typedef int IdxType;
 typedef char* ElType;
 typedef Map TypeMap;
+
 typedef struct {
     TypeMap *A;
     int Capacity;

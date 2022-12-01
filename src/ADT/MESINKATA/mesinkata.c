@@ -202,3 +202,13 @@ int stringtoint(char *string)
     }
     return hasil;
 }
+
+int stringlen(char *string)
+{
+    int i = 0;
+    while(string[i] != '\0')
+    {
+        i++;
+    }
+    return i;
+}

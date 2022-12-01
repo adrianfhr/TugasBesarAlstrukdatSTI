@@ -12,7 +12,7 @@
 #include "snake/snake.h"
 #include "towerofhanoi/towerofhanoi.h"
 
-void RNG();
+int RNG();
 /*BNMO tidak selalu menikmati game yang sudah pasti outcome-nya. Karena itu, ia suka dengan game yang melibatkan RNG (Random number generator).  Berikut adalah spesifikasi game ini:
 Setiap permainan dimulai dengan program sudah menentukan sebuah angka acak X.
 Di setiap giliran, pemain diberi kesempatan menebak angka X. Game akan memberi tahu apakah tebakan pemain dibandingkan terhadap X lebih besar atau lebih kecil.
@@ -24,7 +24,7 @@ Gunakan fungsi pembangkit angka acak bawaan bahasa c.
 Secara default, pembangkit angka acak bawaan bahasa c menghasilkan pseudo random number yang artinya angka yang dihasilkan memiliki pola dan tidak benar-benar acak. Cari tahu bagaimana membangkitkan angka acak dengan benar-benar acak.
 */
 
-void DinerDash();
+int DinerDash();
 /*Indra dan Doni juga suka permainan yang menegangkan. Oleh karena itu, ia ingin ada sebuah game Diner Dash dalam BNMO. Secara singkat, Diner Dash merupakan permainan mengantar makanan namun terurut berdasarkan prioritasnya. Berikut adalah spesifikasi game ini:
 Terdapat 2 command yang dapat dilakukan pada game, yaitu COOK dan SERVE
 COOK merupakan command yang bertujuan untuk memasak makanan
@@ -45,8 +45,8 @@ void kerangajaib();
 
 void TOH();
 
-void Hangman();
+int Hangman();
 
-void Snake();
+int Snake();
 
 #endif

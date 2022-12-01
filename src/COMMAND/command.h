@@ -1,12 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include "../ADT/ARRAYDIN/arraydin.h"
+#include "../ADT/MAP/map.h"
 #include "../ADT/ARRAYDINMAP/arraydinmap.h"
 #include "../ADT/QUEUE/queue.h"
 #include "../ADT/MESINKATA/mesinkata.h"
 #include "../ADT/MESINKATA/mesinkar.h"
 #include "../GAME/game.h"
-#include "../ADT/MAP/map.h"
 
 #ifndef COMMAND_H
 #define COMMAND_H
@@ -15,6 +15,7 @@ extern int command;
 extern ArrayDin ListGame;
 extern Queue GameQueue;
 extern char *userplaygame;
+extern arraymap scoreboardlist;
 
 void mainmenu();
 
@@ -54,7 +55,11 @@ void gamecurrent();
 
 void STARTSCOREBOARD();
 
+void PRINTSCOREBOARD();
+
 void SCOREBOARD();
 
-//void RESETSCOREBOARD();
+void INSERTSCOREBOARD();
+
+void RESETSCOREBOARD();
 #endif

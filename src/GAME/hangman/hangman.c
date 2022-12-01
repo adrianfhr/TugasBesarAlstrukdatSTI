@@ -1,7 +1,5 @@
 
 #include "hangman.h"
-#include "string.h"
-
 
 ArrayDin ListKataHangman, ListJawabUser, ListSoal, hangman;
 boolean exithangman, win;
@@ -69,10 +67,10 @@ void SoalHangman(int *alreadypicked, int* alreadypickedcount){
         ListSoal = MakeArrayDin();
         char *tempsoal = (char*) malloc (100* sizeof(ElType));
         tempsoal = ListKataHangman.A[random];
-        for(int i = 0; i < strlen(ListKataHangman.A[random]); i++){ //STRLEN GANTI!!!
+        for(int i = 0; i < stringlen(tempsoal); i++){ 
             char*temp = (char*) malloc(2 * sizeof(ElType));
             temp[0] = tempsoal[i];
-            temp[1] = 'z';
+            temp[1] = '\0';
             InsertKataLast(&ListSoal, temp);
         }
     } 
@@ -159,7 +157,7 @@ boolean CekKapital(ElType x){
 }
 
 
-void HangmanMain(){
+int HangmanMain(){
     system("cls");
     exithangman = false;
     hangman = MakeArrayDin();
@@ -202,7 +200,12 @@ void HangmanMain(){
                 JawabUser(katasoal);
                 printf("Kata : \n");
                 int index = 0;
-                while(katasoal);
+                while(katasoal[index] != '\0'){
+                    printf("%c ", katasoal[index]);
+                    index++;
+                }
+                printf("\n");
+                //printf("%s\n", katasoal);
                 printf("\n");
                 CekWin(katasoal, &win);
                 if(win){
@@ -211,7 +214,6 @@ void HangmanMain(){
                         system("cls"); 
                         printf("Selamat Kamu Menang!\n\n");
                         SoalHangman(alreadypicked, &alreadypickedcount);
-                        printf("kata yang sudah dipilih : %d", alreadypickedcount);
                         win = false;
                         ListJawabUser.Neff = 0;
                     }else{
@@ -221,21 +223,26 @@ void HangmanMain(){
                 }else{
                     printf("Masukkan Tebakan : ");
                     STARTWORD();
-                    char *tebakan = (char*) malloc(currentWord.Length * sizeof(ElType));
-                    KataToString(currentWord, tebakan);
-                    printf("\n");
-                    if(CekKapital(tebakan)){
-                        if(!alreadyhangman(tebakan)){
-                            system("cls");  
-                            InsertKataLast(&ListJawabUser, tebakan);
-                            CekAnswer(tebakan, &kesempatan); 
+                    if(currentWord.Length == 1){
+                        char *tebakan = (char*) malloc(currentWord.Length * sizeof(ElType));
+                        KataToString(currentWord, tebakan);
+                        printf("\n");
+                        if(CekKapital(tebakan)){
+                            if(!alreadyhangman(tebakan)){
+                                system("cls");  
+                                InsertKataLast(&ListJawabUser, tebakan);
+                                CekAnswer(tebakan, &kesempatan); 
+                            }else{
+                                system("cls");
+                                printf("Huruf '%s' Sudah Pernah Ditebak\n\n", tebakan);
+                            }
                         }else{
                             system("cls");
-                            printf("Huruf '%s' Sudah Pernah Ditebak\n\n", tebakan);
+                            printf("Masukkan Huruf Kapital\n\n");
                         }
                     }else{
                         system("cls");
-                        printf("Masukkan Huruf Kapital\n\n");
+                        printf("\nInput Hanya 1 Huruf\n\n");
                     }
                 }
             }
@@ -245,6 +252,7 @@ void HangmanMain(){
                     printf("%s ", ListSoal.A[i]);
                 }
                 printf("\nSkor Kamu : %d\n", skorhangman);
+                return skorhangman;
                 printf("\n\n");
         }else if(commandhangman == 2){
             printf("Masukkan Kata: ");

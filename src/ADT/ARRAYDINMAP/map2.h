@@ -4,7 +4,6 @@
 #include "../boolean.h"
 #include "../ARRAYDIN/arraydin.h"
 #include "../QUEUE/queue.h"
-#include "../MESINKATA/mesinkata.h"
 
 /* MODUL Map
 Deklarasi stack yang dengan implementasi array eksplisit-statik rata kiri

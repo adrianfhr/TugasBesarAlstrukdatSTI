@@ -1,7 +1,7 @@
 #include "game.h"
 #include "diner_dash.h"
 
-void RNG(){
+int RNG(){
     int a;
     int i,count;
     char input[10];
@@ -12,7 +12,7 @@ void RNG(){
     c=t%b+1;
     boolean play;
     play = true;
-    count =0;
+    count = 0;
     while (play){
         printf("Tebakan :");
         STARTWORD();
@@ -21,7 +21,9 @@ void RNG(){
         count = count+1;
         if (a==c){
             printf ("Ya, X adalah %d.\n",c);
+            int skor = 100 - count;
             play = false;
+            return skor;
         }else if (a<c){
             printf("Lebih besar\n");
         }else if (a>c){
@@ -30,7 +32,7 @@ void RNG(){
     }
 } 
 
-void DinerDash(){
+int DinerDash(){
     int saji,antri;
     int current_serve;
     int c,d,i,j;
@@ -162,9 +164,11 @@ void DinerDash(){
     }else{
         printf("Selamat Anda Menang\n");
     }
+    saldo= saldo/ 10000;
+    return saldo;
 }
 
-void GameTambahan(){
+int GameTambahan(){
     struct tm* ptr;
     time_t t;
     int a,b,c;
@@ -175,6 +179,7 @@ void GameTambahan(){
     c=a%b;
     printf("GAME OVER\n");
     printf("FINAL SCORE : %d \n",c);
+    return c;
 }
 
 void kerangajaib(){
@@ -213,10 +218,10 @@ void TOH(){
     towerofhanoimain();
 }
 
-void Hangman(){
-    HangmanMain();
+int Hangman(){
+   return HangmanMain();
 }
 
-void Snake(){
-    snakegame();
+int Snake(){
+    return snakegame();
 }
