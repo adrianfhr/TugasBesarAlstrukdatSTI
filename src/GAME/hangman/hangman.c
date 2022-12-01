@@ -157,7 +157,7 @@ boolean CekKapital(ElType x){
 }
 
 
-void HangmanMain(){
+int HangmanMain(){
     system("cls");
     exithangman = false;
     hangman = MakeArrayDin();
@@ -252,6 +252,7 @@ void HangmanMain(){
                     printf("%s ", ListSoal.A[i]);
                 }
                 printf("\nSkor Kamu : %d\n", skorhangman);
+                return skorhangman;
                 printf("\n\n");
         }else if(commandhangman == 2){
             printf("Masukkan Kata: ");

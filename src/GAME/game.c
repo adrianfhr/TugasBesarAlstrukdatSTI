@@ -215,8 +215,8 @@ void TOH(){
     towerofhanoimain();
 }
 
-void Hangman(){
-    HangmanMain();
+int Hangman(){
+   return HangmanMain();
 }
 
 void Snake(){
