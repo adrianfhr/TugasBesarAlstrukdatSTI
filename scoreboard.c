@@ -2,151 +2,86 @@
 #include "map.h"
 #include "arraydinmap.h"
 
-void SCOREBOARD () {
-    arraymap scoreboardlist = Makearraymap();
-
-//tempat menyimpan semua scoreboard game
-    Map ALL;
-    CreateEmptyMap(&ALL);
-
-
-//tempat menyimpan scoreboard game RNG
-    Map RNG; 
-    CreateEmptyMap(&RNG);
-    // keytype: nama orang
-    // ElType: skor game
-    printf("**** SCOREBOARD GAME RNG ****\n");
-    if (IsEmptyMap(RNG)){
-        printf("| NAMA          | SKOR          |\n");
-        printf("------- SCOREBOARD KOSONG -------\n");
-    }
-    else{ //masih print sesuai urutan map belum berdasarkan skor tertinggi
-        printf("| NAMA          | SKOR          |\n");
-        printf("|---------------|---------------|\n");
-        int count;
-        count = RNG.Count
-        int i;
-        for (i=0;i<count;i++){
-            printf("|%c             | %d             |\n",RNG.Elements[i].Key,RNG.Elements[i].Value);
-        }
-    }
-
-//tempat menyimpan scoreboard game Diner DASH
-    Map DINERDASH; 
+void STARTSCOREBOARD(arraymap *arrmap){
+    *arrmap = Makearraymap();
+    Map DINERDASH,RNG,HANGMAN,TOH,SNAKEONMETEOR,KERANGAJAIB;
     CreateEmptyMap(&DINERDASH);
-    // keytype: nama orang
-    // ElType: skor game
-    printf("**** SCOREBOARD GAME DINER DASH ****\n");
-    if (IsEmptyMap(DINERDASH)){
-        printf("| NAMA          | SKOR          |\n");
-        printf("------- SCOREBOARD KOSONG -------\n");
-    }
-    else{ //masih print sesuai urutan map belum berdasarkan skor tertinggi
-        printf("| NAMA          | SKOR          |\n");
-        printf("|---------------|---------------|\n");
-        int count;
-        count = DINERDASH.Count
-        int i;
-        for (i=0;i<count;i++){
-            printf("|%c             | %d             |\n",DINERDASH.Elements[i].Key,DINERDASH.Elements[i].Value);
-        }
-    }
-
-//tempat menyimpan scoreboard game HANGMAN
-    Map HANGMAN;
+    CreateEmptyMap(&RNG);
+    CreateEmptyMap(&DINERDASH);
     CreateEmptyMap(&HANGMAN);
-    // keytype: nama orang
-    // ElType: skor game
-    printf("**** SCOREBOARD GAME HANGMAN ****\n");
-    if (IsEmptyMap(HANGMAN)){
-        printf("| NAMA          | SKOR          |\n");
-        printf("------- SCOREBOARD KOSONG -------\n");
-    }
-    else{ //masih print sesuai urutan map belum berdasarkan skor tertinggi
-        printf("| NAMA          | SKOR          |\n");
-        printf("|---------------|---------------|\n");
-        int count;
-        count = HANGMAN.Count
-        int i;
-        for (i=0;i<count;i++){
-            printf("|%c             | %d             |\n",HANGMAN.Elements[i].Key,HANGMAN.Elements[i].Value);
-        }
-    }
-
-// tempat menyimpan scoreboard game TOWER OF HANOI
-    Map TOWEROFHANOI; 
-    CreateEmptyMap(&TOWEROFHANOI);
-    // keytype: nama orang
-    // ElType: skor game
-    printf("**** SCOREBOARD GAME TOWER OF HANOI ****\n");
-    if (IsEmptyMap(TOWEROFHANOI)){
-        printf("| NAMA          | SKOR          |\n");
-        printf("------- SCOREBOARD KOSONG -------\n");
-    }
-    else{ //masih print sesuai urutan map belum berdasarkan skor tertinggi
-        printf("| NAMA          | SKOR          |\n");
-        printf("|---------------|---------------|\n");
-        int count;
-        count = TOWEROFHANOI.Count
-        int i;
-        for (i=0;i<count;i++){
-            printf("|%c             | %d             |\n",TOWEROFHANOI.Elements[i].Key,TOWEROFHANOI.Elements[i].Value);
-        }
-    }
-
-//tempat menyimpan scoreboard game SNAKE ON METEOR
-    Map SNAKEONMETEOR; 
+    CreateEmptyMap(&TOH);
     CreateEmptyMap(&SNAKEONMETEOR);
-    // keytype: nama orang
-    // ElType: skor game
-    printf("**** SCOREBOARD GAME SNAKE ON METEOR ****\n");
-    if (IsEmptyMap(SNAKEONMETEOR)){
+    CreateEmptyMap(&KERANGAJAIB);
+    InsertLastarrmap(arrmap,DINERDASH);
+    InsertLastarrmap(arrmap,RNG);
+    InsertLastarrmap(arrmap,HANGMAN);
+    InsertLastarrmap(arrmap,TOH);
+    InsertLastarrmap(arrmap,SNAKEONMETEOR);
+    InsertLastarrmap(arrmap,KERANGAJAIB);
+}
+
+void PRINTSCOREBOARD(int x){
+
+    if(scoreboardlist.A[x].Count == 0){
         printf("| NAMA          | SKOR          |\n");
         printf("------- SCOREBOARD KOSONG -------\n");
     }
     else{ //masih print sesuai urutan map belum berdasarkan skor tertinggi
         printf("| NAMA          | SKOR          |\n");
         printf("|---------------|---------------|\n");
-        int count;
-        count = SNAKEONMETEOR.Count
-        int i;
-        for (i=0;i<count;i++){
-            printf("|%c             | %d             |\n",SNAKEONMETEOR.Elements[i].Key,SNAKEONMETEOR.Elements[i].Value);
+        for(int i=0;i<scoreboardlist.A[x].Count;i++){
+            if(stringlen(scoreboardlist.A[x].Elements[i].Key) < 6){
+                printf("| %s\t\t| %d\t\t|\n", scoreboardlist.A[x].Elements[i].Key, scoreboardlist.A[x].Elements[i].Value);
+            }else if(stringlen(scoreboardlist.A[x].Elements[i].Key) < 14){
+                printf("| %s\t| %d\t\t|\n", scoreboardlist.A[x].Elements[i].Key, scoreboardlist.A[x].Elements[i].Value);
+            }
         }
     }
+}
 
-//tempat menyimpan scoreboard game Kerang Ajaib
-    Map kerangajaib; 
-    CreateEmptyMap(&kerangajaib);
-    // keytype: nama orang
-    // ElType: skor game
-    printf("**** SCOREBOARD GAME KERANG AJAIB ****\n");
-    if (IsEmptyMap(kerangajaib)){
-        printf("| NAMA          | SKOR          |\n");
-        printf("------- SCOREBOARD KOSONG -------\n");
+void SCOREBOARD(arraymap scoreboardlist){
+    for(int i=0;i<Lengtharrmap(scoreboardlist);i++){
+        printf("**** SCOREBOARD %s ****\n", ListGame.A[i]);
+        PRINTSCOREBOARD(i);
+        printf("\n");
     }
-    else{ //masih print sesuai urutan map belum berdasarkan skor tertinggi
-        printf("| NAMA          | SKOR          |\n");
-        printf("|---------------|---------------|\n");
-        int count;
-        count = kerangajaib.Count
-        int i;
-        for (i=0;i<count;i++){
-            printf("|%c             | %d             |\n",kerangajaib.Elements[i].Key,kerangajaib.Elements[i].Value);
-        }
-    }
-
-InsertLastarrmap(&scoreboardlist, ALL);
-InsertLastarrmap(&scoreboardlist, RNG);
-InsertLastarrmap(&scoreboardlist, DINERDASH);
-InsertLastarrmap(&scoreboardlist, HANGMAN);
-InsertLastarrmap(&scoreboardlist, TOWEROFHANOI);
-InsertLastarrmap(&scoreboardlist, SNAKEONMETEOR);
-InsertLastarrmap(&scoreboardlist, kerangajaib);
 
 }
 
-// 1. Cara buat ALL jadi map yang berisi semua map buat di reset semua
-// 2. Cara output sesuai skor terbesar
-// 3. Cara connect kalau ada create game jadi tambah map baru?
-// 4. Cara buat array din map nya sesuai urutan file konfigurasi? Manual?
+void INSERTSCOREBOARD(arraymap* scoreboardlist, int x, int skor){
+    printf("Masukkan nama: ");
+    STARTWORD();
+    if(currentWord.Length > 13){
+        printf("Nama terlalu panjang, maksimal 13 karakter.\n");
+        while(currentWord.Length > 13){
+            printf("Masukkan nama: ");
+            STARTWORD();
+        }
+    }
+    char* nama = (char*)malloc(currentWord.Length*sizeof(char));
+    KataToString(currentWord, nama);
+    if(IsEmptyMap(scoreboardlist->A[x])){
+        printf("Masuk sini \n");
+        InsertMap(&scoreboardlist->A[x],nama,skor);
+    }else{
+        if(IsMemberMap(scoreboardlist->A[x],nama)){
+            int temp = ValueMap(scoreboardlist->A[x],nama);
+            if(temp < skor){
+                UpdateMap(&scoreboardlist->A[x],nama,skor);
+            }
+        }else{
+            int index = 0;
+            boolean found = false;
+            while (index < scoreboardlist->A[x].Count && !found){
+                if (scoreboardlist->A[x].Elements[index].Value < skor){
+                    found = true;
+                }
+                else{
+                    index++;
+                }
+                InsertAtMap(&scoreboardlist->A[x],nama,skor,index);
+            }
+        }
+    }
+    
+}
