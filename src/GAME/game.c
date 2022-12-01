@@ -23,6 +23,7 @@ int RNG(){
             printf ("Ya, X adalah %d.\n",c);
             int skor = 100 - count;
             play = false;
+            printf("Skor kamu adalah : %d\n",skor);
             return skor;
         }else if (a<c){
             printf("Lebih besar\n");
@@ -33,7 +34,7 @@ int RNG(){
 } 
 
 int DinerDash(){
-    int saji,antri;
+    int saji,antri,saldo;
     int current_serve;
     int c,d,i,j;
     char input[30];

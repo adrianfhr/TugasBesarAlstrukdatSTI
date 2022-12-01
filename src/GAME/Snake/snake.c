@@ -182,239 +182,239 @@ arenagame(*fruit,meteor,l,*obstacle);
 }
 
 int snakegame (){
-int fruit,meteor,obstacle;
-int turn,i,a,b;
-List snake;
-char input[10];
-boolean play,valid,collide,quit;
-addressl p,temp;
-play=true;
-turn = 1;
-meteor= 25;
-collide=false;
-quit=false;
-snakestart(&fruit,&snake,&obstacle);
-while(play){
-    while(!valid){
-printf("TURN %d:\n",turn);
-printf("Silahkan masukkan command anda:");
-STARTWORD();
-KataToString(currentWord, input);
-if(listcomparesnake(input, "w") && stringcompare(input,"t")){
-    DelFirstlist(&snake,&p);
-    if((Infoy(p)-1)<0){
-    b=Infox(p)+(Infoy(p)+4)*5;
-    }else{
-    b=Infox(p)+(Infoy(p)-1)*5;
-    }
-    temp=First(snake);
-    for (i=0;i<NbElmt(snake);i=i+1){
-    a=Infox(temp)+Infoy(temp)*5;
-    if(a==b){
-        collide=true;
-    }
-    temp=Next(temp);
-    }
-    if(meteor==b){
-        printf("Meteor masih panas! Anda belum dapat kembali ke titik tersebut.\n");
-        printf("Silahkan masukkan command lainnya\n");
-        InsertFirstlist(&snake,p);
-    }else if(collide){
-        collide=false;
-        printf("Anda tidak dapat bergerak ke tubuh anda sendiri!\n");
-        printf("Silahkan masukkan command lainnya\n");
-        InsertFirstlist(&snake,p);
-    }else if(fruit==b){
-        InsertFirstlist(&snake,p);
-        DelLastlist(&snake,&temp);
-    if((Infoy(p)-1)<0){
-    InsertFirstlist(&snake,Alokasilist(Infox(p),Infoy(p)+4));
-    }else{
-    InsertFirstlist(&snake,Alokasilist(Infox(p),Infoy(p)-1));
-    }
-        InsertLastlist(&snake,Alokasilist(Infox(temp),Infoy(temp)));
-        valid=true;
-    }else{
-        InsertFirstlist(&snake,p);
-        DelLastlist(&snake,&temp);
-    if((Infoy(p)-1)<0){
-    InsertFirstlist(&snake,Alokasilist(Infox(p),Infoy(p)+4));
-    }else{
-    InsertFirstlist(&snake,Alokasilist(Infox(p),Infoy(p)-1));
-    }
-        valid=true;
-    }
-}else if(listcomparesnake(input, "s") && stringcompare(input,"t")){
-    DelFirstlist(&snake,&p);
-    if((Infoy(p)+1)>4){
-    b=Infox(p)+(Infoy(p)-4)*5;
-    }else{
-    b=Infox(p)+(Infoy(p)+1)*5;
-    }
-    temp=First(snake);
-    for (i=0;i<NbElmt(snake);i=i+1){
-    a=Infox(temp)+Infoy(temp)*5;
-    if(a==b){
-        collide=true;
-    }
-    temp=Next(temp);
-    }
-    if(meteor==b){
-        printf("Meteor masih panas! Anda belum dapat kembali ke titik tersebut.\n");
-        printf("Silahkan masukkan command lainnya\n");
-        InsertFirstlist(&snake,p);
-    }else if(collide){
-        collide=false;
-        printf("Anda tidak dapat bergerak ke tubuh anda sendiri!\n");
-        printf("Silahkan masukkan command lainnya\n");
-        InsertFirstlist(&snake,p);
-    }else if(fruit==b){
-        InsertFirstlist(&snake,p);
-        DelLastlist(&snake,&temp);
-    if((Infoy(p)+1)>4){
-    InsertFirstlist(&snake,Alokasilist(Infox(p),Infoy(p)-4));
-    }else{
-    InsertFirstlist(&snake,Alokasilist(Infox(p),Infoy(p)+1));
-    }
-        InsertLastlist(&snake,Alokasilist(Infox(temp),Infoy(temp)));
-        valid=true;
-    }else{
-        InsertFirstlist(&snake,p);
-        DelLastlist(&snake,&temp);
-    if((Infoy(p)+1)>4){
-    InsertFirstlist(&snake,Alokasilist(Infox(p),Infoy(p)-4));
-    }else{
-    InsertFirstlist(&snake,Alokasilist(Infox(p),Infoy(p)+1));
-    }
-        valid=true;
-    }
-}else if(listcomparesnake(input, "a") && stringcompare(input,"t")){
-    DelFirstlist(&snake,&p);
-    if((Infox(p)-1)<0){
-    b=Infox(p)+4+(Infoy(p))*5;
-    }else{
-    b=Infox(p)-1+(Infoy(p))*5;
-    }
-    temp=First(snake);
-    for (i=0;i<NbElmt(snake);i=i+1){
-    a=Infox(temp)+Infoy(temp)*5;
-    if(a==b){
-        collide=true;
-    }
-    temp=Next(temp);
-    }
-    if(meteor==b){
-        printf("Meteor masih panas! Anda belum dapat kembali ke titik tersebut.\n");
-        printf("Silahkan masukkan command lainnya\n");
-        InsertFirstlist(&snake,p);
-    }else if(collide){
-        collide=false;
-        printf("Anda tidak dapat bergerak ke tubuh anda sendiri!\n");
-        printf("Silahkan masukkan command lainnya\n");
-        InsertFirstlist(&snake,p);
-    }else if(fruit==b){
-        InsertFirstlist(&snake,p);
-        DelLastlist(&snake,&temp);
-    if((Infox(p)-1)<0){
-    InsertFirstlist(&snake,Alokasilist(Infox(p)+4,Infoy(p)));
-    }else{
-    InsertFirstlist(&snake,Alokasilist(Infox(p)-1,Infoy(p)));
-    }
-        InsertLastlist(&snake,Alokasilist(Infox(temp),Infoy(temp)));
-        valid=true;
-    }else{
-        InsertFirstlist(&snake,p);
-        DelLastlist(&snake,&temp);
-    if((Infox(p)-1)<0){
-    InsertFirstlist(&snake,Alokasilist(Infox(p)+4,Infoy(p)));
-    }else{
-    InsertFirstlist(&snake,Alokasilist(Infox(p)-1,Infoy(p)));
-    }
-        valid=true;
-    }
-}else if(listcomparesnake(input, "d") && stringcompare(input,"t")){
-    DelFirstlist(&snake,&p);
-    if((Infox(p)+1)>4){
-    b=Infox(p)-4+(Infoy(p))*5;
-    }else{
-    b=Infox(p)+1+(Infoy(p))*5;
-    }
-    temp=First(snake);
-    for (i=0;i<NbElmt(snake);i=i+1){
-    a=Infox(temp)+Infoy(temp)*5;
-    if(a==b){
-        collide=true;
-    }
-    temp=Next(temp);
-    }
-    if(meteor==b){
-        printf("Meteor masih panas! Anda belum dapat kembali ke titik tersebut.\n");
-        printf("Silahkan masukkan command lainnya\n");
-        InsertFirstlist(&snake,p);
-    }else if(collide){
-        collide=false;
-        printf("Anda tidak dapat bergerak ke tubuh anda sendiri!\n");
-        printf("Silahkan masukkan command lainnya\n");
-        InsertFirstlist(&snake,p);
-    }else if(fruit==b){
-        InsertFirstlist(&snake,p);
-        DelLastlist(&snake,&temp);
-    if((Infox(p)+1)>4){
-    InsertFirstlist(&snake,Alokasilist(Infox(p)-4,Infoy(p)));
-    }else{
-    InsertFirstlist(&snake,Alokasilist(Infox(p)+1,Infoy(p)));
-    }
-        InsertLastlist(&snake,Alokasilist(Infox(temp),Infoy(temp)));
-        valid=true;
-    }else{
-        InsertFirstlist(&snake,p);
-        DelLastlist(&snake,&temp);
-    if((Infox(p)+1)>4){
-    InsertFirstlist(&snake,Alokasilist(Infox(p)-4,Infoy(p)));
-    }else{
-    InsertFirstlist(&snake,Alokasilist(Infox(p)+1,Infoy(p)));
-    }
-        valid=true;
-    }
-}else if(listcomparesnake(input, "q") && stringcompare(input,"t")){
-play=false;
-valid=true;
-quit=true;
-}else{
-printf("Command tidak valid! Silahkan input command menggunakan huruf w/a/s/d atau quit dengan q\n");
-}
-}
-if(!quit){
-    valid=false;
-p=First(snake);
-while(fruit==Infox(p)+Infoy(p)*5 || fruit==obstacle){
-fruit=Numbersnake(35)%25;
-p=First(snake);
-    for (i=0;i<NbElmt(snake)-1;i=i+1){
-    a=Infox(p)+Infoy(p)*5;
-    if(a==fruit){
-        fruit=Numbersnake(35+4+i)%25;
-    }
-    p=Next(p);
-    }
-}
-meteor=Numbersnake(27)%25;
-i=0;
-while(meteor==fruit || meteor==obstacle){
-meteor=Numbersnake(27)%25+i;
-i=i+1;
-}
-turn=turn+1;
-printf("Berhasil bergerak!\n");
-arenagame(fruit,meteor,&snake,obstacle);
-if (meteor==(Infox(First(snake))+Infoy(First(snake))*5)){
+    int fruit,meteor,obstacle;
+    int turn,i,a,b;
+    List snake;
+    char input[10];
+    boolean play,valid,collide,quit;
+    addressl p,temp;
+    play=true;
+    turn = 1;
+    meteor= 25;
+    collide=false;
+    quit=false;
+    snakestart(&fruit,&snake,&obstacle);
+    while(play){
+        while(!valid){
+    printf("TURN %d:\n",turn);
+    printf("Silahkan masukkan command anda:");
+    STARTWORD();
+    KataToString(currentWord, input);
+    if(listcomparesnake(input, "w") && stringcompare(input,"t")){
+        DelFirstlist(&snake,&p);
+        if((Infoy(p)-1)<0){
+        b=Infox(p)+(Infoy(p)+4)*5;
+        }else{
+        b=Infox(p)+(Infoy(p)-1)*5;
+        }
+        temp=First(snake);
+        for (i=0;i<NbElmt(snake);i=i+1){
+        a=Infox(temp)+Infoy(temp)*5;
+        if(a==b){
+            collide=true;
+        }
+        temp=Next(temp);
+        }
+        if(meteor==b){
+            printf("Meteor masih panas! Anda belum dapat kembali ke titik tersebut.\n");
+            printf("Silahkan masukkan command lainnya\n");
+            InsertFirstlist(&snake,p);
+        }else if(collide){
+            collide=false;
+            printf("Anda tidak dapat bergerak ke tubuh anda sendiri!\n");
+            printf("Silahkan masukkan command lainnya\n");
+            InsertFirstlist(&snake,p);
+        }else if(fruit==b){
+            InsertFirstlist(&snake,p);
+            DelLastlist(&snake,&temp);
+        if((Infoy(p)-1)<0){
+        InsertFirstlist(&snake,Alokasilist(Infox(p),Infoy(p)+4));
+        }else{
+        InsertFirstlist(&snake,Alokasilist(Infox(p),Infoy(p)-1));
+        }
+            InsertLastlist(&snake,Alokasilist(Infox(temp),Infoy(temp)));
+            valid=true;
+        }else{
+            InsertFirstlist(&snake,p);
+            DelLastlist(&snake,&temp);
+        if((Infoy(p)-1)<0){
+        InsertFirstlist(&snake,Alokasilist(Infox(p),Infoy(p)+4));
+        }else{
+        InsertFirstlist(&snake,Alokasilist(Infox(p),Infoy(p)-1));
+        }
+            valid=true;
+        }
+    }else if(listcomparesnake(input, "s") && stringcompare(input,"t")){
+        DelFirstlist(&snake,&p);
+        if((Infoy(p)+1)>4){
+        b=Infox(p)+(Infoy(p)-4)*5;
+        }else{
+        b=Infox(p)+(Infoy(p)+1)*5;
+        }
+        temp=First(snake);
+        for (i=0;i<NbElmt(snake);i=i+1){
+        a=Infox(temp)+Infoy(temp)*5;
+        if(a==b){
+            collide=true;
+        }
+        temp=Next(temp);
+        }
+        if(meteor==b){
+            printf("Meteor masih panas! Anda belum dapat kembali ke titik tersebut.\n");
+            printf("Silahkan masukkan command lainnya\n");
+            InsertFirstlist(&snake,p);
+        }else if(collide){
+            collide=false;
+            printf("Anda tidak dapat bergerak ke tubuh anda sendiri!\n");
+            printf("Silahkan masukkan command lainnya\n");
+            InsertFirstlist(&snake,p);
+        }else if(fruit==b){
+            InsertFirstlist(&snake,p);
+            DelLastlist(&snake,&temp);
+        if((Infoy(p)+1)>4){
+        InsertFirstlist(&snake,Alokasilist(Infox(p),Infoy(p)-4));
+        }else{
+        InsertFirstlist(&snake,Alokasilist(Infox(p),Infoy(p)+1));
+        }
+            InsertLastlist(&snake,Alokasilist(Infox(temp),Infoy(temp)));
+            valid=true;
+        }else{
+            InsertFirstlist(&snake,p);
+            DelLastlist(&snake,&temp);
+        if((Infoy(p)+1)>4){
+        InsertFirstlist(&snake,Alokasilist(Infox(p),Infoy(p)-4));
+        }else{
+        InsertFirstlist(&snake,Alokasilist(Infox(p),Infoy(p)+1));
+        }
+            valid=true;
+        }
+    }else if(listcomparesnake(input, "a") && stringcompare(input,"t")){
+        DelFirstlist(&snake,&p);
+        if((Infox(p)-1)<0){
+        b=Infox(p)+4+(Infoy(p))*5;
+        }else{
+        b=Infox(p)-1+(Infoy(p))*5;
+        }
+        temp=First(snake);
+        for (i=0;i<NbElmt(snake);i=i+1){
+        a=Infox(temp)+Infoy(temp)*5;
+        if(a==b){
+            collide=true;
+        }
+        temp=Next(temp);
+        }
+        if(meteor==b){
+            printf("Meteor masih panas! Anda belum dapat kembali ke titik tersebut.\n");
+            printf("Silahkan masukkan command lainnya\n");
+            InsertFirstlist(&snake,p);
+        }else if(collide){
+            collide=false;
+            printf("Anda tidak dapat bergerak ke tubuh anda sendiri!\n");
+            printf("Silahkan masukkan command lainnya\n");
+            InsertFirstlist(&snake,p);
+        }else if(fruit==b){
+            InsertFirstlist(&snake,p);
+            DelLastlist(&snake,&temp);
+        if((Infox(p)-1)<0){
+        InsertFirstlist(&snake,Alokasilist(Infox(p)+4,Infoy(p)));
+        }else{
+        InsertFirstlist(&snake,Alokasilist(Infox(p)-1,Infoy(p)));
+        }
+            InsertLastlist(&snake,Alokasilist(Infox(temp),Infoy(temp)));
+            valid=true;
+        }else{
+            InsertFirstlist(&snake,p);
+            DelLastlist(&snake,&temp);
+        if((Infox(p)-1)<0){
+        InsertFirstlist(&snake,Alokasilist(Infox(p)+4,Infoy(p)));
+        }else{
+        InsertFirstlist(&snake,Alokasilist(Infox(p)-1,Infoy(p)));
+        }
+            valid=true;
+        }
+    }else if(listcomparesnake(input, "d") && stringcompare(input,"t")){
+        DelFirstlist(&snake,&p);
+        if((Infox(p)+1)>4){
+        b=Infox(p)-4+(Infoy(p))*5;
+        }else{
+        b=Infox(p)+1+(Infoy(p))*5;
+        }
+        temp=First(snake);
+        for (i=0;i<NbElmt(snake);i=i+1){
+        a=Infox(temp)+Infoy(temp)*5;
+        if(a==b){
+            collide=true;
+        }
+        temp=Next(temp);
+        }
+        if(meteor==b){
+            printf("Meteor masih panas! Anda belum dapat kembali ke titik tersebut.\n");
+            printf("Silahkan masukkan command lainnya\n");
+            InsertFirstlist(&snake,p);
+        }else if(collide){
+            collide=false;
+            printf("Anda tidak dapat bergerak ke tubuh anda sendiri!\n");
+            printf("Silahkan masukkan command lainnya\n");
+            InsertFirstlist(&snake,p);
+        }else if(fruit==b){
+            InsertFirstlist(&snake,p);
+            DelLastlist(&snake,&temp);
+        if((Infox(p)+1)>4){
+        InsertFirstlist(&snake,Alokasilist(Infox(p)-4,Infoy(p)));
+        }else{
+        InsertFirstlist(&snake,Alokasilist(Infox(p)+1,Infoy(p)));
+        }
+            InsertLastlist(&snake,Alokasilist(Infox(temp),Infoy(temp)));
+            valid=true;
+        }else{
+            InsertFirstlist(&snake,p);
+            DelLastlist(&snake,&temp);
+        if((Infox(p)+1)>4){
+        InsertFirstlist(&snake,Alokasilist(Infox(p)-4,Infoy(p)));
+        }else{
+        InsertFirstlist(&snake,Alokasilist(Infox(p)+1,Infoy(p)));
+        }
+            valid=true;
+        }
+    }else if(listcomparesnake(input, "q") && stringcompare(input,"t")){
     play=false;
-    DelFirstlist(&snake,&p);
-}else if(NbElmt(snake)==0 || obstacle==(Infox(First(snake))+Infoy(First(snake))*5)){
-    play=false;
-}
-}
-}
-printf("Game berakhir. skor: %d",NbElmt(snake));
-return NbElmt(snake);
+    valid=true;
+    quit=true;
+    }else{
+    printf("Command tidak valid! Silahkan input command menggunakan huruf w/a/s/d atau quit dengan q\n");
+    }
+    }
+    if(!quit){
+        valid=false;
+    p=First(snake);
+    while(fruit==Infox(p)+Infoy(p)*5 || fruit==obstacle){
+    fruit=Numbersnake(35)%25;
+    p=First(snake);
+        for (i=0;i<NbElmt(snake)-1;i=i+1){
+        a=Infox(p)+Infoy(p)*5;
+        if(a==fruit){
+            fruit=Numbersnake(35+4+i)%25;
+        }
+        p=Next(p);
+        }
+    }
+    meteor=Numbersnake(27)%25;
+    i=0;
+    while(meteor==fruit || meteor==obstacle){
+    meteor=Numbersnake(27)%25+i;
+    i=i+1;
+    }
+    turn=turn+1;
+    printf("Berhasil bergerak!\n");
+    arenagame(fruit,meteor,&snake,obstacle);
+    if (meteor==(Infox(First(snake))+Infoy(First(snake))*5)){
+        play=false;
+        DelFirstlist(&snake,&p);
+    }else if(NbElmt(snake)==0 || obstacle==(Infox(First(snake))+Infoy(First(snake))*5)){
+        play=false;
+    }
+    }
+    }
+    printf("Game berakhir. skor: %d",NbElmt(snake));
+    return NbElmt(snake);
 }

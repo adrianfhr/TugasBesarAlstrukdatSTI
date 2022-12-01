@@ -1,7 +1,7 @@
 #include "command.h"
 
 FILE *file = NULL;
-ArrayDin ListGame;
+ArrayDin ListGame, HistoryGame;
 Queue GameQueue;
 char *userplaygame;
 int command = 9999;
@@ -29,12 +29,14 @@ void commandmenu(){
         printf("3. DELETE GAME\n");
         printf("4. QUEUE GAME\n");
         printf("5. PLAY GAME\n");
-        printf("6. SKIPGAME\n");
-        printf("7. SAVE\n");
-        printf("8. QUIT\n");
-        printf("9. HELP\n");
-        printf("10. SCOREBOARD\n");
-        printf("11. RESET SCOREBOARD\n");
+        printf("6. SKIPGAME <n>\n");
+        printf("7. SCOREBOARD\n");
+        printf("8. RESET SCOREBOARD\n");
+        printf("9. HISTORY <n>\n");
+        printf("10. RESET HISTORY\n");
+        printf("11. SAVE <txt>\n");
+        printf("12. HELP\n");
+        printf("13. QUIT\n");
         printf("Example Command: CREATE GAME\n");
         printf(">> ");
 }
@@ -50,7 +52,7 @@ void commandconfig(){
                     KataToString(currentWord, userCommand);
                     if(stringcompare(userCommand, "GAME") == 1)
                     {   
-                        CREATEGAME(&ListGame);
+                        CREATEGAME(&ListGame, &scoreboardlist);
                     }else{
                         COMMANDLAIN();
                     }
@@ -125,11 +127,20 @@ void commandconfig(){
                     KataToString(currentWord, userCommand);
                     if(stringcompare(userCommand, "SCOREBOARD") == 1)
                     {   
-                        RESETSCOREBOARD();
+                        RESETSCOREBOARD(&scoreboardlist);
+                    }else if(stringcompare(userCommand, "HISTORY") == 1)
+                    {   
+                        RESETHISTORY(&HistoryGame);
                     }else{
                         COMMANDLAIN();
                     }
                     /* code */
+                }else if(stringcompare(userCommand, "HISTORY") == 1)
+                {
+                    ADVLOADGAME();
+                    KataToString(currentWord, userCommand);
+                    int x = atoi(userCommand);
+                    HISTORY(x);
                 }else
                 {
                     COMMANDLAIN();
@@ -143,6 +154,7 @@ void STARTBNMO(){
     STARTREADGAME(file);
     ListGame = MakeArrayDin();
     CreateQueue(&GameQueue);
+    HistoryGame = MakeArrayDin();
     int jumlahgame = currentWord.TabWord[0] - 48; // UBAH YAA
     ADVREADGAME();
     for(int i = 0; i < jumlahgame; i++)
@@ -168,6 +180,7 @@ void LOADBNMO(){
     if(currentChar != MARK){
         ListGame = MakeArrayDin();
         CreateQueue(&GameQueue);
+        HistoryGame = MakeArrayDin();
         char *jlhgame = (char*) malloc (currentWord.Length+1);
         KataToString(currentWord, jlhgame);
         int jumlahgame = stringtoint(jlhgame);
@@ -243,7 +256,7 @@ void SAVE(){
 }
 
 void CREATEGAME(ArrayDin *ListGame, arraymap *scoreboardlist){
-    map temp;
+    Map GAMEASAL;
     system("cls");
     printf("CREATE GAME!\n");
     printf("Masukkan nama game yang akan ditambahkan: ");
@@ -252,8 +265,8 @@ void CREATEGAME(ArrayDin *ListGame, arraymap *scoreboardlist){
     KataToString(currentWord, game);
     InsertKataLast(ListGame, game);
     printf("Game berhasil ditambahkan.\n");
-    CreateEmptyMap(&temp);
-    InsertMapLast(scoreboardlist, temp);   
+    CreateEmptyMap(&GAMEASAL);
+    InsertLastarrmap(scoreboardlist, GAMEASAL);   
 }
 
 void LISTGAME(){
@@ -348,9 +361,10 @@ void PLAYGAME(Queue *GameQueue, char *userplaygame){
             ingame = 7;
         }else{
             ingame = 3;
+
         }
         printf("\n");
-        gamecurrent(&scoreboardlist);
+        gamecurrent(&scoreboardlist, &HistoryGame);
         dequeue(GameQueue, &userplaygame);
     }
 }
@@ -440,35 +454,41 @@ while(fgets(welcome, sizeof(welcome), w) != NULL) {
     }
 }
 
-void gamecurrent(arraymap *scoreboardlist){
+void gamecurrent(arraymap *scoreboardlist, ArrayDin *HistoryGame){
     if(ingame == 1){
         score = RNG();
-        printf("Skor kamu adalah %d\n", score);
         INSERTSCOREBOARD(scoreboardlist, 0, score);
-        PRINTSCOREBOARD(0);
+        InsertKataLast(HistoryGame, "RNG");
     }else if(ingame == 2){
-        DinerDash();
+        score = DinerDash();
+        INSERTSCOREBOARD(scoreboardlist, 1, score);
+        InsertKataLast(HistoryGame, "Diner DASH");
     }else if (ingame == 3)
     {
         score = GameTambahan();
-        printf("Skor kamu adalah %d\n", score);
         INSERTSCOREBOARD(scoreboardlist,7, score);
+        InsertKataLast(HistoryGame, ListGame.A[6]);
     }else if (ingame == 4)
     {
         kerangajaib();
+        InsertKataLast(HistoryGame, "Kerang Ajaib");
     }else if (ingame == 5)
     {
-        TOH();
+        score = TOH();
+        INSERTSCOREBOARD(scoreboardlist, 3, score);
+        InsertKataLast(HistoryGame, "TOWER OF HANOI");
     }else if(ingame == 6){
-        Hangman();
+        score = Hangman();
+        INSERTSCOREBOARD(scoreboardlist, 2, score);
+        InsertKataLast(HistoryGame, "HANGMAN");
     }else if(ingame == 7){
-        Snake();
+        score = Snake();
+        INSERTSCOREBOARD(scoreboardlist, 4, score);
+        InsertKataLast(HistoryGame, "SNAKE ON METEOR");
     }
-
 }
 
-void RESETSCOREBOARD(){
-
+void RESETSCOREBOARD( arraymap *scoreboardlist){
     printf("\nDAFTAR SCOREBOARD:\n"); 
     printf("0. ALL\n");
     for(int i = 0; i < Length(ListGame); i++){
@@ -480,6 +500,7 @@ void RESETSCOREBOARD(){
     char*reset = (char*) malloc (currentWord.Length+1);
     KataToString(currentWord, reset);
     int resetgame = atoi(reset);
+    printf("RESET : %d", resetgame);
     if(resetgame == 0){
         printf("\n\nAPAKAH ANDA YAKIN INGIN MERESET SEMUA SCOREBOARD? (YA/TIDAK)\n");
     }else if(resetgame > 0 && resetgame <= Length(ListGame)){
@@ -494,11 +515,11 @@ void RESETSCOREBOARD(){
         KataToString(currentWord, answer);
         if(stringcompare(answer, "YA")){
             if(resetgame == 0){
-                for(int i = 0; i < Lengtharrmap(scoreboardlist); i++){
-                    scoreboardlist.A[i].Count = 0;
+                for(int i = 0; i < Lengtharrmap(*scoreboardlist); i++){
+                    scoreboardlist->A[i].Count= 0;
                 }
-            }else if(resetgame > 0 && resetgame <= Lengtharrmap(scoreboardlist)){
-                scoreboardlist.A[resetgame-1].Count = 0;
+            }else if(resetgame > 0 && resetgame <= Lengtharrmap(*scoreboardlist)){
+                scoreboardlist->A[resetgame-1].Count = 0;
             }
         }else if(stringcompare(answer, "TIDAK")){
             printf("Reset scoreboard dibatalkan\n");
@@ -567,7 +588,6 @@ void INSERTSCOREBOARD(arraymap* scoreboardlist, int x, int skor){
     char* nama = (char*)malloc(currentWord.Length*sizeof(char));
     KataToString(currentWord, nama);
     if(IsEmptyMap(scoreboardlist->A[x])){
-        printf("Masuk sini \n");
         InsertMap(&scoreboardlist->A[x],nama,skor);
     }else{
         if(IsMemberMap(scoreboardlist->A[x],nama)){
@@ -590,4 +610,38 @@ void INSERTSCOREBOARD(arraymap* scoreboardlist, int x, int skor){
         }
     }
     
+}
+
+void HISTORY(int x){
+    if(IsEmpty(HistoryGame)){
+        printf("Belum ada permainan yang pernah kamu mainkan\n");
+    }else{
+        printf("Berikut adalah daftar permainan yang pernah kamu mainkan:\n");
+        if(x <= Length(HistoryGame)){
+            for(int i = 0; i < x; i++){
+                printf("%d. %s\n", i+1, HistoryGame.A[i]);
+            }
+        }else{
+            for(int i = 0; i < Length(HistoryGame); i++){
+                printf("%d. %s\n", i+1, HistoryGame.A[i]);
+            }
+        }
+
+    }
+}
+
+void RESETHISTORY(ArrayDin *HistoryGame){
+    printf("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET HISTORY? (YA/TIDAK)\n");
+    STARTWORD();
+    char *answer = (char*) malloc (currentWord.Length+1);
+    KataToString(currentWord, answer);
+    if(stringcompare(answer, "YA")){
+            HistoryGame->Neff = 0;
+            printf("Reset history berhasil\n");
+    }else if(stringcompare(answer, "TIDAK")){
+        printf("Reset history dibatalkan\n");
+        HISTORY(Length(*HistoryGame));
+    }else{
+        printf("Input tidak valid\n");
+    }
 }

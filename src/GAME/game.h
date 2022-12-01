@@ -39,11 +39,11 @@ SERVE hanya dapat digunakan untuk pesanan yang berada di paling depan.
 Skor akhir dari pemain adalah total uang yang diterima oleh pemain.
 */
 
-void GameTambahan();
+ int GameTambahan();
 
 void kerangajaib();
 
-void TOH();
+int TOH();
 
 int Hangman();
 

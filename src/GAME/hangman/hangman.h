@@ -33,6 +33,6 @@ boolean alreadyhangman(ElType x);
 
 boolean CekKapital(ElType x);
 
-void HangmanMain();
+int HangmanMain();
 
 #endif
