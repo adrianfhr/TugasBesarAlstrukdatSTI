@@ -587,7 +587,7 @@ void INSERTSCOREBOARD(arraymap* scoreboardlist, int x, int skor){
     }
     char* nama = (char*)malloc(currentWord.Length*sizeof(char));
     KataToString(currentWord, nama);
-    if(IsEmptyMap(scoreboardlist->A[x]))
+    if(IsEmptyMap(scoreboardlist->A[x])){
         InsertMap(&scoreboardlist->A[x],nama,skor);
     }else{
         if(IsMemberMap(scoreboardlist->A[x],nama)){
