@@ -21,7 +21,7 @@ int RNG(){
         count = count+1;
         if (a==c){
             printf ("Ya, X adalah %d.\n",c);
-            int skor = count;
+            int skor = 100 - count;
             play = false;
             return skor;
         }else if (a<c){
