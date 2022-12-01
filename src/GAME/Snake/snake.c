@@ -415,6 +415,6 @@ if (meteor==(Infox(First(snake))+Infoy(First(snake))*5)){
 }
 }
 }
-printf("Game berakhir. skor: %d",NbElmt(snake));
+printf("Game berakhir. skor: %d\n",NbElmt(snake));
 return NbElmt(snake);
 }

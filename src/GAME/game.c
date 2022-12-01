@@ -165,6 +165,7 @@ int DinerDash(){
         printf("Selamat Anda Menang\n");
     }
     saldo= saldo/ 10000;
+    printf("Skor akhir = %d\n");
     return saldo;
 }
 
