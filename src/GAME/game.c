@@ -32,7 +32,7 @@ int RNG(){
     }
 } 
 
-void DinerDash(){
+int DinerDash(){
     int saji,antri;
     int current_serve;
     int c,d,i,j;
@@ -164,6 +164,8 @@ void DinerDash(){
     }else{
         printf("Selamat Anda Menang\n");
     }
+    saldo=saldo/10000;
+    return saldo;
 }
 
 void GameTambahan(){
