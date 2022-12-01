@@ -192,6 +192,17 @@ void LOADBNMO(){
             InsertKataLast(&ListGame, game);
             ADVREADGAME();
         }
+        char *jlhhistory = (char*) malloc (currentWord.Length+1);
+        KataToString(currentWord, jlhhistory);
+        int jumlahhistory = stringtoint(jlhhistory);
+        ADVREADGAME();
+        for(int i = 0; i < jumlahhistory; i++)
+        {
+            char *history = (char*) malloc(currentWord.Length * sizeof(ElType));
+            KataToString(currentWord, history);
+            InsertKataLast(&HistoryGame, history);
+            ADVREADGAME();
+        }
 
         for(int i = 0; i < jumlahgame; i++)
         {
@@ -199,7 +210,6 @@ void LOADBNMO(){
             KataToString(currentWord, jmlhskor);
             int jumlahskor = atoi(jmlhskor);
             if(jumlahskor != 0){
-                printf("jumlah skor1: %d\n", jumlahskor);
                 for(int j = 0; j < jumlahskor; j++){
                     ADVREADGAME();
                     char *temp = (char*) malloc (currentWord.Length+1);
@@ -250,6 +260,22 @@ void SAVE(){
     {
         fprintf(savefile, "%s\n", ListGame.A[i]);
     }
+
+    fprintf(savefile, "%d\n", Length(HistoryGame));
+    for (int i = 0; i < Length(HistoryGame); i++)
+    {
+        fprintf(savefile, "%s\n", HistoryGame.A[i]);
+    }
+
+    for(int i = 0; i<Lengtharrmap(scoreboardlist); i++){
+        fprintf(savefile, "%d\n", scoreboardlist.A[i].Count);
+        if(!IsEmptyMap(scoreboardlist.A[i])){
+            for(int j = 0; j < scoreboardlist.A[i].Count; j++){
+                fprintf(savefile, "%s %d\n", scoreboardlist.A[i].Elements[j].Key, scoreboardlist.A[i].Elements[j].Value);
+            }
+        }
+    }
+
     fprintf(savefile, ".");
     printf("Save file berhasil disimpan.\n");
     fclose(savefile);
