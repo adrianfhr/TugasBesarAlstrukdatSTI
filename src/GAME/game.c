@@ -221,6 +221,6 @@ int Hangman(){
    return HangmanMain();
 }
 
-void Snake(){
-    snakegame();
+int Snake(){
+    return snakegame();
 }
