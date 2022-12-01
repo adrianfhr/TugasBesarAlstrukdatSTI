@@ -12,7 +12,7 @@
 #define COMMAND_H
 
 extern int command;
-extern ArrayDin ListGame;
+extern ArrayDin ListGame, HistoryGame;
 extern Queue GameQueue;
 extern char *userplaygame;
 extern arraymap scoreboardlist;
@@ -62,4 +62,8 @@ void SCOREBOARD();
 void INSERTSCOREBOARD();
 
 void RESETSCOREBOARD();
+
+void HISTORY(int x);
+
+void RESETHISTORY();
 #endif

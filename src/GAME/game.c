@@ -23,6 +23,7 @@ int RNG(){
             printf ("Ya, X adalah %d.\n",c);
             int skor = 100 - count;
             play = false;
+            printf("Skor kamu adalah : %d\n",skor);
             return skor;
         }else if (a<c){
             printf("Lebih besar\n");
@@ -33,7 +34,7 @@ int RNG(){
 } 
 
 int DinerDash(){
-    int saji,antri;
+    int saji,antri,saldo;
     int current_serve;
     int c,d,i,j;
     char input[30];
@@ -71,7 +72,14 @@ int DinerDash(){
                 STARTWORD();
                 KataToString(currentWord, input);
                 if(input[0]=='M'){
-                a=input[1];
+                    int indexM = 1
+                    char *tempM = (char*)malloc(sizeof(char)*currentWord.Length);
+                    while(input[indexM] != '\0'){
+                        char tempM[indexM] = input[indexM];
+                        indexM++;
+                    }
+                    tempM[indexM] = '\0';
+                a=atoi(tempM);
                 sscanf(&a,"%d",&b);
                 if(oncook.Capacity[b]==-1){
                     j=durasi.Capacity[b];
@@ -168,8 +176,7 @@ int DinerDash(){
     printf("Skor akhir = %d\n");
     return saldo;
 }
-
-void GameTambahan(){
+int GameTambahan(){
     struct tm* ptr;
     time_t t;
     int a,b,c;
@@ -180,6 +187,7 @@ void GameTambahan(){
     c=a%b;
     printf("GAME OVER\n");
     printf("FINAL SCORE : %d \n",c);
+    return c;
 }
 
 void kerangajaib(){
@@ -213,9 +221,8 @@ void kerangajaib(){
     printf("\n");
     }
 }
-
-void TOH(){
-    towerofhanoimain();
+int TOH(){
+    return towerofhanoimain();
 }
 
 int Hangman(){
