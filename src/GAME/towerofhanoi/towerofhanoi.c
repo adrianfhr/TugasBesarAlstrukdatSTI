@@ -282,6 +282,10 @@ void towerofhanoimain(){
                 printf("Input invalid\n");
             }
         }
+        else
+        {
+            printf("Input invalid\n");
+        }
     printf("\n\n");
     if (IsSameStack(S3, SMenang))
     {
