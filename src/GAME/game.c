@@ -72,22 +72,27 @@ int DinerDash(){
                 STARTWORD();
                 KataToString(currentWord, input);
                 if(input[0]=='M'){
-                    int indexM = 1
+                    int indexM = 1;
                     char *tempM = (char*)malloc(sizeof(char)*currentWord.Length);
                     while(input[indexM] != '\0'){
-                        char tempM[indexM] = input[indexM];
+                        tempM[indexM] = input[indexM];
                         indexM++;
                     }
                     tempM[indexM] = '\0';
                 a=atoi(tempM);
-                sscanf(&a,"%d",&b);
+                b=a;
+                if  (durasi.Capacity[b]>200){
+                    printf("Command salah\n");
+                }else{
                 if(oncook.Capacity[b]==-1){
                     j=durasi.Capacity[b];
                     cooking.Capacity[b]=j;
                     oncook.Capacity[b]=2;
+                    
                     valid=true;
                 }else{
                 printf("Command salah\n");
+                }
                 }
                 }else{
                 printf("Command salah\n");
