@@ -292,7 +292,7 @@ void towerofhanoimain(){
     printf("Selamat! Kamu berhasil!\n\n");
     printf("Jumlah langkahmu: %d\n", countsteps);
     score = jumlah*2;
-    jumlah=jumlah*5+1;
+    jumlah=jumlah*6+1;
     if(jumlah>countsteps){
 
     }else{
