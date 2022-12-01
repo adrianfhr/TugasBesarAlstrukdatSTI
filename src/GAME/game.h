@@ -24,7 +24,7 @@ Gunakan fungsi pembangkit angka acak bawaan bahasa c.
 Secara default, pembangkit angka acak bawaan bahasa c menghasilkan pseudo random number yang artinya angka yang dihasilkan memiliki pola dan tidak benar-benar acak. Cari tahu bagaimana membangkitkan angka acak dengan benar-benar acak.
 */
 
-void DinerDash();
+int DinerDash();
 /*Indra dan Doni juga suka permainan yang menegangkan. Oleh karena itu, ia ingin ada sebuah game Diner Dash dalam BNMO. Secara singkat, Diner Dash merupakan permainan mengantar makanan namun terurut berdasarkan prioritasnya. Berikut adalah spesifikasi game ini:
 Terdapat 2 command yang dapat dilakukan pada game, yaitu COOK dan SERVE
 COOK merupakan command yang bertujuan untuk memasak makanan
@@ -45,8 +45,8 @@ void kerangajaib();
 
 void TOH();
 
-void Hangman();
+int Hangman();
 
-void Snake();
+int Snake();
 
 #endif
