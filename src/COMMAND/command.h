@@ -61,5 +61,5 @@ void SCOREBOARD();
 
 void INSERTSCOREBOARD();
 
-//void RESETSCOREBOARD();
+void RESETSCOREBOARD();
 #endif

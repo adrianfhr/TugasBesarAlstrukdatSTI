@@ -92,10 +92,10 @@ boolean IsMemberMap(Map M, ElType k)
 /* Mengembalikan true jika k adalah member dari M */
 {
     boolean found = false;
-    address idx = 0, iterator;
+    address idx = 0;
 
     while (!found && idx < M.Count) {
-        if (M.Elements[idx].Key == k) {
+        if (stringcompare(M.Elements[idx].Key, k)){
             found = true;
         }
         else {

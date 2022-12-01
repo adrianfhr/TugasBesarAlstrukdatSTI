@@ -97,7 +97,6 @@ void commandconfig(){
                     if(stringcompare(userCommand, "GAME") == 1)
                     {   
                         PLAYGAME(&GameQueue, &userplaygame);
-                        printf("NEFF : %d\n", scoreboardlist.A[0].Count);
                     }else{
                         COMMANDLAIN();
                     }
@@ -126,7 +125,7 @@ void commandconfig(){
                     KataToString(currentWord, userCommand);
                     if(stringcompare(userCommand, "SCOREBOARD") == 1)
                     {   
-                        //RESETSCOREBOARD();
+                        RESETSCOREBOARD();
                     }else{
                         COMMANDLAIN();
                     }
@@ -180,25 +179,46 @@ void LOADBNMO(){
             InsertKataLast(&ListGame, game);
             ADVREADGAME();
         }
-        
+
         for(int i = 0; i < jumlahgame; i++)
         {
             char *jmlhskor = (char*) malloc (currentWord.Length+1);
             KataToString(currentWord, jmlhskor);
-            int jumlahskor = stringtoint(jmlhskor);
+            int jumlahskor = atoi(jmlhskor);
             if(jumlahskor != 0){
+                printf("jumlah skor1: %d\n", jumlahskor);
                 for(int j = 0; j < jumlahskor; j++){
-                    ADVLOADGAME();
+                    ADVREADGAME();
+                    char *temp = (char*) malloc (currentWord.Length+1);
+                    KataToString(currentWord, temp);
+                    int index = 0;
+                    int indexskor = 0;
+                    int indexnama = 0;
+                    boolean foundnama = false;
                     char *nama = (char*) malloc (currentWord.Length+1);
-                    KataToString(currentWord, nama);
-                    ADVLOADGAME();
                     char *skor = (char*) malloc (currentWord.Length+1);
-                    KataToString(currentWord, skor);
-                    int skorint = stringtoint(skor);
-                    InsertMap(&scoreboardlist.A[0], nama, skorint);
+                    while(temp[index] != '\0' && !foundnama){
+                        if(temp[index] == ' '){
+                            foundnama = true;
+                            index++;
+                        }else{
+                            nama[indexnama] = temp[index];
+                            indexnama++;
+                            index++;
+                        }
+                    }
+                    while(temp[index] != '\0'){
+                        skor[indexskor] = temp[index];
+                        indexskor++;
+                        index++;
+                    }
+                    skor[indexskor] = '\0';
+                    nama[indexnama] = '\0';
+                    int skorint = atoi(skor);
+                    InsertMap(&scoreboardlist.A[i], nama, skorint);
                 }
             }
-            ADVLOADGAME();
+            ADVREADGAME();
         }
         
     }
@@ -438,34 +458,46 @@ void gamecurrent(arraymap *scoreboardlist){
 
 }
 
-// void RESETSCOREBOARD (){
+void RESETSCOREBOARD(){
 
-//     printf("DAFTAR SCOREBOARD:\n"); 
-//     for (int i = 0; i<Lengtharrmap(scoreboardlist);i++){
-//         printf("%d. %s\n",i ,scoreboardlist.A[i]);
-//     }
+    printf("\nDAFTAR SCOREBOARD:\n"); 
+    printf("0. ALL\n");
+    for(int i = 0; i < Length(ListGame); i++){
+        printf("%d. %s\n", i+1, ListGame.A[i]);
+    }
 
-//     int reset;
-//     printf ("SCOREBOARD YANG INGIN DIHAPUS: "); 
-//     scanf("%d\n",&reset);
-//     char confirm;
-//     printf ("APAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD %s (YA/TIDAK)? ",scoreboardlist.A[reset]);
-//     scanf ("%c\n",&confirm);
-//     if (reset == "0" && confirm == "YA"){
-//         for (int i = 1; i<Lengtharrmap(scoreboardlist);i++){
-//             arr.A[i].Count = Nil;
-//         }
-//         printf("Scoreboard berhasil di-reset.");
-//     }
-//     else if (reset != 0 && reset < Lengtharrmap(scoreboardlist) && confirm == "YA"){
-//         arr.A[reset].Count = Nil; 
-//         printf("Scoreboard berhasil di-reset.");
-//     }
-//     else{ //tidak jadi reset scoreboard
-//         printf("Scoreboard tidak berhasil di-reset.");
-//     }
-   
-// }
+    printf("Masukkan nomor game yang ingin direset: ");
+    STARTWORD();
+    char*reset = (char*) malloc (currentWord.Length+1);
+    KataToString(currentWord, reset);
+    int resetgame = atoi(reset);
+    if(resetgame == 0){
+        printf("\n\nAPAKAH ANDA YAKIN INGIN MERESET SEMUA SCOREBOARD? (YA/TIDAK)\n");
+    }else if(resetgame > 0 && resetgame <= Length(ListGame)){
+        printf("\n\nAPAKAH KAMU YAKIN INGIN MELAKUKAN RESET SCOREBOARD GAME %s ? (YA/TIDAK)\n", ListGame.A[resetgame-1]);
+    }else{
+        printf("Nomor game tidak valid\n");
+    }
+
+    if(resetgame >= 0 && resetgame <= Length(ListGame)){
+        STARTWORD();
+        char *answer = (char*) malloc (currentWord.Length+1);
+        KataToString(currentWord, answer);
+        if(stringcompare(answer, "YA")){
+            if(resetgame == 0){
+                for(int i = 0; i < Lengtharrmap(scoreboardlist); i++){
+                    scoreboardlist.A[i].Count = 0;
+                }
+            }else if(resetgame > 0 && resetgame <= Lengtharrmap(scoreboardlist)){
+                scoreboardlist.A[resetgame-1].Count = 0;
+            }
+        }else if(stringcompare(answer, "TIDAK")){
+            printf("Reset scoreboard dibatalkan\n");
+        }else{
+            printf("Input tidak valid\n");
+        }
+    }
+}
 
 void STARTSCOREBOARD(arraymap *arrmap){
     *arrmap = Makearraymap();
@@ -495,13 +527,16 @@ void PRINTSCOREBOARD(int x){
         printf("| NAMA          | SKOR          |\n");
         printf("|---------------|---------------|\n");
         for(int i=0;i<scoreboardlist.A[x].Count;i++){
-            printf("| %s\t| %d\t|\n", scoreboardlist.A[x].Elements[i].Key, scoreboardlist.A[x].Elements[i].Value);
+            if(stringlen(scoreboardlist.A[x].Elements[i].Key) < 6){
+                printf("| %s\t\t| %d\t\t|\n", scoreboardlist.A[x].Elements[i].Key, scoreboardlist.A[x].Elements[i].Value);
+            }else if(stringlen(scoreboardlist.A[x].Elements[i].Key) < 14){
+                printf("| %s\t| %d\t\t|\n", scoreboardlist.A[x].Elements[i].Key, scoreboardlist.A[x].Elements[i].Value);
+            }
         }
     }
 }
 
 void SCOREBOARD(arraymap scoreboardlist){
-    printf("NEFF RNG : %d\n",scoreboardlist.A[0].Count);
     for(int i=0;i<Lengtharrmap(scoreboardlist);i++){
         printf("**** SCOREBOARD %s ****\n", ListGame.A[i]);
         PRINTSCOREBOARD(i);
@@ -513,20 +548,25 @@ void SCOREBOARD(arraymap scoreboardlist){
 void INSERTSCOREBOARD(arraymap* scoreboardlist, int x, int skor){
     printf("Masukkan nama: ");
     STARTWORD();
+    if(currentWord.Length > 13){
+        printf("Nama terlalu panjang, maksimal 13 karakter.\n");
+        while(currentWord.Length > 13){
+            printf("Masukkan nama: ");
+            STARTWORD();
+        }
+    }
     char* nama = (char*)malloc(currentWord.Length*sizeof(char));
     KataToString(currentWord, nama);
     if(IsEmptyMap(scoreboardlist->A[x])){
         printf("Masuk sini \n");
         InsertMap(&scoreboardlist->A[x],nama,skor);
-    }
-    else{
+    }else{
         if(IsMemberMap(scoreboardlist->A[x],nama)){
             int temp = ValueMap(scoreboardlist->A[x],nama);
-            if (temp < skor){
+            if(temp < skor){
                 UpdateMap(&scoreboardlist->A[x],nama,skor);
             }
-        }
-        else{
+        }else{
             int index = 0;
             boolean found = false;
             while (index < scoreboardlist->A[x].Count && !found){
@@ -540,4 +580,5 @@ void INSERTSCOREBOARD(arraymap* scoreboardlist, int x, int skor){
             }
         }
     }
+    
 }
