@@ -166,7 +166,7 @@ void DinerDash(){
     }
 }
 
-void GameTambahan(){
+int GameTambahan(){
     struct tm* ptr;
     time_t t;
     int a,b,c;
@@ -177,6 +177,7 @@ void GameTambahan(){
     c=a%b;
     printf("GAME OVER\n");
     printf("FINAL SCORE : %d \n",c);
+    return c;
 }
 
 void kerangajaib(){
