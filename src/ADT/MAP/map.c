@@ -128,21 +128,19 @@ void InsertAtMap(Map *M, ElType k, keytype v, address i){
 }
 
 void UpdateMap(Map *M, ElType k, keytype v){
-    if (!IsMemberMap(*M, k)) {
-        return;
-    }
+    if (IsMemberMap(*M, k)) {
+        boolean found = false;
+        address idx = 0;
 
-    boolean found = false;
-    address idx = 0;
-
-    while (!found && idx < M->Count) {
-        if (M->Elements[idx].Key == k) {
-            found = true;
+        while (!found && idx < M->Count) {
+            if (M->Elements[idx].Key == k) {
+                found = true;
+            }
+            else {
+                idx++;
+            }
         }
-        else {
-            idx++;
-        }
-    }
 
-    M->Elements[idx].Value = v;
+        M->Elements[idx].Value = v;
+    }
 }

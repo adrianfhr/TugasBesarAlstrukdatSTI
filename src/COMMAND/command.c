@@ -609,10 +609,9 @@ void INSERTSCOREBOARD(arraymap* scoreboardlist, int x, int skor){
         InsertMap(&scoreboardlist->A[x],nama,skor);
     }else{
         if(IsMemberMap(scoreboardlist->A[x],nama)){
-            int temp = ValueMap(scoreboardlist->A[x],nama);
-            if(temp < skor){
-                UpdateMap(&scoreboardlist->A[x],nama,skor);
-            }
+            printf("\nNama sudah ada di scoreboard\n");
+            printf("Silahkan input dengan nama yang berbeda\n\n");
+            INSERTSCOREBOARD(scoreboardlist,x,skor);
         }else{
             int index = 0;
             boolean found = false;
