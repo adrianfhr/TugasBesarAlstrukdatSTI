@@ -157,7 +157,6 @@ void STARTBNMO(){
     ListGame = MakeArrayDin();
     CreateQueue(&GameQueue);
     CreateEmptyStackstr(&HistoryGame);
-    //HistoryGame = MakeArrayDin();
     int jumlahgame = currentWord.TabWord[0] - 48; // UBAH YAA
     ADVREADGAME();
     for(int i = 0; i < jumlahgame; i++)
@@ -182,7 +181,6 @@ void LOADBNMO(){
     if(currentChar != MARK){
         ListGame = MakeArrayDin();
         CreateQueue(&GameQueue);
-        //HistoryGame = MakeArrayDin();
         CreateEmptyStackstr(&HistoryGame);
         char *jlhgame = (char*) malloc (currentWord.Length+1);
         KataToString(currentWord, jlhgame);
@@ -206,14 +204,6 @@ void LOADBNMO(){
             PushStackstr(&HistoryGame, history);
             ADVREADGAME();
         }
-        // for(int i = 0; i < jumlahhistory; i++)
-        // {
-        //     char *history = (char*) malloc(currentWord.Length * sizeof(ElType));
-        //     KataToString(currentWord, history);
-        //     InsertKataLast(&HistoryGame, history);
-        //     ADVREADGAME();
-        // }
-
 
         for(int i = 0; i < jumlahgame; i++)
         {
@@ -581,7 +571,7 @@ void PRINTSCOREBOARD(int x){
         printf("| NAMA          | SKOR          |\n");
         printf("------- SCOREBOARD KOSONG -------\n");
     }
-    else{ //masih print sesuai urutan map belum berdasarkan skor tertinggi
+    else{
         printf("| NAMA          | SKOR          |\n");
         printf("|---------------|---------------|\n");
         for(int i=0;i<scoreboardlist.A[x].Count;i++){
