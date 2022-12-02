@@ -294,10 +294,22 @@ void CREATEGAME(ArrayDin *ListGame, arraymap *scoreboardlist){
     STARTCREATE();
     char *game = (char*) malloc (currentWord.Length+1);
     KataToString(currentWord, game);
-    InsertKataLast(ListGame, game);
-    printf("Game berhasil ditambahkan.\n"); 
-    CreateEmptyMap(&GAMEASAL);
-    InsertLastarrmap(scoreboardlist, GAMEASAL);   
+    boolean found = false;
+    for(int i = 0; i < Length(*ListGame); i++){
+        if(stringcompare(game, ListGame->A[i])){
+            found = true;
+        }
+    }
+    if(found){
+        printf("Game sudah ada.\n");
+        CREATEGAME(ListGame, scoreboardlist);
+    }else{
+        InsertKataLast(ListGame, game);
+        printf("Game berhasil ditambahkan.\n"); 
+        CreateEmptyMap(&GAMEASAL);
+        InsertLastarrmap(scoreboardlist, GAMEASAL);
+    }
+       
 }
 
 void LISTGAME(){
