@@ -176,9 +176,9 @@ void LOADBNMO(){
     char filename[] = "..\\data\\";
     concat(filename, file);
     system("cls");
-    printf("Save file berhasil dibaca. BNMO berhasil dijalankan.\n");
-    STARTREADGAME(filename);
-    if(currentChar != MARK){
+    boolean LOADBOOL = STARTREADGAME(filename);
+    if(LOADBOOL){
+        printf("Save file berhasil dibaca. BNMO berhasil dijalankan.\n");
         ListGame = MakeArrayDin();
         CreateQueue(&GameQueue);
         CreateEmptyStackstr(&HistoryGame);
@@ -244,7 +244,9 @@ void LOADBNMO(){
             }
             ADVREADGAME();
         }
-        
+    }else{
+        printf("BNMO tidak dapat dijalankan.\n");
+        command = 0;
     }
 }
 void SAVE(){
@@ -543,6 +545,7 @@ void RESETSCOREBOARD( arraymap *scoreboardlist){
             }else if(resetgame > 0 && resetgame <= Lengtharrmap(*scoreboardlist)){
                 scoreboardlist->A[resetgame-1].Count = 0;
             }
+            printf("\nSCOREBOARD BERHASIL DI RESET\n");
         }else if(stringcompare(answer, "TIDAK")){
             printf("Reset scoreboard dibatalkan\n");
         }else{
@@ -633,11 +636,11 @@ void HISTORY(int x){
     }else{
         printf("Berikut adalah daftar permainan yang pernah kamu mainkan:\n");
         if(x <= lengthStackstr(HistoryGame)){
-            printStackstr(HistoryGame);
-        }else{
-            for(int i = 0; i < lengthStackstr(HistoryGame); i++){
-                printStackstr(HistoryGame);
+            for(int i = 0 ; i < x ; i++){
+                printf("%d. %s\n", i+1, HistoryGame.T[i]);
             }
+        }else{
+            printStackstr(HistoryGame);
         }
 
     }

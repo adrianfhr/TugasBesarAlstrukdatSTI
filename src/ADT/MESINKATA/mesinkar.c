@@ -24,13 +24,15 @@ void START(){
           Jika currentChar != MARK maka EOP akan padam (false)
           Jika currentChar = MARK maka EOP akan menyala (true) */
 
-void STARTFILE(char *filename){
+boolean STARTFILE(char *filename){
       pita = fopen(filename, "r");
     if (pita == NULL) {
          printf("File tidak ditemukan.\n");
          currentChar = MARK;
+         return false;
     } else {
          ADV();
+         return true;
     }
 }
 

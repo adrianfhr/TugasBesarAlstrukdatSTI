@@ -77,8 +77,8 @@ void CopyWord(){
      
 }
 
-void STARTREADGAME (char *filename){
-    STARTFILE(filename);
+boolean STARTREADGAME (char *filename){
+    boolean File = STARTFILE(filename);
     IgnoreBlanks();
     if(currentChar == MARK ){
         EndWord = true;
@@ -86,6 +86,11 @@ void STARTREADGAME (char *filename){
         EndWord = false;
         COPYGAME();
         IgnoreEnter();
+    }
+    if(File){
+        return true;
+    }else{
+        return false;
     }
 }
 
