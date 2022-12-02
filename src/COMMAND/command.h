@@ -7,15 +7,17 @@
 #include "../ADT/MESINKATA/mesinkata.h"
 #include "../ADT/MESINKATA/mesinkar.h"
 #include "../GAME/game.h"
+#include "../ADT/STACK/stackstr.h"
 
 #ifndef COMMAND_H
 #define COMMAND_H
 
 extern int command;
-extern ArrayDin ListGame, HistoryGame;
+extern ArrayDin ListGame;
 extern Queue GameQueue;
 extern char *userplaygame;
 extern arraymap scoreboardlist;
+extern Stackstr HistoryGame;
 
 void mainmenu();
 
