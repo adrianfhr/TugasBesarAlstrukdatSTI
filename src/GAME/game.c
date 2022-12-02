@@ -48,6 +48,7 @@ int DinerDash(){
     Array ready;
     Array oncook;
     Array durasi,ketahanan,harga;
+    saldo=0;
     for(i=0;i<15;i=i+1){
         cooking.Capacity[i]=-1;
         serving.Capacity[i]=-1;
