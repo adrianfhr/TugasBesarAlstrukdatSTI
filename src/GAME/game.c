@@ -81,8 +81,6 @@ int DinerDash(){
                     tempM[indexM] = '\0';
                 a=atoi(tempM);
                 b=a;
-                printf("%d durasi\n",b);
-                printf("%d durasi\n",durasi.Capacity[b]);
                 if(durasi.Capacity[b]<1){
                 printf("Command salah\n");
                 }else{
