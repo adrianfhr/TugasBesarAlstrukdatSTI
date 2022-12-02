@@ -82,7 +82,8 @@ int DinerDash(){
                 a=atoi(tempM);
                 b=a;
                 printf("%d durasi\n",b);
-                if(durasi.Capacity[b]>100){
+                printf("%d durasi\n",durasi.Capacity[b]);
+                if(durasi.Capacity[b]<1){
                 printf("Command salah\n");
                 }else{
                 if(oncook.Capacity[b]==-1){
